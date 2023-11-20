@@ -1,0 +1,3618 @@
+% --------------- %
+% ---  JOB    --- %
+% --------------- %
+
+Job: "Opt_tltl_highPtMuWP_sys"
+  CmeLabel: "13 TeV"
+  POI: "SigXsecOverSM" #"Norm_fake_HF_el_TandM"
+  ReadFrom: NTUP
+  NtuplePaths: XXX_NtuplePaths
+  Label: "Control regions" #"LQLQ#rightarrow tltl"
+  LumiLabel: "139 fb^{-1}"
+  Lumi: XXX_LUMI
+  MCweight: "XXX_MC_WEIGHT*((abs(lep_ID_0)==13 && lep_Pt_0>0.8e6)? lep_SF_Mu_ID_HighPt_0 : 1)*((abs(lep_ID_1)==13 && lep_Pt_1>0.8e6)? lep_SF_Mu_ID_HighPt_1 : 1)*((abs(lep_ID_2)==13 && lep_Pt_2>0.8e6) ? lep_SF_Mu_ID_HighPt_2 : 1)*((abs(lep_ID_3)==13 && lep_Pt_3>0.8e6)? lep_SF_Mu_ID_HighPt_3 : 1))*(((dilep_type>0)*(lep_SF_CombinedTight_0*lep_SF_CombinedTight_1*lepSF_PLIV_Prompt_0*lepSF_PLIV_Prompt_1)+(trilep_type>0)*(lep_SF_CombinedLoose_0*lep_SF_CombinedTight_1*lep_SF_CombinedTight_2*lepSF_PLIV_Prompt_1*lepSF_PLIV_Prompt_2)+(quadlep_type>0)*(lep_SF_CombinedLoose_0*lep_SF_CombinedLoose_1*lep_SF_CombinedLoose_2*lep_SF_CombinedLoose_3))"
+  Selection: "XXX_HIGHPT_MUON_SELECTION" 
+  PlotOptions: "NOXERR","PREFITONPOSTFIT" #,"CHI2","YIELDS" #"NORMSIG","NOSIG"
+  NtupleName: "nominal"
+  MCstatThreshold: 0.01
+  UseGammasForCorr: TRUE
+  GuessMCStatEmptyBins: FALSE
+  SystErrorBars: TRUE
+  SystControlPlots: TRUE
+  SystPruningShape: 0.01
+  SystPruningNorm: 0.01
+  SystLarge: 0.90
+  SystCategoryTables: TRUE
+  CorrelationThreshold: 0.20
+  HistoChecks: NOCRASH
+  SplitHistoFiles: TRUE   # set this in order to have separated .root files in Histograms/ for different regions
+  ImageFormat: "png","eps","pdf"
+  DoSummaryPlot: TRUE
+  DoTables: TRUE
+  DoSignalRegionsPlot: TRUE
+  DoPieChartPlot: TRUE
+  SummaryPlotYmin: 1
+  SummaryPlotYmax: 1e5 #CRs
+  #SummaryPlotYmax: 4e3 #SRs
+  RatioType: "DATAOVERBKG"
+  RatioYmin: 0.5
+  RatioYmax: 1.5
+  ReplacementFile: config/replacement_tltl_new.txt
+  RankingMaxNP: 15
+  DebugLevel: 2
+  RemoveSystOnEmptySample: TRUE
+  RemoveLargeSyst: TRUE
+  #BlindingThreshold: 0.05
+  GetChi2: TRUE
+  UseATLASRoundingTex: TRUE
+
+% --------------- %
+% ---  FIT    --- %
+% --------------- %
+
+Fit: "fit"
+  FitType: BONLY
+  FitRegion: CRSR
+  FitBlind: FALSE
+  POIAsimov: 1
+  UseMinos: SigXsecOverSM
+  NumCPU: 8
+  #doLHscan: SigXsecOverSM
+
+% --------------- %
+% ---  LIMIT  --- %
+% --------------- %
+
+Limit: "limit"
+  LimitType: ASYMPTOTIC
+  LimitBlind: FALSE
+  
+% --------------- %
+% --- REGIONS --- %
+% --------------- %
+
+%%% SIGNAL REGIONS %%%
+
+%%% ----- 3L channel ----- %%%
+
+Region: "SR_3l_Meff_lowMinMll200"
+  Type: VALIDATION
+  Variable: "(HT+met_met)*1e-3",5,0,4000
+  VariableTitle: "m_{eff} [GeV]"
+  Binning: 0,500,1000,1500,2500,4000
+  Label: 3\ell \ low\ (e/\mu)
+  TexLabel: "3$\ell$ \ low (e/$\mu$)"
+  Selection: "trilep_type && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR>=2 && nJets_OR_DL1r_85>=1 && XXX_ELE_DEFINI && XXX_3L_VETOS && lep_isolationFCLoose_0 && lep_isolationFCLoose_1 && lep_isolationFCLoose_2 && ((abs(lep_ID_1)==11 && abs(lep_EtaBE2_1)<=1.37 && lep_isTightLH_1 && lep_ambiguityType_1==0 && passPLIVTight_1) || (abs(lep_ID_1)==11 && abs(lep_EtaBE2_1)>=1.52 && lep_isTightLH_1 && lep_ambiguityType_1==0 && passPLIVTight_1) || (abs(lep_ID_1)==13 && lep_isMedium_1 && passPLIVTight_1)) && ((abs(lep_ID_2)==11 && abs(lep_EtaBE2_2)<=1.37 && lep_isTightLH_2 && lep_ambiguityType_2==0 && passPLIVTight_2) || (abs(lep_ID_2)==11 && abs(lep_EtaBE2_2)>=1.52 && lep_isTightLH_2 && lep_ambiguityType_2==0 && passPLIVTight_2) || (abs(lep_ID_2)==13 && lep_isMedium_2 && passPLIVTight_2)) && min(min(Mll01,Mll02),Mll12)*1e-3<=200"
+  LogScale: TRUE	   
+  Ymin: 1e-1  
+  Ymax: 1e7   
+  DataType: DATA
+
+Region: "SR_3l_ele_Meff_highMinMll200"
+  Type: SIGNAL
+  Variable: "(HT+met_met)*1e-3",4,500,4000
+  VariableTitle: "m_{eff} [GeV]"
+  Binning: 500,1000,1500,2500,4000
+  Label: 3\ell \ high\ (e)
+  TexLabel: "3$\ell$ \ high\ (e)"	
+  Selection: "(trilep_type==3 || trilep_type==4) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR>=2 && nJets_OR_DL1r_85>=1 && XXX_ELE_DEFINI && XXX_3L_VETOS && lep_isolationFCLoose_0 && lep_isolationFCLoose_1 && lep_isolationFCLoose_2 && ((abs(lep_ID_1)==11 && abs(lep_EtaBE2_1)<=1.37 && lep_isTightLH_1 && lep_ambiguityType_1==0 && passPLIVTight_1) || (abs(lep_ID_1)==11 && abs(lep_EtaBE2_1)>=1.52 && lep_isTightLH_1 && lep_ambiguityType_1==0 && passPLIVTight_1) || (abs(lep_ID_1)==13 && lep_isMedium_1 && passPLIVTight_1)) && ((abs(lep_ID_2)==11 && abs(lep_EtaBE2_2)<=1.37 && lep_isTightLH_2 && lep_ambiguityType_2==0 && passPLIVTight_2) || (abs(lep_ID_2)==11 && abs(lep_EtaBE2_2)>=1.52 && lep_isTightLH_2 && lep_ambiguityType_2==0 && passPLIVTight_2) || (abs(lep_ID_2)==13 && lep_isMedium_2 && passPLIVTight_2)) && min(min(Mll01,Mll02),Mll12)*1e-3>200 && (HT+met_met) > 5e5"
+  LogScale: TRUE	   
+  Ymin: 1e-2  
+  Ymax: 1e7   
+  DataType: DATA
+
+Region: "SR_3l_mu_Meff_highMinMll200"
+  Type: SIGNAL
+  Variable: "(HT+met_met)*1e-3",4,500,4000
+  Binning: 500,1000,1500,2500,4000
+  VariableTitle: "m_{eff} [GeV]"
+  Label: 3\ell \ high\ (\mu)
+  TexLabel: "3$\ell$ \ high\ (\mu)"
+  Selection: "(trilep_type==1 || trilep_type==2) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR>=2 && nJets_OR_DL1r_85>=1 && XXX_ELE_DEFINI && XXX_3L_VETOS && lep_isolationFCLoose_0 && lep_isolationFCLoose_1 && lep_isolationFCLoose_2 && ((abs(lep_ID_1)==11 && abs(lep_EtaBE2_1)<=1.37 && lep_isTightLH_1 && lep_ambiguityType_1==0 && passPLIVTight_1) || (abs(lep_ID_1)==11 && abs(lep_EtaBE2_1)>=1.52 && lep_isTightLH_1 && lep_ambiguityType_1==0 && passPLIVTight_1) || (abs(lep_ID_1)==13 && lep_isMedium_1 && passPLIVTight_1)) && ((abs(lep_ID_2)==11 && abs(lep_EtaBE2_2)<=1.37 && lep_isTightLH_2 && lep_ambiguityType_2==0 && passPLIVTight_2) || (abs(lep_ID_2)==11 && abs(lep_EtaBE2_2)>=1.52 && lep_isTightLH_2 && lep_ambiguityType_2==0 && passPLIVTight_2) || (abs(lep_ID_2)==13 && lep_isMedium_2 && passPLIVTight_2)) && min(min(Mll01,Mll02),Mll12)*1e-3>200 && (HT+met_met) > 5e5"
+  LogScale: TRUE	   
+  Ymin: 1e-2  
+  Ymax: 1e7   
+  DataType: DATA
+
+%%% ----- 4L channel ----- %%%
+
+Region: "SR_4l_Meff_lowMinMll"
+  Type: VALIDATION
+  Variable: "(HT+met_met)*1e-3",5,0,4000
+  VariableTitle: "m_{eff} [GeV]"
+  Binning: 0,500,1000,1500,2000,4000
+  Label: 4\ell \ low\ (e/\mu)
+  TexLabel: "4$\ell$ \ low (e/$\mu$)"
+  Selection: "quadlep_type && custTrigMatch_LooseID_FCLooseIso_SLTorDLT && nJets_OR>=2 && nJets_OR_DL1r_85>=1 && lep_Pt_0*1e-3>10 && lep_Pt_1*1e-3>10 && lep_Pt_2*1e-3>10 && lep_Pt_3*1e-3>10 && min(min(min(min(Mll01,Mll02),Mll12),Mll13),Mll03)*1e-3<=100" # && XXX_4L_VETOS"
+  LogScale: TRUE	   
+  Ymin: 1e-1  
+  Ymax: 1e5
+  DataType: DATA
+
+Region: "SR_4l_ele_Meff_highMinMll"
+  Type: SIGNAL
+  Variable: "(HT+met_met)*1e-3",4,500,4000
+  VariableTitle: "m_{eff} [GeV]"
+  Binning: 500,1000,1500,2000,4000
+  Label: 4\ell \ high\ (e)
+  TexLabel: "4$\ell$ \ high\ (e)"
+  Selection: "((quadlep_type==3 && abs(lep_ID_0)==11) || quadlep_type==4 || quadlep_type==5) && custTrigMatch_LooseID_FCLooseIso_SLTorDLT && nJets_OR>=2 && nJets_OR_DL1r_85>=1 && lep_Pt_0*1e-3>10 && lep_Pt_1*1e-3>10 && lep_Pt_2*1e-3>10 && lep_Pt_3*1e-3>10 && min(min(min(min(Mll01,Mll02),Mll12),Mll13),Mll03)*1e-3>100 && (HT+met_met) > 5e5" # && XXX_4L_VETOS"
+  LogScale: TRUE	   
+  Ymin: 1e-2
+  Ymax: 1e5
+  DataType: DATA
+
+Region: "SR_4l_mu_Meff_highMinMll"
+  Type: SIGNAL
+  Variable: "(HT+met_met)*1e-3",4,500,4000
+  VariableTitle: "m_{eff} [GeV]"
+  Binning: 500,1000,1500,2000,4000
+  Label: 4\ell \ high\ (\mu)
+  TexLabel: "4$\ell$ \ high\ ($\mu$)"
+  Selection: "(quadlep_type==1 || quadlep_type==2 || (quadlep_type==3 && abs(lep_ID_0)==13)) && custTrigMatch_LooseID_FCLooseIso_SLTorDLT && nJets_OR>=2 && nJets_OR_DL1r_85>=1 && lep_Pt_0*1e-3>10 && lep_Pt_1*1e-3>10 && lep_Pt_2*1e-3>10 && lep_Pt_3*1e-3>10 && min(min(min(min(Mll01,Mll02),Mll12),Mll13),Mll03)*1e-3>100 && (HT+met_met) > 5e5" # && XXX_4L_VETOS"
+  LogScale: TRUE	   
+  Ymin: 1e-2
+  Ymax: 1e5
+  DataType: DATA	
+
+%%%%%%% Control regions %%%%%%%%
+
+Region: "CR_ttW_2lSS"
+  Type: CONTROL
+  Variable: "(HT+met_met)*1e-3",4,0,4000
+  VariableTitle: "m_{eff} [GeV]"
+  Binning: 0,500,1000,1500,4000
+  Label: 2\ell ttW #CR\!\!\!\ 2\ell ttW
+  TexLabel: "2$\ell$ttW"
+  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && dilep_type && (XXX_MUON_LEAD_TIGHT_PLV || XXX_ELEC_LEAD_TIGHT_PLV) && (XXX_MUON_SUBLEAD_TIGHT_PLV || XXX_ELEC_SUBLEAD_TIGHT_PLV) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && nJets_OR>=2 && nJets_OR_DL1r_85>=2 && lep_ID_0*lep_ID_1>0 && XXX_ELE_DEFINI"
+  LogScale: TRUE
+  Ymin: 5
+  Ymax: 2e4	
+  DataType: DATA
+
+Region: "CR_HFel_2lSS"
+  Type: CONTROL
+  Variable: 1,1,0,1
+  VariableTitle: "Nevt"
+  Label: 2\ell tt(e) #CR\!\!\!\ 2\ell tt(e)+
+  TexLabel: "2$\ell$tt(e)"
+  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && dilep_type && (passPLIVTight_0 && passPLIVTight_1) && !(passPLIVVeryTight_0 && passPLIVVeryTight_1) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && nJets_OR>=2 && nJets_OR_DL1r_85==1 && lep_ID_0*lep_ID_1>0 && ((abs(lep_ID_0) == 13 && lep_isMedium_0 && lep_isolationFCLoose_0 && abs(lep_ID_1) == 11 && lep_isolationFCLoose_1 && lep_isTightLH_1 && lep_chargeIDBDTResult_recalc_rel207_tight_1>0.7 && lep_ambiguityType_1 == 0)||(abs(lep_ID_0) == 11 && lep_isolationFCLoose_0 && lep_isTightLH_0 && lep_chargeIDBDTResult_recalc_rel207_tight_0>0.7 && lep_ambiguityType_0 == 0 && abs(lep_ID_1) == 11 && lep_isolationFCLoose_1 && lep_isTightLH_1 && lep_chargeIDBDTResult_recalc_rel207_tight_1>0.7 && lep_ambiguityType_1 == 0)) && XXX_ELE_DEFINI && MtLepMet*1e-3<250"
+  LogScale: TRUE
+  Ymax: 1e9
+  DataType: DATA
+
+Region: "CR_HFmu_2lSS"
+  Type: CONTROL
+  Variable: 1,1,0,1
+  VariableTitle: "Nevt"
+  Label: 2\ell tt(\mu) #CR\!\!\!\ 2\ell tt(\mu)+
+  TexLabel: "2$\ell$tt($\mu$)"
+  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && dilep_type && (passPLIVTight_0 && passPLIVTight_1) && !(passPLIVVeryTight_0 && passPLIVVeryTight_1) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && nJets_OR>=2 && nJets_OR_DL1r_85==1 && lep_ID_0*lep_ID_1>0 && ((abs(lep_ID_0) == 11 && lep_isolationFCLoose_0 && lep_isTightLH_0 && lep_chargeIDBDTResult_recalc_rel207_tight_0>0.7 && lep_ambiguityType_0 == 0 && abs(lep_ID_1) == 13 && lep_isMedium_1 && lep_isolationFCLoose_1)||(abs(lep_ID_0) == 13 && lep_isMedium_0 && lep_isolationFCLoose_0 && abs(lep_ID_1) == 13 && lep_isMedium_1 && lep_isolationFCLoose_1)) && XXX_ELE_DEFINI && MtLepMet*1e-3<250"
+  LogScale: TRUE
+  Ymax: 1e9
+  DataType: DATA
+
+Region: "Zgamma_Int_3l"
+  Type: CONTROL
+  Variable: 1,1,0,1	
+  VariableTitle: "Nevt"
+  Label: 3\ell IntC
+  TexLabel: "3$\ell$IntC"
+  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && trilep_type==2 && lep_Pt_0*1e-3>10 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR_DL1r_85==0 && lep_isolationFCLoose_0 && lep_isolationFCLoose_1 && lep_isolationFCLoose_2 && passPLIVTight_0 && passPLIVTight_1 && passPLIVTight_2 && (abs(lep_ID_0)==13 && lep_isMedium_0) && ((abs(lep_ID_1)==13 && lep_isMedium_1) || (abs(lep_ID_1)==11 && lep_isTightLH_1 && lep_ambiguityType_1 == 0 && lep_chargeIDBDTResult_recalc_rel207_tight_1>0.7 && (abs(lep_EtaBE2_1)<=1.37 || abs(lep_EtaBE2_1)>=1.52))) && ((abs(lep_ID_2)==13 && lep_isMedium_2) || (abs(lep_ID_2)==11 && lep_isTightLH_2 && lep_ambiguityType_2 == 0 && lep_chargeIDBDTResult_recalc_rel207_tight_2>0.7 && (abs(lep_EtaBE2_2)<=1.37 || abs(lep_EtaBE2_2)>=1.52))) && met_met<50e3 && ((lep_ID_0*lep_ID_1==-169 && XXX_LEPTHRMET && Mll01>20e3 && abs(Mll01-91.2e3)>10e3) || (lep_ID_0*lep_ID_2==-169 && XXX_LEPTWOMET && Mll02>20e3 && abs(Mll02-91.2e3)>10e3)) && Mlll012>81e3 && Mlll012<101e3 &&!((abs(lep_ID_1)==11&&lep_Mtrktrk_atConvV_CO_1<0.1&&lep_Mtrktrk_atConvV_CO_1>=0&&lep_RadiusCO_1>20)||(abs(lep_ID_2)==11&&lep_Mtrktrk_atConvV_CO_2<0.1&&lep_Mtrktrk_atConvV_CO_2>=0&&lep_RadiusCO_2>20))&&((abs(lep_ID_1)==11&&lep_Mtrktrk_atPV_CO_1<0.1&&lep_Mtrktrk_atPV_CO_1>=0)||(abs(lep_ID_2)==11&&lep_Mtrktrk_atPV_CO_2<0.1&&lep_Mtrktrk_atPV_CO_2>=0)) && (lep_ID_0!=-lep_ID_1||abs(Mll01-91.2e3)>10e3)&&(lep_ID_0!=-lep_ID_2||abs(Mll02-91.2e3)>10e3)"
+	     
+Region: "Zgamma_Ext_3l"
+  Type: CONTROL	
+  Variable: 1,1,0,1	
+  VariableTitle: "Nevt"
+  Label: 3\ell MatC
+  TexLabel: "3$\ell$MatC"
+  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && trilep_type==2 && lep_Pt_0*1e-3>10 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR_DL1r_85==0 && lep_isolationFCLoose_0 && lep_isolationFCLoose_1 && lep_isolationFCLoose_2 && passPLIVTight_0 && passPLIVTight_1 && passPLIVTight_2 && (abs(lep_ID_0)==13 && lep_isMedium_0) && ((abs(lep_ID_1)==13 && lep_isMedium_1) || (abs(lep_ID_1)==11 && lep_isTightLH_1 && lep_ambiguityType_1 == 0 && lep_chargeIDBDTResult_recalc_rel207_tight_1>0.7 && (abs(lep_EtaBE2_1)<=1.37 || abs(lep_EtaBE2_1)>=1.52))) && ((abs(lep_ID_2)==13 && lep_isMedium_2) || (abs(lep_ID_2)==11 && lep_isTightLH_2 && lep_ambiguityType_2 == 0 && lep_chargeIDBDTResult_recalc_rel207_tight_2>0.7 && (abs(lep_EtaBE2_2)<=1.37 || abs(lep_EtaBE2_2)>=1.52))) && met_met<50e3 && ((lep_ID_0*lep_ID_1==-169 && XXX_LEPTHRMET && Mll01>20e3 && abs(Mll01-91.2e3)>10e3) || (lep_ID_0*lep_ID_2==-169 && XXX_LEPTWOMET && Mll02>20e3 && abs(Mll02-91.2e3)>10e3)) && Mlll012>81e3 && Mlll012<101e3 && ((abs(lep_ID_1)==11&&lep_Mtrktrk_atConvV_CO_1<0.1&&lep_Mtrktrk_atConvV_CO_1>=0&&lep_RadiusCO_1>20)||(abs(lep_ID_2)==11&&lep_Mtrktrk_atConvV_CO_2<0.1&&lep_Mtrktrk_atConvV_CO_2>=0&&lep_RadiusCO_2>20)) &&(lep_ID_0!=-lep_ID_1||abs(Mll01-91.2e3)>10e3)&&(lep_ID_0!=-lep_ID_2||abs(Mll02-91.2e3)>10e3)"
+
+Region: "CR_ttZ_3l_njets4_Meff"
+  Type: CONTROL
+  Variable: "(HT+met_met)*1e-3",4,0,4000
+  VariableTitle: "#it{m}_{eff} [GeV]"
+  Binning: 0,500,1000,1500,4000  
+  Label: 3\ell ttZ #CR\!\!\!\ 3\ell ttZ
+  TexLabel: "3$\ell$ttZ"
+  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && trilep_type && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR_DL1r_85>=2 && abs(total_charge)==1 && nJets_OR>=2 && (abs(Mlll012-91.2e3)>10e3 && ((lep_ID_0==-lep_ID_1 && (Mll01>81.2e3 && Mll01<101.2e3))||(lep_ID_0==-lep_ID_2 && (Mll02>81.2e3 && Mll02<101.2e3)))) && (passPLIVTight_1 && passPLIVTight_2) && ((abs(lep_ID_1) == 11 && lep_isolationFCLoose_1 && lep_isTightLH_1 && lep_chargeIDBDTResult_recalc_rel207_tight_1>0.7 && lep_ambiguityType_1 == 0) || (abs(lep_ID_1) == 13 && lep_isolationFCLoose_1 && lep_isMedium_1)) && ((abs(lep_ID_2) == 11 && lep_isolationFCLoose_2 && lep_isTightLH_2 && lep_chargeIDBDTResult_recalc_rel207_tight_2>0.7 && lep_ambiguityType_2 == 0) || (abs(lep_ID_2) == 13 && lep_isolationFCLoose_2 && lep_isMedium_2)) && XXX_ELE_DEFINI"
+  LogScale: TRUE
+  Ymin: 3
+  Ymax: 1e4
+  DataType: DATA
+
+Region: "CR_VV_3l_2or3j_Meff_1b" # current VV CR in the INT note
+  Type: CONTROL
+  Variable: "(HT+met_met)*1e-3",4,0,4000
+  VariableTitle: "#it{m}_{eff} [GeV]"
+  Binning: 0,500,1000,1500,4000
+  #BinWidth: 500
+  Label: 3\ell VV #CR\!\!\!\ 3\ell VV
+  TexLabel: "3$\ell$VV"
+  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && trilep_type && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR_DL1r_85==1 && abs(total_charge)==1 && nJets_OR>=2 && (abs(Mlll012-91.2e3)>10e3 && ((lep_ID_0==-lep_ID_1 && (Mll01>81.2e3 && Mll01<101.2e3))||(lep_ID_0==-lep_ID_2 && (Mll02>81.2e3 && Mll02<101.2e3)))) && (passPLIVTight_1 && passPLIVTight_2) && ((abs(lep_ID_1) == 11 && lep_isolationFCLoose_1 && lep_isTightLH_1 && lep_chargeIDBDTResult_recalc_rel207_tight_1>0.7 && lep_ambiguityType_1 == 0) || (abs(lep_ID_1) == 13 && lep_isolationFCLoose_1 && lep_isMedium_1)) && ((abs(lep_ID_2) == 11 && lep_isolationFCLoose_2 && lep_isTightLH_2 && lep_chargeIDBDTResult_recalc_rel207_tight_2>0.7 && lep_ambiguityType_2 == 0) || (abs(lep_ID_2) == 13 && lep_isolationFCLoose_2 && lep_isMedium_2)) && XXX_ELE_DEFINI"
+  LogScale: TRUE
+  Ymin: 1
+  Ymax:	1e5
+  DataType: DATA
+
+% --------------- %
+% --- SAMPLES --- %
+% --------------- %
+
+% GHOST samples, used for syst ReferenceSample option
+
+Sample: "Data"
+  Type: DATA
+  Title: "Data"
+  TexTitle: Data
+  NtuplePaths: XXX_NtuplePaths
+  NtupleFiles: data/data15, data/data16, data/data17, data/data18
+  Regions: "SR*","CR*","Zgamma*"
+
+Sample: "Signal1000_tete"
+  Type: SIGNAL
+  Title: "LQe 1.0 TeV"
+  TexTitle: LQ$^{d}_{e}$ 1.0 TeV
+  FillColor: 1
+  LineColor: 1
+  NtupleFiles: XXX_Signal_LQ1000_tete_samples
+  UseMCstat: FALSE
+  MCweight: 1.25 #k-factor ad-hoc
+
+Sample: "Signal1100_tete"
+  Type: SIGNAL
+  Title: "LQe 1.1 TeV"
+  TexTitle: LQ$^{d}_{e}$ 1.1 TeV
+  FillColor: 1
+  LineColor: 1
+  NtupleFiles: XXX_Signal_LQ1100_tete_samples
+  UseMCstat: FALSE
+  MCweight: 1.26 #k-factor ad-hoc
+
+Sample: "Signal1200_tete"
+  Type: SIGNAL
+  Title: "LQe 1.2 TeV"
+  TexTitle: LQ$^{d}_{e}$ 1.2 TeV
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1200_tete_samples
+  UseMCstat: FALSE
+  MCweight: 1.26 #k-factor ad-hoc
+
+Sample: "Signal1300_tete"
+  Type: SIGNAL
+  Title: "LQe 1.3 TeV"
+  TexTitle: LQ$^{d}_{e}$ 1.3 TeV
+  FillColor: 1
+  LineColor: 1
+  NtupleFiles: XXX_Signal_LQ1300_tete_samples
+  UseMCstat: FALSE
+  MCweight: 1.27 #k-factor ad-hoc
+
+Sample: "Signal1400_tete"
+  Type: SIGNAL
+  Title: "LQe 1.4 TeV"
+  TexTitle: LQ$^{d}_{e}$ 1.4 TeV
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1400_tete_samples
+  UseMCstat: FALSE
+  MCweight: 1.28 #k-factor ad-hoc
+
+Sample: "Signal1500_tete"
+  Type: SIGNAL
+  Title: "LQe 1.5 TeV"
+  TexTitle: LQ$^{d}_{e}$ 1.5 TeV
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1500_tete_samples
+  UseMCstat: FALSE
+  MCweight: 1.28 #k-factor ad-hoc
+
+Sample: "Signal1600_tete"
+  Type: SIGNAL
+  Title: "LQe 1.6 TeV"
+  TexTitle: LQ$^{d}_{e}$ 1.6 TeV
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1600_tete_samples
+  UseMCstat: FALSE
+  MCweight: 1.29 #k-factor ad-hoc
+
+Sample: "Signal1700_tete"
+  Type: SIGNAL
+  Title: "LQe 1.7 TeV"
+  TexTitle: LQ$^{d}_{e}$ 1.7 TeV
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1700_tete_samples
+  UseMCstat: FALSE
+  MCweight: 1.29 #k-factor ad-hoc
+
+Sample: "Signal1800_tete"
+  Type: SIGNAL
+  Title: "LQe 1.8 TeV"
+  TexTitle: LQ$^{d}_{e}$ 1.8 TeV
+  FillColor: 4
+  LineColor: 4
+  NtupleFiles: XXX_Signal_LQ1800_tete_samples
+  UseMCstat: FALSE
+  MCweight: 1.32 #k-factor ad-hoc
+
+Sample: "Signal1900_tete"
+  Type: SIGNAL
+  Title: "LQe 1.9 TeV"
+  TexTitle: LQ$^{d}_{e}$ 1.9 TeV
+  FillColor: 4
+  LineColor: 4
+  NtupleFiles: XXX_Signal_LQ1900_tete_samples
+  UseMCstat: FALSE
+  MCweight: 1.33 #k-factor ad-hoc
+
+Sample: "Signal1000_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.0 TeV"
+  TexTitle: LQ$^{d}_{m}$ 1.0 TeV
+  FillColor: 1
+  LineColor: 1
+  NtupleFiles: XXX_Signal_LQ1000_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 1.25 #k-factor ad-hoc
+
+Sample: "Signal1100_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.1 TeV"
+  TexTitle: LQ$^{d}_{m}$ 1.1 TeV
+  FillColor: 50
+  LineColor: 50
+  NtupleFiles: XXX_Signal_LQ1100_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 1.26 #k-factor ad-hoc
+
+Sample: "Signal1200_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.2 TeV"
+  TexTitle: LQ$^{d}_{m}$ 1.2 TeV
+  FillColor: 50
+  LineColor: 50
+  NtupleFiles: XXX_Signal_LQ1200_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 1.26 #k-factor ad-hoc
+
+Sample: "Signal1300_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.3 TeV"
+  TexTitle: LQ$^{d}_{m}$ 1.3 TeV
+  FillColor: 50
+  LineColor: 50
+  NtupleFiles: XXX_Signal_LQ1300_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 1.27 #k-factor ad-hoc
+
+Sample: "Signal1400_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.4 TeV"
+  TexTitle: LQ$^{d}_{m}$ 1.4 TeV
+  FillColor: 50
+  LineColor: 50
+  NtupleFiles: XXX_Signal_LQ1400_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 1.28 #k-factor ad-hoc
+
+Sample: "Signal1500_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.5 TeV"
+  TexTitle: LQ$^{d}_{m}$ 1.5 TeV
+  FillColor: 50
+  LineColor: 50
+  NtupleFiles: XXX_Signal_LQ1500_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 1.28 #k-factor ad-hoc
+
+Sample: "Signal1600_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.6 TeV"
+  TexTitle: LQ$^{d}_{m}$ 1.6 TeV
+  FillColor: 50
+  LineColor: 50
+  NtupleFiles: XXX_Signal_LQ1600_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 1.29 #k-factor ad-hoc
+
+Sample: "Signal1700_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.7 TeV"
+  TexTitle: LQ$^{d}_{m}$ 1.7 TeV
+  FillColor: 50
+  LineColor: 50
+  NtupleFiles: XXX_Signal_LQ1700_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 1.29 #k-factor ad-hoc
+
+Sample: "Signal1800_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.8 TeV"
+  TexTitle: LQ$^{d}_{m}$ 1.8 TeV
+  FillColor: 50
+  LineColor: 50
+  NtupleFiles: XXX_Signal_LQ1800_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 1.32 #k-factor ad-hoc
+
+Sample: "Signal1900_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.9 TeV"
+  TexTitle: LQ$^{d}_{m}$ 1.9 TeV
+  FillColor: 50
+  LineColor: 50
+  NtupleFiles: XXX_Signal_LQ1900_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 1.33 #k-factor ad-hoc
+
+## Minimal coupling vector LQ models
+
+Sample: "Signal1000_vLQminCoup_tete"
+  Type: SIGNAL
+  Title: "LQe 1.0 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,e}$ 1.0 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1000_vLQminCoup_tete_samples
+  UseMCstat: FALSE
+  MCweight: 1.9666e-2/xs
+
+Sample: "Signal1100_vLQminCoup_tete"
+  Type: SIGNAL
+  Title: "LQe 1.1 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,e}$ 1.1 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1100_vLQminCoup_tete_samples
+  UseMCstat: FALSE
+  MCweight: 0.87219e-2/xs
+
+Sample: "Signal1200_vLQminCoup_tete"
+  Type: SIGNAL
+  Title: "LQe 1.2 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,e}$ 1.2 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1200_vLQminCoup_tete_samples
+  UseMCstat: FALSE
+  MCweight: 4.0248e-3/xs
+
+Sample: "Signal1300_vLQminCoup_tete"
+  Type: SIGNAL
+  Title: "LQe 1.3 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,e}$ 1.3 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1300_vLQminCoup_tete_samples
+  UseMCstat: FALSE
+  MCweight: 1.9197e-3/xs
+
+Sample: "Signal1400_vLQminCoup_tete"
+  Type: SIGNAL
+  Title: "LQe 1.4 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,e}$ 1.4 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1400_vLQminCoup_tete_samples
+  UseMCstat: FALSE
+  MCweight: 0.93995e-3/xs
+
+Sample: "Signal1500_vLQminCoup_tete"
+  Type: SIGNAL
+  Title: "LQe 1.5 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,e}$ 1.5 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1500_vLQminCoup_tete_samples
+  UseMCstat: FALSE
+  MCweight: 4.7090e-4/xs
+
+Sample: "Signal1600_vLQminCoup_tete"
+  Type: SIGNAL
+  Title: "LQe 1.6 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,e}$ 1.6 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1600_vLQminCoup_tete_samples
+  UseMCstat: FALSE
+  MCweight: 2.399e-4/xs
+
+Sample: "Signal1700_vLQminCoup_tete"
+  Type: SIGNAL
+  Title: "LQe 1.7 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,e}$ 1.7 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1700_vLQminCoup_tete_samples
+  UseMCstat: FALSE
+  MCweight: 1.2418e-4/xs
+
+Sample: "Signal1800_vLQminCoup_tete"
+  Type: SIGNAL
+  Title: "LQe 1.8 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,e}$ 1.8 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1800_vLQminCoup_tete_samples
+  UseMCstat: FALSE
+  MCweight: 6.4926e-5/xs
+
+Sample: "Signal1900_vLQminCoup_tete"
+  Type: SIGNAL
+  Title: "LQe 1.9 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,e}$ 1.9 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1900_vLQminCoup_tete_samples
+  UseMCstat: FALSE
+  MCweight: 3.4319e-5/xs
+
+Sample: "Signal2000_vLQminCoup_tete"
+  Type: SIGNAL
+  Title: "LQe 2.0 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,e}$ 2.0 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2000_vLQminCoup_tete_samples
+  UseMCstat: FALSE
+  MCweight: 1.8196e-5/xs
+
+Sample: "Signal2100_vLQminCoup_tete"
+  Type: SIGNAL
+  Title: "LQe 2.1 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,e}$ 2.1 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2100_vLQminCoup_tete_samples
+  UseMCstat: FALSE
+  MCweight: 9.7103e-6/xs
+
+Sample: "Signal2200_vLQminCoup_tete"
+  Type: SIGNAL
+  Title: "LQe 2.2 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,e}$ 2.2 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2200_vLQminCoup_tete_samples
+  UseMCstat: FALSE
+  MCweight: 5.1863e-6/xs
+
+Sample: "Signal2300_vLQminCoup_tete"
+  Type: SIGNAL
+  Title: "LQe 2.3 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,e}$ 2.3 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2300_vLQminCoup_tete_samples
+  UseMCstat: FALSE
+  MCweight: 2.7754e-6/xs
+
+Sample: "Signal2400_vLQminCoup_tete"
+  Type: SIGNAL
+  Title: "LQe 2.4 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,e}$ 2.4 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2400_vLQminCoup_tete_samples
+  UseMCstat: FALSE
+  MCweight: 1.4771e-6/xs
+
+Sample: "Signal2500_vLQminCoup_tete"
+  Type: SIGNAL
+  Title: "LQe 2.5 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,e}$ 2.5 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2500_vLQminCoup_tete_samples
+  UseMCstat: FALSE
+  MCweight: 7.8597e-7/xs
+
+Sample: "Signal1000_vLQminCoup_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.0 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 1.0 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1000_vLQminCoup_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 1.9666e-2/xs
+
+Sample: "Signal1100_vLQminCoup_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.1 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 1.1 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1100_vLQminCoup_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 0.87219e-2/xs
+
+Sample: "Signal1200_vLQminCoup_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.2 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 1.2 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1200_vLQminCoup_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 4.0248e-3/xs
+
+Sample: "Signal1300_vLQminCoup_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.3 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 1.3 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1300_vLQminCoup_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 1.9197e-3/xs
+
+Sample: "Signal1400_vLQminCoup_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.4 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 1.4 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1400_vLQminCoup_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 0.93995e-3/xs
+
+Sample: "Signal1500_vLQminCoup_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.5 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 1.5 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1500_vLQminCoup_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 4.7090e-4/xs
+
+Sample: "Signal1600_vLQminCoup_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.6 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 1.6 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1600_vLQminCoup_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 2.399e-4/xs
+
+Sample: "Signal1700_vLQminCoup_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.7 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 1.7 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1700_vLQminCoup_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 1.2418e-4/xs
+
+Sample: "Signal1800_vLQminCoup_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.8 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 1.8 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1800_vLQminCoup_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 6.4926e-5/xs
+
+Sample: "Signal1900_vLQminCoup_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.9 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 1.9 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1900_vLQminCoup_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 3.4319e-5/xs
+
+Sample: "Signal2000_vLQminCoup_tmtm"
+  Type: SIGNAL
+  Title: "LQm 2.0 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 2.0 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2000_vLQminCoup_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 1.8196e-5/xs
+
+Sample: "Signal2100_vLQminCoup_tmtm"
+  Type: SIGNAL
+  Title: "LQm 2.1 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 2.1 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2100_vLQminCoup_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 9.7103e-6/xs
+
+Sample: "Signal2200_vLQminCoup_tmtm"
+  Type: SIGNAL
+  Title: "LQm 2.2 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 2.2 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2200_vLQminCoup_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 5.1863e-6/xs
+
+Sample: "Signal2300_vLQminCoup_tmtm"
+  Type: SIGNAL
+  Title: "LQm 2.3 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 2.3 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2300_vLQminCoup_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 2.7754e-6/xs
+
+Sample: "Signal2400_vLQminCoup_tmtm"
+  Type: SIGNAL
+  Title: "LQm 2.4 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 2.4 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2400_vLQminCoup_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 1.4771e-6/xs
+
+Sample: "Signal2500_vLQminCoup_tmtm"
+  Type: SIGNAL
+  Title: "LQm 2.5 TeV (MC)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 2.5 TeV (MC)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2500_vLQminCoup_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 7.8597e-7/xs
+
+## Yang-Mills coupling vector LQ models
+
+Sample: "Signal1000_vLQyangMills_tete"
+  Type: SIGNAL
+  Title: "LQe 1.0 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,e}$ 1.0 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1000_vLQyangMills_tete_samples
+  UseMCstat: FALSE
+  MCweight: 1.0447e-1/xs
+
+Sample: "Signal1100_vLQyangMills_tete"
+  Type: SIGNAL
+  Title: "LQe 1.1 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,e}$ 1.1 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1100_vLQyangMills_tete_samples
+  UseMCstat: FALSE
+  MCweight: 4.7771e-2/xs
+
+Sample: "Signal1200_vLQyangMills_tete"
+  Type: SIGNAL
+  Title: "LQe 1.2 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,e}$ 1.2 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1200_vLQyangMills_tete_samples
+  UseMCstat: FALSE
+  MCweight: 2.2661e-2/xs
+
+Sample: "Signal1300_vLQyangMills_tete"
+  Type: SIGNAL
+  Title: "LQe 1.3 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,e}$ 1.3 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1300_vLQyangMills_tete_samples
+  UseMCstat: FALSE
+  MCweight: 1.1066e-2/xs
+
+Sample: "Signal1400_vLQyangMills_tete"
+  Type: SIGNAL
+  Title: "LQe 1.4 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,e}$ 1.4 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1400_vLQyangMills_tete_samples
+  UseMCstat: FALSE
+  MCweight: 5.5443e-3/xs
+
+Sample: "Signal1500_vLQyangMills_tete"
+  Type: SIGNAL
+  Title: "LQe 1.5 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,e}$ 1.5 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1500_vLQyangMills_tete_samples
+  UseMCstat: FALSE
+  MCweight: 2.8336e-3/xs
+
+Sample: "Signal1600_vLQyangMills_tete"
+  Type: SIGNAL
+  Title: "LQe 1.6 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,e}$ 1.6 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1600_vLQyangMills_tete_samples
+  UseMCstat: FALSE
+  MCweight: 1.4699e-3/xs
+
+Sample: "Signal1700_vLQyangMills_tete"
+  Type: SIGNAL
+  Title: "LQe 1.7 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,e}$ 1.7 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1700_vLQyangMills_tete_samples
+  UseMCstat: FALSE
+  MCweight: 7.7322e-4/xs
+
+Sample: "Signal1800_vLQyangMills_tete"
+  Type: SIGNAL
+  Title: "LQe 1.8 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,e}$ 1.8 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1800_vLQyangMills_tete_samples
+  UseMCstat: FALSE
+  MCweight: 4.1073e-4/xs
+
+Sample: "Signal1900_vLQyangMills_tete"
+  Type: SIGNAL
+  Title: "LQe 1.9 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,e}$ 1.9 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1900_vLQyangMills_tete_samples
+  UseMCstat: FALSE
+  MCweight: 2.2031e-4/xs
+
+Sample: "Signal2000_vLQyangMills_tete"
+  Type: SIGNAL
+  Title: "LQe 2.0 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,e}$ 2.0 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2000_vLQyangMills_tete_samples
+  UseMCstat: FALSE
+  MCweight: 1.1835e-4/xs
+
+Sample: "Signal2100_vLQyangMills_tete"
+  Type: SIGNAL
+  Title: "LQe 2.1 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,e}$ 2.1 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2100_vLQyangMills_tete_samples
+  UseMCstat: FALSE
+  MCweight: 6.3802e-5/xs
+
+Sample: "Signal2200_vLQyangMills_tete"
+  Type: SIGNAL
+  Title: "LQe 2.2 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,e}$ 2.2 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2200_vLQyangMills_tete_samples
+  UseMCstat: FALSE
+  MCweight: 3.4447e-5/xs
+
+Sample: "Signal2300_vLQyangMills_tete"
+  Type: SIGNAL
+  Title: "LQe 2.3 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,e}$ 2.3 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2300_vLQyangMills_tete_samples
+  UseMCstat: FALSE
+  MCweight: 1.8576e-5/xs
+
+Sample: "Signal2400_vLQyangMills_tete"
+  Type: SIGNAL
+  Title: "LQe 2.4 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,e}$ 2.4 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2400_vLQyangMills_tete_samples
+  UseMCstat: FALSE
+  MCweight: 9.9776e-6/xs
+
+Sample: "Signal2500_vLQyangMills_tete"
+  Type: SIGNAL
+  Title: "LQe 2.5 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,e}$ 2.5 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2500_vLQyangMills_tete_samples
+  UseMCstat: FALSE
+  MCweight: 5.3423e-6/xs
+
+Sample: "Signal1000_vLQyangMills_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.0 TeV"
+  TexTitle: $\tilde{U}_{1,\mu}$ 1.0 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1000_vLQyangMills_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 1.0447e-1/xs
+
+Sample: "Signal1100_vLQyangMills_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.1 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 1.1 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1100_vLQyangMills_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 4.7771e-2/xs
+
+Sample: "Signal1200_vLQyangMills_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.2 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 1.2 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1200_vLQyangMills_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 2.2661e-2/xs
+
+Sample: "Signal1300_vLQyangMills_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.3 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 1.3 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1300_vLQyangMills_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 1.1066e-2/xs
+
+Sample: "Signal1400_vLQyangMills_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.4 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 1.4 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1400_vLQyangMills_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 5.5443e-3/xs
+
+Sample: "Signal1500_vLQyangMills_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.5 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 1.5 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1500_vLQyangMills_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 2.8336e-3/xs
+
+Sample: "Signal1600_vLQyangMills_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.6 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 1.6 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1600_vLQyangMills_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 1.4699e-3/xs
+
+Sample: "Signal1700_vLQyangMills_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.7 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 1.7 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1700_vLQyangMills_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 7.7322e-4/xs
+
+Sample: "Signal1800_vLQyangMills_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.8 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 1.8 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1800_vLQyangMills_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 4.1073e-4/xs
+
+Sample: "Signal1900_vLQyangMills_tmtm"
+  Type: SIGNAL
+  Title: "LQm 1.9 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 1.9 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ1900_vLQyangMills_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 2.2031e-4/xs
+
+Sample: "Signal2000_vLQyangMills_tmtm"
+  Type: SIGNAL
+  Title: "LQm 2.0 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 2.0 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2000_vLQyangMills_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 1.1835e-4/xs
+
+Sample: "Signal2100_vLQyangMills_tmtm"
+  Type: SIGNAL
+  Title: "LQm 2.1 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 2.1 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2100_vLQyangMills_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 6.3802e-5/xs
+
+Sample: "Signal2200_vLQyangMills_tmtm"
+  Type: SIGNAL
+  Title: "LQm 2.2 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 2.2 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2200_vLQyangMills_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 3.4447e-5/xs
+
+Sample: "Signal2300_vLQyangMills_tmtm"
+  Type: SIGNAL
+  Title: "LQm 2.3 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 2.3 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2300_vLQyangMills_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 1.8576e-5/xs
+
+Sample: "Signal2400_vLQyangMills_tmtm"
+  Type: SIGNAL
+  Title: "LQm 2.4 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 2.4 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2400_vLQyangMills_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 9.9776e-6/xs
+
+Sample: "Signal2500_vLQyangMills_tmtm"
+  Type: SIGNAL
+  Title: "LQm 2.5 TeV (YM)"
+  TexTitle: $\tilde{U}_{1,\mu}$ 2.5 TeV (YM)
+  FillColor: 2
+  LineColor: 2
+  NtupleFiles: XXX_Signal_LQ2500_vLQyangMills_tmtm_samples
+  UseMCstat: FALSE
+  MCweight: 5.3423e-6/xs
+
+## Background samples ##
+
+Sample: "ttW_QCD"
+  Type: BACKGROUND
+  Title: "t#bar{t}W"
+  TexTitle: $t\bar{t}W$
+  Group: "t#bar{t}W"
+  FillColor: 5
+  LineColor: 1
+  NtupleFiles: XXX_ttW2210_samples
+  Exclude: "Zgamma*"	
+
+Sample: "ttW_EW"
+  Type: BACKGROUND
+  Title: "t#bar{t}W EW"
+  TexTitle: $t\bar{t}W EW$
+  Group: "t#bar{t}W"
+  FillColor: 5
+  LineColor: 1
+  NtupleFiles: XXX_ttW2210_EW_samples
+  Exclude: "Zgamma*"
+
+Sample: "VV_light"
+  Type: BACKGROUND
+  Title: "VV+light"
+  TexTitle: $VV$+light
+  FillColor: 419
+  LineColor: 1
+  Group: "Diboson"
+  NtupleFiles: XXX_VV_samples
+  MCweight: (flag_VV_HF==3 || flag_VV_HF==0)
+
+Sample: "VV_c"
+  Type: BACKGROUND
+  Title: "VV+c"
+  TexTitle: $VV$+c
+  FillColor: 419
+  LineColor: 1
+  Group: "Diboson"
+  NtupleFiles: XXX_VV_samples
+  MCweight: (flag_VV_HF==2)
+
+Sample: "VV_b"
+  Type: BACKGROUND
+  Title: "VV+b"
+  TexTitle: $VV$+b
+  FillColor: 419
+  LineColor: 1
+  Group: "Diboson"
+  NtupleFiles: XXX_VV_samples
+  MCweight: (flag_VV_HF==1)
+
+Sample: "ggZZ"
+  Type: BACKGROUND
+  Title: "ggZZ"
+  TexTitle: ggZZ
+  FillColor: 419
+  LineColor: 1
+  Group: "Diboson"
+  NtupleFiles: XXX_ggVV_samples
+  MCweight: 1.2
+
+Sample: "ttZ_light"
+  Type: BACKGROUND
+  Title: "t#bar{t}(Z/#gamma*)+light"
+  TexTitle: $t\bar{t}Z/\gamma+light$
+  Group: "t#bar{t}(Z/#gamma*)"
+  FillColor: 417
+  LineColor: 1
+  NtupleFiles: XXX_ttZ_samples
+  MCweight: (m_HF_Classification==0)*1.31/1.67
+  Exclude: "Zgamma*"
+
+Sample: "ttZ_c"
+  Type: BACKGROUND
+  Title: "t#bar{t}(Z/#gamma*)+c"
+  TexTitle: $t\bar{t}Z/\gamma+c$
+  Group: "t#bar{t}(Z/#gamma*)"
+  FillColor: 417
+  LineColor: 1
+  NtupleFiles: XXX_ttZ_samples
+  MCweight: (abs(m_HF_Classification)<100&&abs(m_HF_Classification)>0)*1.31/1.67
+  Exclude: "Zgamma*"	
+
+Sample: "ttZ_b"
+  Type: BACKGROUND
+  Title: "t#bar{t}(Z/#gamma*)+b"
+  TexTitle: $t\bar{t}Z/\gamma+b$
+  Group: "t#bar{t}(Z/#gamma*)"
+  FillColor: 417
+  LineColor: 1
+  NtupleFiles: XXX_ttZ_samples
+  MCweight: (abs(m_HF_Classification)>=100)*1.31/1.67
+  Exclude: "Zgamma*"	
+
+Sample: "rareTop"
+  Type: BACKGROUND
+  Title: "rareTop"
+  TexTitle: $rareTop$
+  Group: "t#bar{t}(Z/#gamma*)"
+  FillColor: 417
+  LineColor: 1
+  NtupleFiles: XXX_rareTop_samples
+  MCweight: 1.54*((top1Mass*1e-3 < 175 && top1Mass>top2Mass)+(top2Mass*1e-3 < 175 && top1Mass<top2Mass))
+  Exclude: "Zgamma*"
+
+Sample: "ttH"
+  Type: BACKGROUND
+  Title: "t#bar{t}H"
+  TexTitle: "$t\bar{t}H$"
+  FillColor: 868
+  LineColor: 1
+  NtupleFiles: XXX_ttH_samples
+  Exclude: "Zgamma*"	
+
+Sample: "FakeMuLead_Tight"
+  Type: BACKGROUND
+  Title: "HF#mu(lead)"
+  TexTitle: HF$\mu$(lead)
+  FillColor: 797
+  LineColor: 1
+  NtupleFiles: XXX_Fake_samples
+  Selection: !XXX_PROMPT && !XXX_CONV && XXX_NONPROMPT_LEADMU && XXX_NONQMISID && XXX_MUON_LEAD_TIGHT_PLV
+  Group: "Non-prompt #mu"
+  MCweight: XXX_FAKESMU_NBJET*XXX_TTHFJETS
+  Exclude: "SR*4l*","Zgamma*"
+
+Sample: "FakeMuSubLead_Tight"
+  Type: BACKGROUND
+  Title: "HF#mu(sub-lead)"
+  TexTitle: HF$\mu$(sub-lead)
+  FillColor: 797
+  LineColor: 1
+  NtupleFiles: XXX_Fake_samples
+  Selection: !XXX_PROMPT && !XXX_CONV && XXX_NONPROMPT_SUBLEADMU && XXX_NONQMISID && XXX_MUON_SUBLEAD_TIGHT_PLV
+  Group: "Non-prompt #mu"
+  MCweight: XXX_FAKESMU_NBJET*XXX_TTHFJETS
+  Exclude: "SR*4l*","Zgamma*"
+
+Sample: "FakeMuLead_Medium"
+  Type: BACKGROUND
+  Title: "HF#mu(lead)"
+  TexTitle: HF$\mu$(lead)
+  FillColor: 797
+  LineColor: 1
+  NtupleFiles: XXX_Fake_samples
+  Selection: !XXX_PROMPT && !XXX_CONV && XXX_NONPROMPT_LEADMU && XXX_NONQMISID && XXX_MUON_LEAD_MEDIUM_PLV
+  Group: "Non-prompt #mu"
+  MCweight: XXX_FAKESMU_NBJET*XXX_TTHFJETS
+  Exclude: "SR*4l*","Zgamma*"
+
+Sample: "FakeMuSubLead_Medium"
+  Type: BACKGROUND
+  Title: "HF#mu(sub-lead)"
+  TexTitle: HF$\mu$(sub-lead)
+  FillColor: 797
+  LineColor: 1
+  NtupleFiles: XXX_Fake_samples
+  Selection: !XXX_PROMPT && !XXX_CONV && XXX_NONPROMPT_SUBLEADMU && XXX_NONQMISID && XXX_MUON_SUBLEAD_MEDIUM_PLV
+  Group: "Non-prompt #mu"
+  MCweight: XXX_FAKESMU_NBJET*XXX_TTHFJETS
+  Exclude: "SR*4l*","Zgamma*"
+
+Sample: "FakeElLead_Tight"
+  Type: BACKGROUND
+  Title: "HFel(lead)"
+  TexTitle: HFel(lead)
+  FillColor: 226
+  LineColor: 1
+  NtupleFiles: XXX_Fake_samples
+  Selection: !XXX_PROMPT && !XXX_CONV && XXX_NONPROMPT_LEADE && XXX_NONQMISID && (XXX_ELEC_LEAD_TIGHT_PLV)
+  Group: "Non-prompt e"
+  MCweight: XXX_FAKESEL_NBJET*XXX_TTHFJETS
+  Exclude: "SR*4l*","Zgamma*"
+
+Sample: "FakeElSubLead_Tight"
+  Type: BACKGROUND
+  Title: "HFel(sub-lead)"
+  TexTitle: HFel(sub-lead)
+  FillColor: 226
+  LineColor: 1
+  NtupleFiles: XXX_Fake_samples
+  Selection: !XXX_PROMPT && !XXX_CONV && XXX_NONPROMPT_SUBLEADE && XXX_NONQMISID && (XXX_ELEC_SUBLEAD_TIGHT_PLV)
+  Group: "Non-prompt e"
+  MCweight: XXX_FAKESEL_NBJET*XXX_TTHFJETS
+  Exclude: "SR*4l*","Zgamma*"
+
+Sample: "FakeElLead_Medium"
+  Type: BACKGROUND
+  Title: "HFel(lead)" 
+  TexTitle: HFel(lead)
+  FillColor: 226
+  LineColor: 1
+  NtupleFiles: XXX_Fake_samples
+  Selection: !XXX_PROMPT && !XXX_CONV && XXX_NONPROMPT_LEADE && XXX_NONQMISID && (XXX_ELEC_LEAD_MEDIUM_PLV)
+  Group: "Non-prompt e"
+  MCweight: XXX_FAKESEL_NBJET*XXX_TTHFJETS
+  Exclude: "SR*4l*","Zgamma*"
+
+Sample: "FakeElSubLead_Medium"
+  Type: BACKGROUND
+  Title: "HFel(sub-lead)"
+  TexTitle: HFel(sub-lead)
+  FillColor: 226
+  LineColor: 1
+  NtupleFiles: XXX_Fake_samples
+  Selection: !XXX_PROMPT && !XXX_CONV && XXX_NONPROMPT_SUBLEADE && XXX_NONQMISID && (XXX_ELEC_SUBLEAD_MEDIUM_PLV)
+  Group: "Non-prompt e"
+  MCweight: XXX_FAKESEL_NBJET*XXX_TTHFJETS
+  Exclude: "SR*4l*","Zgamma*"
+
+Sample: "ttbar_QED"
+  Type: BACKGROUND
+  Title: "#it{t#bar{t}} internal conversion"
+  TexTitle: $t\bar{t}$ internal conversion
+  Group: "t#bar{t}#gamma*(LM)"
+  FillColor: 591
+  LineColor: 1
+  NtupleFiles: XXX_ttbar_nonallhad_samples
+  Selection: !XXX_PROMPT && XXX_CONV && XXX_NONQMISID && XXX_TTBAR_QED
+  MCweight: XXX_TTHFJETS
+  Exclude: "Zgamma*"
+
+Sample: "FakeConv"
+  Type: BACKGROUND
+  Title: "Mat Conv"
+  TexTitle: Mat Conv
+  FillColor: 225 #616
+  LineColor: 1
+  NtupleFiles: XXX_Fake_samples
+  Selection: !XXX_PROMPT && XXX_CONV && XXX_NONQMISID && !XXX_TTBAR_QED
+  Group: "Mat Conv"
+  MCweight: XXX_TTHFJETS
+  Exclude: "SR*4l*","Zgamma*"  
+
+Sample: "Zjets_Int"
+  Type: BACKGROUND
+  Title: "#it{Z}+jets Int"
+  TexTitle: $Z+\text{jets}$ Int
+  Group: "t#bar{t}#gamma*(LM)"
+  FillColor: 591
+  LineColor: 1
+  NtupleFiles: XXX_ZInt_samples
+  Regions: "Zgamma*"
+
+Sample: "Zjets_Ext"
+  Type: BACKGROUND
+  Title: "#it{Z}+jets Ext"
+  TexTitle: $Z+\text{jets}$ Ext
+  Group: "Mat Conv"
+  FillColor: 225 #616
+  LineColor: 1
+  NtupleFiles: XXX_ZExt_samples
+  Regions: "Zgamma*"
+
+Sample: "QMisID"
+  Type: BACKGROUND
+  Title: "QMisID" 
+  TexTitle: QMisID
+  FillColor: 423
+  LineColor: 1
+  NtupleFiles: XXX_Fake_samples
+  Selection: !XXX_NONQMISID
+  MCweight: XXX_TTHFJETS
+  Exclude: "SR*4l*","Zgamma*"#,"CR_ttW_2lSS*","CR_HFmu_2lSS_2bin","CR_HFel_2lSS_2bin"
+
+##### QMisID DD #####
+
+#Sample: "QMisID_CR_TT"
+#  Type: BACKGROUND
+#  Title: "QMisID"
+#  TexTitle: QMisID
+#  FillColor: 619
+#  LineColor: 1
+#  NtuplePaths: XXX_CENTRAL_NtuplePaths
+#  NtupleFiles: QMisID/data15,QMisID/data16,QMisID/data17,QMisID/data18
+#  MCweight: weight_qmisid_TincTincni/(XXX_LUMI*XXX_MC_WEIGHT)
+#  IgnoreSelection: TRUE
+#  Selection: "custTrigMatch_LooseID_FCLooseIso_DLT && dilep_type && (XXX_MUON_LEAD_TIGHT_PLV || XXX_ELEC_LEAD_TIGHT_PLV) && (XXX_MUON_SUBLEAD_TIGHT_PLV || XXX_ELEC_SUBLEAD_TIGHT_PLV) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && nJets_OR_DL1r_85>=2 && nJets_OR>=2 && lep_ID_0*lep_ID_1<0 && (dilep_type!=1) && XXX_ELE_DEFINI"
+#  Regions: "CR_ttW_2lSS"
+#  Group: "QMisID"
+#
+#Sample: "QMisID_muCR_TM_1blowMT"
+#  Type: BACKGROUND
+#  Title: "QMisID"
+#  TexTitle: QMisID
+#  FillColor: 619
+#  LineColor: 1 
+#  NtuplePaths: XXX_CENTRAL_NtuplePaths
+#  NtupleFiles: QMisID/data15,QMisID/data16,QMisID/data17,QMisID/data18
+#  MCweight: weight_qmisid_TMexni/(XXX_LUMI*XXX_MC_WEIGHT)
+#  IgnoreSelection: TRUE
+#  Selection: "custTrigMatch_LooseID_FCLooseIso_DLT && dilep_type && (XXX_MUON_LEAD_TIGHT_PLV || XXX_ELEC_LEAD_TIGHT_PLV) && (XXX_MUON_SUBLEAD_MEDIUM_PLV) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && nJets_OR_DL1r_85==1 && nJets_OR>=2 && lep_ID_0*lep_ID_1<0 && ((abs(lep_ID_0) == 11 && abs(lep_ID_1) == 13)||(abs(lep_ID_0) == 13 && abs(lep_ID_1) == 13)) && XXX_ELE_DEFINI && MtLepMet*1e-3 < 250"
+#  Regions: "CR_HFmu_2lSS_TM","CR_HFmu_2lSS_2bin"
+#  Group: "QMisID"
+#
+#Sample: "QMisID_muCR_MT_1blowMT"
+#  Type: BACKGROUND
+#  Title: "QMisID"
+#  TexTitle: QMisID
+#  FillColor: 619
+#  LineColor: 1
+#  NtuplePaths: XXX_CENTRAL_NtuplePaths
+#  NtupleFiles: QMisID/data15,QMisID/data16,QMisID/data17,QMisID/data18
+#  MCweight: weight_qmisid_MexTni/(XXX_LUMI*XXX_MC_WEIGHT)
+#  IgnoreSelection: TRUE
+#  Selection: "custTrigMatch_LooseID_FCLooseIso_DLT && dilep_type && (XXX_MUON_LEAD_MEDIUM_PLV || XXX_ELEC_LEAD_MEDIUM_PLV) && (XXX_MUON_SUBLEAD_TIGHT_PLV) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && nJets_OR_DL1r_85==1 && (nJets_OR>=2) && lep_ID_0*lep_ID_1<0 && ((abs(lep_ID_0) == 11 && abs(lep_ID_1) == 13)||(abs(lep_ID_0) == 13 && abs(lep_ID_1) == 13)) && XXX_ELE_DEFINI && MtLepMet*1e-3 < 250"
+#  Regions: "CR_HFmu_2lSS_MT","CR_HFmu_2lSS_2bin"
+#  Group: "QMisID"
+#
+#Sample: "QMisID_muCR_MM_1b"
+#  Type: BACKGROUND
+#  Title: "QMisID"
+#  TexTitle: QMisID
+#  FillColor: 619
+#  LineColor: 1
+#  NtuplePaths: XXX_CENTRAL_NtuplePaths
+#  NtupleFiles: QMisID/data15,QMisID/data16,QMisID/data17,QMisID/data18
+#  MCweight: weight_qmisid_MexMexni/(XXX_LUMI*XXX_MC_WEIGHT)
+#  IgnoreSelection: TRUE
+#  Selection: "custTrigMatch_LooseID_FCLooseIso_DLT && dilep_type && (XXX_MUON_LEAD_MEDIUM_PLV || XXX_ELEC_LEAD_MEDIUM_PLV) && (XXX_MUON_SUBLEAD_MEDIUM_PLV) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && nJets_OR_DL1r_85==1 && (nJets_OR>=2) && lep_ID_0*lep_ID_1<0 && ((abs(lep_ID_0) == 11 && abs(lep_ID_1) == 13)||(abs(lep_ID_0) == 13 && abs(lep_ID_1) == 13)) && XXX_ELE_DEFINI"
+#  Regions: "CR_HFmu_2lSS_MM","CR_HFmu_2lSS_2bin"
+#  Group: "QMisID"
+#
+#Sample: "QMisID_elCR_TM_1blowMT"
+#  Type: BACKGROUND
+#  Title: "QMisID"
+#  TexTitle: QMisID
+#  FillColor: 619
+#  LineColor: 1
+#  NtuplePaths: XXX_CENTRAL_NtuplePaths
+#  NtupleFiles: QMisID/data15,QMisID/data16,QMisID/data17,QMisID/data18
+#  MCweight: weight_qmisid_TMexni/(XXX_LUMI*XXX_MC_WEIGHT)
+#  IgnoreSelection: TRUE
+#  Selection: "custTrigMatch_LooseID_FCLooseIso_DLT && dilep_type && (XXX_MUON_LEAD_TIGHT_PLV || XXX_ELEC_LEAD_TIGHT_PLV) && (XXX_ELEC_SUBLEAD_MEDIUM_PLV) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && nJets_OR_DL1r_85==1 && nJets_OR>=2 && lep_ID_0*lep_ID_1<0 && ((abs(lep_ID_0) == 13 && abs(lep_ID_1) == 11)||(abs(lep_ID_0) == 11 && abs(lep_ID_1) == 11)) && XXX_ELE_DEFINI && MtLepMet*1e-3 < 250"
+#  Regions: "CR_HFel_2lSS_TM","CR_HFel_2lSS_2bin"
+#  Group: "QMisID"
+#
+#Sample: "QMisID_elCR_MT_1blowMT"
+#  Type: BACKGROUND
+#  Title: "QMisID"
+#  TexTitle: QMisID
+#  FillColor: 619
+#  LineColor: 1
+#  NtuplePaths: XXX_CENTRAL_NtuplePaths
+#  NtupleFiles: QMisID/data15,QMisID/data16,QMisID/data17,QMisID/data18
+#  MCweight: weight_qmisid_MexTni/(XXX_LUMI*XXX_MC_WEIGHT)
+#  IgnoreSelection: TRUE
+#  Selection: "custTrigMatch_LooseID_FCLooseIso_DLT && dilep_type && (XXX_MUON_LEAD_MEDIUM_PLV || XXX_ELEC_LEAD_MEDIUM_PLV) && (XXX_ELEC_SUBLEAD_TIGHT_PLV) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && nJets_OR_DL1r_85==1 && nJets_OR>=2 && lep_ID_0*lep_ID_1<0 && ((abs(lep_ID_0) == 13 && abs(lep_ID_1) == 11)||(abs(lep_ID_0) == 11 && abs(lep_ID_1) == 11)) && XXX_ELE_DEFINI && MtLepMet*1e-3 < 250"
+#  Regions: "CR_HFel_2lSS_MT","CR_HFel_2lSS_2bin"
+#  Group: "QMisID"
+#
+#Sample: "QMisID_elCR_MM_1b"
+#  Type: BACKGROUND
+#  Title: "QMisID"
+#  TexTitle: QMisID
+#  FillColor: 619
+#  LineColor: 1
+#  NtuplePaths: XXX_CENTRAL_NtuplePaths
+#  NtupleFiles: QMisID/data15,QMisID/data16,QMisID/data17,QMisID/data18
+#  MCweight: weight_qmisid_MexMexni/(XXX_LUMI*XXX_MC_WEIGHT)
+#  IgnoreSelection: TRUE
+#  Selection: "custTrigMatch_LooseID_FCLooseIso_DLT && dilep_type && (XXX_MUON_LEAD_MEDIUM_PLV || XXX_ELEC_LEAD_MEDIUM_PLV) && (XXX_ELEC_SUBLEAD_MEDIUM_PLV) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && nJets_OR_DL1r_85==1 && nJets_OR>=2 && lep_ID_0*lep_ID_1<0 && ((abs(lep_ID_0) == 13 && abs(lep_ID_1) == 11)||(abs(lep_ID_0) == 11 && abs(lep_ID_1) == 11)) && XXX_ELE_DEFINI"
+#  Regions: "CR_HFel_2lSS_MM","CR_HFel_2lSS_2bin"
+#  Group: "QMisID"
+
+Sample: "Fakes"
+  Type: BACKGROUND
+  Title: "Fakes" 
+  TexTitle: Fakes
+  FillColor: 214
+  LineColor: 1
+  Regions: "SR*4l*"
+  Group: "Other"
+  NtupleFiles: XXX_Fake_samples
+  MCweight: XXX_TTHFJETS
+
+Sample: "threeTop"
+  Type: BACKGROUND
+  Title: "Three top"
+  Group: "Other"
+  FillColor: 920
+  LineColor: 1
+  NtupleFiles: XXX_threeTop_samples
+  Exclude: "Zgamma*"
+
+Sample: "fourTop"
+  Type: BACKGROUND
+  Title: "Four top"
+  Group: "Other"
+  FillColor: 920
+  LineColor: 1
+  NtupleFiles: XXX_fourTop_samples
+  Exclude: "Zgamma*"
+
+Sample: "WttW"
+  Type: BACKGROUND
+  Title: "#it{t#bar{t}WW}"
+  TexTitle: $t\bar{t}WW$
+  Group: "Other"
+  FillColor: 920
+  LineColor: 1
+  NtupleFiles: XXX_ttWW_samples
+  Exclude: "Zgamma*"
+
+Sample: "tZ"
+  Type: BACKGROUND
+  Title: "#it{tZ}"
+  TexTitle: $tZ$
+  Group: "Other"
+  FillColor: 920
+  LineColor: 1
+  NtupleFiles: XXX_tZ_NLO_samples #XXX_tZ_samples
+  Exclude: "Zgamma*"
+
+Sample: "WtZ"
+  Type: BACKGROUND
+  Title: "#it{WtZ}"
+  TexTitle: $WtZ$
+  Group: "Other"
+  FillColor: 825
+  LineColor: 1
+  NtupleFiles: XXX_WtZ_samples
+  Exclude: "Zgamma*"
+
+Sample: "threeV"
+  Type: BACKGROUND
+  Title: "#it{VVV}"
+  TexTitle: $VVV$
+  Group: "Other"
+  FillColor: 920
+  LineColor: 1
+  NtupleFiles: XXX_VVV_samples
+  Exclude: "Zgamma*"
+
+Sample: "VH"
+  Type: BACKGROUND
+  Title: "#it{VH}"
+  TexTitle: $VH$
+  Group: "Other"
+  FillColor: 920
+  LineColor: 1
+  NtupleFiles: XXX_VH_samples
+  Exclude: "Zgamma*"
+
+Sample: "tHjb"
+  Type: BACKGROUND
+  Title: "#it{tHjb}"
+  TexTitle: $tHjb$
+  Group: "Other"
+  FillColor: 920
+  LineColor: 1
+  NtupleFiles: XXX_tHjb_samples
+
+Sample: "tWH"
+  Type: BACKGROUND
+  Title: "#it{tWH}"
+  TexTitle: $tWH$
+  Group: "Other"
+  FillColor: 920
+  LineColor: 1
+  NtupleFiles: XXX_tWH_samples
+
+% --------------- %
+% - NORMFACTORS - %
+% --------------- %
+
+NormFactor: "SigXsecOverSM"
+  Title: "#mu(signal)"
+  Nominal: 1
+  Min: -10 #0.04 #1.3 TeV
+  Max: 10
+  Samples: Signal*
+  Constant: FALSE
+  Category: Theory
+
+NormFactor: "Norm_ttW"
+  Title: "Norm_ttW"
+  Nominal: 1.
+  Min: 0. 
+  Max: 2. 
+  Samples: "ttW*"
+  Constant: FALSE
+
+NormFactor: "Norm_fake_IntConv"
+  Title: "Norm_IntConv"
+  Nominal: 1.
+  Min: 0. 
+  Max: 2. 
+  Samples: "ttbar_QED","Zjets_Int"
+  Constant: FALSE
+
+NormFactor: "Norm_fake_ExtConv"
+  Title: "Norm_ExtConv"
+  Nominal: 1.
+  Min: 0.
+  Max: 2.
+  Samples: "FakeConv","Zjets_Ext"
+  Constant: FALSE
+
+NormFactor: "Norm_fake_HF_mu_TandM"
+  Title: "Norm_fake_HF_mu_TandM"
+  Nominal: 1.
+  Min: 0. 
+  Max: 2. 
+  Samples: "FakeMuLead_Tight","FakeMuSubLead_Tight","FakeMuLead_Medium","FakeMuSubLead_Medium"
+  Constant: FALSE
+
+NormFactor: "Norm_fake_HF_el_TandM"
+  Title: "Norm_fake_HF_el_TandM"
+  Nominal: 1.
+  Min: 0.
+  Max: 2.
+  Samples: "FakeElLead_Tight","FakeElSubLead_Tight","FakeElLead_Medium","FakeElSubLead_Medium"
+  Constant: FALSE
+
+NormFactor: "Norm_ttZ"
+  Title: "Norm_ttZ"
+  Nominal: 1.
+  Min: 0.
+  Max: 2.
+  Samples: ttZ_light,ttZ_b,ttZ_c,rareTop #,ttll_lowMass*light
+  Constant: FALSE
+
+NormFactor: "Norm_VV_HF"
+  Title: "Norm_VV_HF"
+  Nominal: 1.
+  Min: 0.
+  Max: 2.
+  Samples: VV_b,VV_c #ggZZ_c,ggZZ_b
+  Constant: FALSE
+
+Systematic: "ATLAS_lumi"
+  Title: "ATLAS_lumi"
+  Type: OVERALL
+  OverallUp: 0.017
+  OverallDown: -0.017
+  Category: Instrumental
+  SubCategory: "Luminosity"
+  Exclude: ttW*,VV_b,VV_c,ttZ*,rareTop,Fake*,Zjets*,ttbar_QED
+
+Systematic:  "LQSignal_varRF"
+  Title: "Signal RF scale"
+  Type: HISTO
+  WeightSufUp: XXX_LQSignal_varRF_UP
+  WeightSufDown: XXX_LQSignal_varRF_DOWN
+  Samples: Signal*
+  Category: Theory     
+  SubCategory: "Signal_modelling"
+  
+Systematic:  "LQSignal_Var3c"
+  Title: "Signal Var3c"
+  Type: HISTO
+  WeightSufUp: XXX_LQSignal_Var3c_UP
+  WeightSufDown: XXX_LQSignal_Var3c_DOWN
+  Samples: Signal*
+  Category: Theory     
+  SubCategory: "Signal_modelling"  
+
+Systematic:  "LQSignal_aS_and_PDF"
+  Title: "Signal #alpha_{S}+PDF"
+  Type: HISTO
+  WeightSufUp: XXX_LQSignal_aS_and_PDF_UP
+  Symmetrisation: ONESIDED	
+  Samples: Signal*
+  Category: Theory     
+  SubCategory: "Signal_modelling" 
+
+#% Normalization only
+
+#Systematic: "ttWXsec"
+#  Title: "ttW x-section"
+#  Type: OVERALL
+#  OverallUp: 0.50
+#  OverallDown: -0.50
+#  Samples: ttW_228
+#  Category: Theory
+
+#Systematic: "ttZHFXsec"
+#  Title: "ttZ+HF x-section"
+#  Type: OVERALL
+#  OverallUp: 0.50
+#  OverallDown: -0.50
+#  Samples: ttZ_b,ttZ_c,rareTop #ttll_lowMass_b,ttll_lowMass_c
+#  Category: Theory
+
+Systematic: "VVlightXsec"
+  Title: "VV+light x-section"
+  Type: OVERALL
+  OverallUp: 0.02
+  OverallDown: -0.02
+  Samples: VV_light #,ggZZ_light
+  Category: Theory
+
+Systematic: "ttHXsec"
+  Title: "ttH x-section"
+  Type: OVERALL
+  OverallUp: 0.11
+  OverallDown: -0.11
+  Samples: ttH
+  Category: Theory
+
+Systematic: "VVVXsec"
+  Title: "VVV x-section"
+  Type: OVERALL
+  OverallUp: 0.30
+  OverallDown: -0.30
+  Samples: threeV
+  Category: Theory
+
+Systematic: "threeTopXsec"
+  Title: "three top x-section"
+  Type: OVERALL
+  OverallUp: 0.50
+  OverallDown: -0.50
+  Samples: threeTop
+  Category: Theory
+
+Systematic: "fourTopXsec"
+  Title: "four top x-section"
+  Type: OVERALL
+  OverallUp: 0.30
+  OverallDown: -0.30
+  Samples: fourTop
+  Category: Theory
+
+Systematic: "ttWWXsec"
+  Title: "ttWW x-section"
+  Type: OVERALL
+  OverallUp: 0.50
+  OverallDown: -0.50
+  Samples: WttW
+  Category: Theory
+
+Systematic: "tZXsec"
+  Title: "tZ x-section"
+  Type: OVERALL
+  OverallUp: 0.05
+  OverallDown: -0.05
+  Samples: tZ
+  Category: Theory
+
+Systematic: "WtZXsec"
+  Title: "WtZ x-section"
+  Type: OVERALL
+  OverallUp: 0.50
+  OverallDown: -0.50
+  Samples: WtZ
+  Category: Theory
+
+Systematic: "VHXsec"
+  Title: "VH x-section"
+  Type: OVERALL
+  OverallUp: 0.50
+  OverallDown: -0.50
+  Samples: VH
+  Category: Theory
+
+Systematic: "QMisIDXsec"
+  Title: "QMisID x-section"
+  Type: OVERALL
+  OverallUp: 0.20
+  OverallDown: -0.20
+  Samples: QMisID*
+  Category: Theory
+
+%%%% ==> Uncertainty for NBjet dependent correction %%%%
+
+Systematic: "FakesMu_NBjetCorr"
+  Title: "FakesMu NBjetCorr"
+  NuisanceParameter: "FakesMu_NBjetCorr"	
+  Type: HISTO
+  WeightSufUp: XXX_WEIGHT_FAKESMU_NBJET
+  Symmetrisation: ONESIDED
+  Smoothing: 40
+  Samples: "FakeMu*"
+  Category: Theory 
+  SubCategory: "Fakes Theory"
+ 
+Systematic: "FakesEl_NBjetCorr"
+  Title: "FakesEl NBjetCorr"
+  NuisanceParameter: "FakesEl_NBjetCorr"	
+  Type: HISTO
+  WeightSufUp: XXX_WEIGHT_FAKESEL_NBJET
+  Symmetrisation: ONESIDED
+  Smoothing: 40
+  Samples: "FakeEl*"
+  Category: Theory 
+  SubCategory: "Fakes Theory"
+
+%%%% ==> Input variables PLIV uncertainties %%%%
+
+Systematic: "FakesMuSubLead_PLIV_RelCaloCluster"
+  Title: "FakesMu PLIV RelCaloCluster"
+  NuisanceParameter: "FakesMu_PLIV_RelCaloCluster" 	
+  Type: HISTO
+  WeightSufUp: XXX_WEIGHT_PLIV_ECLUSTER_MUON_SUBLEAD
+  Symmetrisation: ONESIDED
+  Smoothing: 40
+  Samples: "FakeMuSubLead*Tight*","FakeMuSubLead*Medium*"
+  Category: Theory 
+  SubCategory: "Fakes Theory"
+
+Systematic: "FakesMuLead_PLIV_RelCaloCluster"
+  Title: "FakesMu PLIV RelCaloCluster"
+  NuisanceParameter: "FakesMu_PLIV_RelCaloCluster" 
+  Type: HISTO
+  WeightSufUp: XXX_WEIGHT_PLIV_ECLUSTER_MUON_LEAD
+  Symmetrisation: ONESIDED
+  Smoothing: 40
+  Samples: "FakeMuLead*Tight*","FakeMuLead*Medium*"
+  Category: Theory 
+  SubCategory: "Fakes Theory"
+
+Systematic: "FakesElSubLead_PLIV_PtFrac"
+  Title: "FakesEl PLIV PtFrac"
+  NuisanceParameter: "FakesEl_PLIV_PtFrac"
+  Type: HISTO
+  WeightSufUp: XXX_WEIGHT_PLIV_PTFRAC_ELEC_SUBLEAD
+  Symmetrisation: ONESIDED
+  Smoothing: 40
+  Samples: "FakeElSubLead*Tight*","FakeElSubLead*Medium*"
+  Category: Theory 
+  SubCategory: "Fakes Theory"
+
+Systematic: "FakesElLead_PLIV_PtFrac"
+  Title: "FakesEl PLIV PtFrac"
+  NuisanceParameter: "FakesEl_PLIV_PtFrac"
+  Type: HISTO
+  WeightSufUp: XXX_WEIGHT_PLIV_PTFRAC_ELEC_LEAD
+  Symmetrisation: ONESIDED
+  Smoothing: 40
+  Samples: "FakeElLead*Tight*","FakeElLead*Medium*"
+  Category: Theory 
+  SubCategory: "Fakes Theory"
+
+Systematic: "FakesMuSubLead_PLIV_SVLongSignif"
+  Title: "FakesMu PLIV SVLongSignif"
+  NuisanceParameter: "FakesMu_PLIV_SVLongSignif" 	
+  Type: HISTO
+  WeightSufUp: XXX_WEIGHT_PLIV_SVLONGSIG_MUON_SUBLEAD
+  Symmetrisation: ONESIDED
+  Smoothing: 40
+  Samples: "FakeMuSubLead*Tight*","FakeMuSubLead*Medium*"
+  Category: Theory 
+  SubCategory: "Fakes Theory"
+
+Systematic: "FakesMuLead_PLIV_SVLongSignif"
+  Title: "FakesMu PLIV SVLongSignif"
+  NuisanceParameter: "FakesMu_PLIV_SVLongSignif" 	
+  Type: HISTO
+  WeightSufUp: XXX_WEIGHT_PLIV_SVLONGSIG_MUON_LEAD
+  Symmetrisation: ONESIDED
+  Smoothing: 40
+  Samples: "FakeMuLead*Tight*","FakeMuLead*Medium*"
+  Category: Theory 
+  SubCategory: "Fakes Theory"
+
+Systematic: "FakesElSubLead_PLIV_SVLongSignif"
+  Title: "FakesEl PLIV SVLongSignif"
+  NuisanceParameter: "FakesEl_PLIV_SVLongSignif" 	
+  Type: HISTO
+  WeightSufUp: XXX_WEIGHT_PLIV_SVLONGSIG_ELEC_SUBLEAD
+  Symmetrisation: ONESIDED
+  Smoothing: 40
+  Samples: "FakeElSubLead*Tight*","FakeElSubLead*Medium*"
+  Category: Theory 
+  SubCategory: "Fakes Theory"
+
+Systematic: "FakesElLead_PLIV_SVLongSignif"
+  Title: "FakesEl PLIV SVLongSignif"
+  NuisanceParameter: "FakesEl_PLIV_SVLongSignif" 	
+  Type: HISTO
+  WeightSufUp: XXX_WEIGHT_PLIV_SVLONGSIG_ELEC_LEAD
+  Symmetrisation: ONESIDED
+  Smoothing: 40
+  Samples: "FakeElLead*Tight*","FakeElLead*Medium*"
+  Category: Theory 
+  SubCategory: "Fakes Theory"
+
+%%%% ==> M-to-T extrapolation uncertainties %%%%
+
+Systematic: "FakesEl_Medium_MtoTextrap"
+  Title: "FakesEl M-to-T extrap"
+  NuisanceParameter: "FakesEl_MtoTextrap"
+  Type: HISTO
+  WeightSufUp: 1.
+  Symmetrisation: ONESIDED
+  Smoothing: 40
+  Samples: "FakeElLead*Medium*","FakeElSubLead*Medium*"
+  Category: Theory 
+  SubCategory: "Fakes Theory"
+
+Systematic: "FakesEl_Tight_MtoTextrap"
+  Title: "FakesEl M-to-T extrap"
+  NuisanceParameter: "FakesEl_MtoTextrap"
+  Type: HISTO
+  WeightSufUp: 1.2 #PH7.1.3; 0.59 with Sherpa 2.2.10
+  Symmetrisation: ONESIDED
+  Smoothing: 40
+  Samples: "FakeElLead*Tight*","FakeElSubLead*Tight*"
+  Category: Theory 
+  SubCategory: "Fakes Theory"
+
+Systematic: "FakesMu_Medium_MtoTextrap"
+  Title: "FakesMu M-to-T extrap"
+  NuisanceParameter: "FakesMu_MtoTextrap"
+  Type: HISTO
+  WeightSufUp: 1.
+  Symmetrisation: ONESIDED
+  Smoothing: 40
+  Samples: "FakeMuLead*Medium*","FakeMuSubLead*Medium*"
+  Category: Theory 
+  SubCategory: "Fakes Theory"
+
+Systematic: "FakesMu_Tight_MtoTextrap"
+  Title: "FakesMu M-to-T extrap"
+  NuisanceParameter: "FakesMu_MtoTextrap"
+  Type: HISTO
+  WeightSufUp: 1.2 #PH7.1.3; 0.78 with Sherpa 2.2.10
+  Symmetrisation: ONESIDED
+  Smoothing: 40
+  Samples: "FakeMuLead*Tight*","FakeMuSubLead*Tight*"
+  Category: Theory 
+  SubCategory: "Fakes Theory"
+
+%%%% ==> tt+HF jets XS uncertainties %%%%
+
+Systematic: "ttbb_XS"
+  Title: "ttbar + #geq 1b XS"
+  Type: HISTO
+  WeightSufUp: XXX_WEIGHT_TTBB_XS
+  Symmetrisation: ONESIDED
+  Smoothing: 40
+  Samples: "Fake*","ttbar_QED"
+  Category: Theory 
+  SubCategory: "Fakes Theory"
+
+Systematic: "ttcc_XS"
+  Title: "ttbar + #geq 1c XS"
+  Type: HISTO
+  WeightSufUp: XXX_WEIGHT_TTCC_XS
+  Symmetrisation: ONESIDED
+  Smoothing: 40
+  Samples: "Fake*","ttbar_QED"
+  Category: Theory 
+  SubCategory: "Fakes Theory"
+
+%%%% ==> Conversion uncertainties %%%%
+
+Systematic: "ConvIntExtrap"
+  Title: "Int Conv Extrap"
+  Type: HISTO
+  WeightSufUp: 1.5
+  Symmetrisation: ONESIDED
+  #Smoothing: 40
+  Samples: "ttbar_QED"#,"Zjets_Int"
+  Category: Theory 
+  SubCategory: "Fakes Theory"
+
+Systematic: "ConvMatExtrap"
+  Title: "Mat Conv Extrap"
+  Type: HISTO
+  WeightSufUp: 1.1
+  Symmetrisation: ONESIDED
+  #Smoothing: 40
+  Samples: "FakeConv" #,"Zjets_Ext"
+  Category: Theory 
+  SubCategory: "Fakes Theory"
+
+%%%% ==> Alternative shower (Powheg+Herwig 7.1.3) %%%%%
+
+Systematic: "ttbar_muCh_Shower"
+  Title: "Fake muons ttbar modeling (parton shower)"
+  Type: HISTO
+  NtuplePathsUp: XXX_CENTRAL_NtuplePaths
+  NtupleFilesUp: XXX_ttbarPH71_nonallhad_samples
+  ScaleUp: 0.9994 #0.9
+  Symmetrisation: ONESIDED
+  DropNorm: all
+  Smoothing: 40
+  Samples: "FakeMu*"
+  Category: Theory
+
+Systematic: "ttbar_elCh_Shower"
+  Title: "Fake electrons ttbar modeling (parton shower)"
+  Type: HISTO
+  NtuplePathsUp: XXX_CENTRAL_NtuplePaths
+  NtupleFilesUp: XXX_ttbarPH71_nonallhad_samples
+  ScaleUp: 0.9994 #0.6
+  Symmetrisation: ONESIDED
+  DropNorm: all
+  Smoothing: 40
+  Samples: "FakeEl*"
+  Category: Theory
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% njets reweighting uncertainities %%%%
+
+Systematic: "VVnJets"
+  Title: "VV nJets"
+  Type: HISTO
+  WeightSufUp: (1/(1-0.025))*(XXX_VV_UP/XXX_VV_NJET)
+  WeightSufDown:(1/(1+0.025))*(XXX_VV_DOWN/XXX_VV_NJET)
+  Samples: VV_*,ggZZ
+  Category: Theory
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% Modelling uncertainties irreducible backgrounds %%%%
+
+Systematic: "ttW_ME"
+  Title: "ttW modeling (generator)"
+  NuisanceParameter: ttW_ME    
+  Type: HISTO
+  NtupleFilesUp: XXX_ttWalt_samples
+  Symmetrisation: ONESIDED
+  Smoothing: XXX_SMOOTHING_SHAPES
+  Samples: ttW_QCD #ttW* 
+  Category: Theory
+
+Systematic: "ttW_EW_ME"
+  Title: "ttW modeling EW (generator)"
+  NuisanceParameter: ttW_ME    
+  Type: HISTO
+  NtupleFilesUp: XXX_ttWEWalt_samples
+  Symmetrisation: ONESIDED
+  Smoothing: XXX_SMOOTHING_SHAPES
+  Samples: ttW_EW 
+  Category: Theory
+
+Systematic: "ttW_PDFaS"
+  Title: "ttW PDF #alpha_{s}"
+  Type: HISTO
+  Symmetrisation: TWOSIDED
+  WeightSufUp: "weight_PDF270000"
+  WeightSufDown: "weight_PDF269000"
+  Samples: ttW_QCD,ttW_EW 
+  Category: Theory
+
+Systematic: "ttW_PDFalternate"
+  Title: "ttW PDF Alternate"
+  Type: HISTO
+  Symmetrisation: TWOSIDED
+  WeightSufUp: "weight_PDF13000"	
+  WeightSufDown: "weight_PDF25300"
+  Samples: ttW_QCD,ttW_EW
+  Category: Theory
+
+# kept only varRF w/o using the envelope
+
+Systematic: "ttW_varRF"
+  Title: "ttW varRF"
+  NuisanceParameter: ttW_varRF
+  CombineName: ttW Var
+  CombineType: ENVELOPE
+  WeightSufUp: "weight_MUR_MUF__1up*((1/(1-0.111))*(m_HF_Classification==0) + (1/(1-0.205))*(abs(m_HF_Classification)<100&&abs(m_HF_Classification)>0)+(1/(1-0.188))*(abs(m_HF_Classification)>=100))"
+  WeightSufDown: "weight_MUR_MUF__1down*((1/(1+0.132))*(m_HF_Classification==0) + (1/(1+0.21))*(abs(m_HF_Classification)<100&&abs(m_HF_Classification)>0)+(1/(1+0.206))*(abs(m_HF_Classification)>=100))"
+  Smoothing: 40
+  Samples: ttW_QCD
+  Category: Theory
+
+Systematic: "ttW_EW_varRF"
+  Title: "ttW EW varRF"
+  NuisanceParameter: ttW_varRF
+  CombineName: ttW_EW Var
+  CombineType: ENVELOPE
+  WeightSufUp: "weight_MUR_MUF__1up*(1/(1-0.153))"
+  WeightSufDown: "weight_MUR_MUF__1down*(1/(1+0.211))"
+  Smoothing: 40
+  Samples: ttW_EW
+  Category: Theory
+
+#Systematic: "ttW_varRF"
+#  Title: "ttW varRF"
+#  CombineName: ttW Var
+#  CombineType: ENVELOPE
+#  WeightSufUp: "weight_MUR_MUF__1up"
+#  WeightSufDown: "weight_MUR_MUF__1down"
+#  Symmetrisation: TWOSIDED
+#  Smoothing: 40
+#  Samples: ttW*
+#  Category: Theory
+
+#Systematic: "ttW_varF"
+#  Title: "ttW varF"
+#  CombineName: ttW Var
+#  CombineType: ENVELOPE
+#  WeightSufUp: "weight_MUF__1up"
+#  WeightSufDown: "weight_MUF__1down"
+#  Symmetrisation: TWOSIDED
+#  Smoothing: 40
+#  Samples: ttW*
+#  Category: Theory
+#
+#Systematic: "ttW_varR"
+#  Title: "ttW varR"
+#  CombineName: ttW Var
+#  CombineType: ENVELOPE
+#  WeightSufUp: "weight_MUR__1up"
+#  WeightSufDown: "weight_MUR__1down"
+#  Symmetrisation: TWOSIDED
+#  Smoothing: 40
+#  Samples: ttW*
+#  Category: Theory
+
+Systematic: "VV_varRF"
+  Title: "VV varRF"
+  CombineName: VV Var
+  CombineType: ENVELOPE
+  WeightSufUp: "weight_MUR_MUF__1up*((1/(1-0.165))*(flag_VV_HF==3 || flag_VV_HF==0)+(1/(1-0.181))*(flag_VV_HF==2)+(1/(1-0.18))*(flag_VV_HF==1))"
+  WeightSufDown: "weight_MUR_MUF__1down*((1/(1+0.234))*(flag_VV_HF==3 || flag_VV_HF==0)+(1/(1+0.261))*(flag_VV_HF==2)+(1/(1+0.256))*(flag_VV_HF==1))"
+  Smoothing: 40
+  Samples: VV_*,ggZZ*
+  Category: Theory
+
+#Systematic: "VV_varRF"
+#  Title: "VV varRF"
+#  CombineName: VV Var
+#  CombineType: ENVELOPE
+#  WeightSufUp: "weight_MUR_MUF__1up"
+#  WeightSufDown: "weight_MUR_MUF__1down"
+#  Symmetrisation: TWOSIDED
+#  Smoothing: 40
+#  Samples: VV*,ggZZ*
+#  Category: Theory
+#
+#Systematic: "VV_varF"
+#  Title: "VV varF"
+#  CombineName: VV Var
+#  CombineType: ENVELOPE
+#  WeightSufUp: "weight_MUF__1up"
+#  WeightSufDown: "weight_MUF__1down"
+#  Symmetrisation: TWOSIDED
+#  Smoothing: 40
+#  Samples: VV*,ggZZ*
+#  Category: Theory
+#
+#Systematic: "VV_varR"
+#  Title: "VV varR"
+#  CombineName: VV Var
+#  CombineType: ENVELOPE
+#  WeightSufUp: "weight_MUR__1up"
+#  WeightSufDown: "weight_MUR__1down"
+#  Symmetrisation: TWOSIDED
+#  Smoothing: 40
+#  Samples: VV*,ggZZ*
+#  Category: Theory
+
+Systematic: "ttZ_varRF"
+  Title: "ttZ varRF"
+  CombineName: ttZ Var
+  CombineType: ENVELOPE
+  WeightSufUp: "weight_MUR_MUF__1up*((1/(1-0.185))*(m_HF_Classification==0) + (1/(1-0.291))*(abs(m_HF_Classification)<100&&abs(m_HF_Classification)>0)+(1/(1-0.283))*(abs(m_HF_Classification)>=100))"
+  WeightSufDown: "weight_MUR_MUF__1down*((1/(1+0.307))*(m_HF_Classification==0) + (1/(1+0.378))*(abs(m_HF_Classification)<100&&abs(m_HF_Classification)>0)+(1/(1+0.432))*(abs(m_HF_Classification)>=100))"
+  Smoothing: 40
+  Samples: ttZ*
+  Category: Theory
+
+Systematic: "ttZ_Gen_Acceptance"
+  Title: "ttZ modeling (generator)"
+  Type: HISTO
+  #NtuplePathsUp: XXX_CENTRAL_NtuplePaths/nominal
+  NtupleFilesUp: XXX_ttZalt_samples
+  Symmetrisation: ONESIDED
+  Smoothing: XXX_SMOOTHING_SHAPES
+  DropNorm: all
+  Samples: ttZ*
+  Category: Theory
+
+#Systematic: "ttZ_varRF"
+#  Title: "ttZ varRF"
+#  CombineName: ttZ Var
+#  CombineType: ENVELOPE
+#  WeightSufUp: "weight_MUR_MUF__1up"
+#  WeightSufDown: "weight_MUR_MUF__1down"
+#  Symmetrisation: TWOSIDED
+#  Smoothing: 40
+#  Samples: ttZ*
+#  Category: Theory
+#
+#Systematic: "ttZ_varF"
+#  Title: "ttZ varF"
+#  CombineName: ttZ Var
+#  CombineType: ENVELOPE
+#  WeightSufUp: "weight_MUF__1up"
+#  WeightSufDown: "weight_MUF__1down"
+#  Symmetrisation: TWOSIDED
+#  Smoothing: 40
+#  Samples: ttZ*
+#  Category: Theory
+#
+#Systematic: "ttZ_varR"
+#  Title: "ttZ varR"
+#  CombineName: ttZ Var
+#  CombineType: ENVELOPE
+#  WeightSufUp: "weight_MUR__1up"
+#  WeightSufDown: "weight_MUR__1down"
+#  Symmetrisation: TWOSIDED
+#  Smoothing: 40
+#  Samples: ttZ*
+#  Category: Theory
+
+Systematic: "ttH_varRF"
+  Title: "ttH varRF"
+  CombineName: ttH Var
+  CombineType: ENVELOPE
+  WeightSufUp: "weight_MUR_MUF__1up"
+  WeightSufDown: "weight_MUR_MUF__1down"
+  Symmetrisation: TWOSIDED
+  Smoothing: 40
+  Samples: ttH
+  Category: Theory
+
+Systematic: "ttH_Gen_Acceptance"
+  Title: "ttH modeling (generator)"
+  Type: HISTO
+  #NtuplePathsUp: XXX_CENTRAL_NtuplePaths/nominal
+  NtupleFilesUp: XXX_ttHalt_samples
+  Symmetrisation: ONESIDED
+  Smoothing: 40
+  Samples: ttH
+  Category: Theory
+
+Systematic: "ttH_PS_Acceptance"
+  Title: "ttH modeling (parton shower)"
+  Type: HISTO
+  NtupleFilesUp: XXX_ttHPSalt_samples
+  Symmetrisation: ONESIDED
+  Smoothing: XXX_SMOOTHING_SHAPES
+  Samples: ttH
+  Category: Theory
+
+#%%%% QMISID unc %%%%%
+
+#Systematic: "QMisID_TT_SYST"
+#  Title: "QMisIDReco TT"
+#  Type: HISTO
+#  WeightSufUp: "(((dilep_type==2)||(dilep_type==3))*weight_qmisid_TincTincni_up)/(((dilep_type==2)||(dilep_type==3))*weight_qmisid_TincTincni)"
+#  WeightSufDown: "(((dilep_type==2)||(dilep_type==3))*weight_qmisid_TincTincni_dw)/(((dilep_type==2)||(dilep_type==3))*weight_qmisid_TincTincni)"
+#  Samples: QMisID_CR_TT*,QMisID_SR_TT*
+#  Category: DataDriven
+#  SubCategory: Charge misassignment
+#
+#Systematic: "QMisID_TM_SYST"
+#  Title: "QMisIDReco TM"
+#  Type: HISTO
+#  WeightSufUp: "(((dilep_type==2)||(dilep_type==3))*weight_qmisid_TMexni_up)/(((dilep_type==2)||(dilep_type==3))*weight_qmisid_TMexni)"
+#  WeightSufDown: "(((dilep_type==2)||(dilep_type==3))*weight_qmisid_TMexni_dw)/(((dilep_type==2)||(dilep_type==3))*weight_qmisid_TMexni)"
+#  Samples: QMisID_*_TM_*
+#  Category: DataDriven
+#  SubCategory: Charge misassignment
+#
+#Systematic: "QMisID_MM_SYST"
+#  Title: "QMisIDReco MM"
+#  Type: HISTO
+#  WeightSufUp: "(((dilep_type==2)||(dilep_type==3))*weight_qmisid_MexMexni_up)/(((dilep_type==2)||(dilep_type==3))*weight_qmisid_MexMexni)"
+#  WeightSufDown: "(((dilep_type==2)||(dilep_type==3))*weight_qmisid_MexMexni_dw)/(((dilep_type==2)||(dilep_type==3))*weight_qmisid_MexMexni)"
+#  Samples: QMisID_*_MM_*
+#  Category: DataDriven
+#  SubCategory: Charge misassignment
+#
+#Systematic: "QMisID_MT_SYST"
+#  Title: "QMisIDReco MT"
+#  Type: HISTO
+#  WeightSufUp: "(((dilep_type==2)||(dilep_type==3))*weight_qmisid_MexTni_up)/(((dilep_type==2)||(dilep_type==3))*weight_qmisid_MexTni)"
+#  WeightSufDown: "(((dilep_type==2)||(dilep_type==3))*weight_qmisid_MexTni_dw)/(((dilep_type==2)||(dilep_type==3))*weight_qmisid_MexTni)"
+#  Samples: QMisID_*_MT_*
+#  Category: DataDriven
+#  SubCategory: Charge misassignment
+
+%%%% Experimental uncertainties %%%%
+
+%%%%%%%%%% PILE-UP %%%%%%%%%
+
+Systematic: "ATLAS_PRW_DATASF"
+  Title: "ATLAS_PRW_DATASF"
+  Type: HISTO 
+  WeightSufUp: "weight_pileup_UP/weight_pileup"
+  WeightSufDown: "weight_pileup_DOWN/weight_pileup"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+
+%%%%%%%%%%%% JVT %%%%%%%%%%%%
+
+Systematic: "ATLAS_JVT"
+  Title: "ATLAS_JVT"
+  Type: HISTO
+  WeightSufUp: weight_jvt__1up
+  WeightSufDown: weight_jvt__1down
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN, CR*HF*
+  ExcludeRegionSample: Zgamma*:VV*,CR*VV*:VV* #,CR*HF*:VV*
+  Category: Instrumental
+
+%%%%% JET FLAVOUR TAGGING %%%
+
+Systematic: "ATLAS_FTAG_B0";"ATLAS_FTAG_B1";"ATLAS_FTAG_B2";"ATLAS_FTAG_B3";"ATLAS_FTAG_B4";"ATLAS_FTAG_B5";"ATLAS_FTAG_B6";"ATLAS_FTAG_B7";"ATLAS_FTAG_B8";"ATLAS_FTAG_B9"
+  Title: "ATLAS_FTAG_B0";"ATLAS_FTAG_B1";"ATLAS_FTAG_B2";"ATLAS_FTAG_B3";"ATLAS_FTAG_B4";"ATLAS_FTAG_B5";"ATLAS_FTAG_B6";"ATLAS_FTAG_B7";"ATLAS_FTAG_B8";"ATLAS_FTAG_B9"
+  Type: HISTO
+  WeightSufUp: "weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_0__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_1__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_2__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_3__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_4__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_5__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_6__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_7__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_8__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_9__1up"
+  WeightSufDown: "weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_0__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_1__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_2__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_3__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_4__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_5__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_6__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_7__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_8__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_9__1down"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: FTAG
+
+Systematic: "ATLAS_FTAG_B10";"ATLAS_FTAG_B11";"ATLAS_FTAG_B12";"ATLAS_FTAG_B13";"ATLAS_FTAG_B14";"ATLAS_FTAG_B15";"ATLAS_FTAG_B16";"ATLAS_FTAG_B17";"ATLAS_FTAG_B18";"ATLAS_FTAG_B19"
+  Title: "ATLAS_FTAG_B10";"ATLAS_FTAG_B11";"ATLAS_FTAG_B12";"ATLAS_FTAG_B13";"ATLAS_FTAG_B14";"ATLAS_FTAG_B15";"ATLAS_FTAG_B16";"ATLAS_FTAG_B17";"ATLAS_FTAG_B18";"ATLAS_FTAG_B19"
+  Type: HISTO
+  WeightSufUp: "weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_10__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_11__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_12__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_13__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_14__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_15__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_16__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_17__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_18__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_19__1up"
+  WeightSufDown: "weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_10__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_11__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_12__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_13__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_14__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_15__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_16__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_17__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_18__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_B_19__1down"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: FTAG
+
+Systematic: "ATLAS_FTAG_C0";"ATLAS_FTAG_C1";"ATLAS_FTAG_C2";"ATLAS_FTAG_C3";"ATLAS_FTAG_C4";"ATLAS_FTAG_C5";"ATLAS_FTAG_C6";"ATLAS_FTAG_C7";"ATLAS_FTAG_C8";"ATLAS_FTAG_C9"
+  Title: "ATLAS_FTAG_C0";"ATLAS_FTAG_C1";"ATLAS_FTAG_C2";"ATLAS_FTAG_C3";"ATLAS_FTAG_C4";"ATLAS_FTAG_C5";"ATLAS_FTAG_C6";"ATLAS_FTAG_C7";"ATLAS_FTAG_C8";"ATLAS_FTAG_C9"
+  Type: HISTO
+  WeightSufUp: "weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_0__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_1__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_2__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_3__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_4__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_5__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_6__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_7__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_8__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_9__1up"
+  WeightSufDown: "weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_0__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_1__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_2__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_3__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_4__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_5__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_6__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_7__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_8__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_9__1down"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: FTAG
+
+Systematic: "ATLAS_FTAG_C10";"ATLAS_FTAG_C11";"ATLAS_FTAG_C12";"ATLAS_FTAG_C13";"ATLAS_FTAG_C14";"ATLAS_FTAG_C15";"ATLAS_FTAG_C16";"ATLAS_FTAG_C17";"ATLAS_FTAG_C18";"ATLAS_FTAG_C19"
+  Title: "ATLAS_FTAG_C10";"ATLAS_FTAG_C11";"ATLAS_FTAG_C12";"ATLAS_FTAG_C13";"ATLAS_FTAG_C14";"ATLAS_FTAG_C15";"ATLAS_FTAG_C16";"ATLAS_FTAG_C17";"ATLAS_FTAG_C18";"ATLAS_FTAG_C19"
+  Type: HISTO
+  WeightSufUp: "weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_10__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_11__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_12__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_13__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_14__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_15__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_16__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_17__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_18__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_19__1up"
+  WeightSufDown: "weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_10__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_11__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_12__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_13__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_14__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_15__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_16__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_17__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_18__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_C_19__1down"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: FTAG
+
+Systematic: "ATLAS_FTAG_L0";"ATLAS_FTAG_L1";"ATLAS_FTAG_L2";"ATLAS_FTAG_L3";"ATLAS_FTAG_L4";"ATLAS_FTAG_L5";"ATLAS_FTAG_L6";"ATLAS_FTAG_L7";"ATLAS_FTAG_L8";"ATLAS_FTAG_L9"
+  Title: "ATLAS_FTAG_L0";"ATLAS_FTAG_L1";"ATLAS_FTAG_L2";"ATLAS_FTAG_L3";"ATLAS_FTAG_L4";"ATLAS_FTAG_L5";"ATLAS_FTAG_L6";"ATLAS_FTAG_L7";"ATLAS_FTAG_L8";"ATLAS_FTAG_L9"
+  Type: HISTO
+  WeightSufUp: "weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_0__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_1__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_2__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_3__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_4__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_5__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_6__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_7__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_8__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_9__1up"
+  WeightSufDown: "weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_0__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_1__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_2__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_3__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_4__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_5__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_6__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_7__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_8__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_9__1down"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: FTAG
+
+Systematic: "ATLAS_FTAG_L10";"ATLAS_FTAG_L11";"ATLAS_FTAG_L12";"ATLAS_FTAG_L13";"ATLAS_FTAG_L14";"ATLAS_FTAG_L15";"ATLAS_FTAG_L16";"ATLAS_FTAG_L17";"ATLAS_FTAG_L18";"ATLAS_FTAG_L19"
+  Title: "ATLAS_FTAG_L10";"ATLAS_FTAG_L11";"ATLAS_FTAG_L12";"ATLAS_FTAG_L13";"ATLAS_FTAG_L14";"ATLAS_FTAG_L15";"ATLAS_FTAG_L16";"ATLAS_FTAG_L17";"ATLAS_FTAG_L18";"ATLAS_FTAG_L19"
+  Type: HISTO
+  WeightSufUp: "weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_10__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_11__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_12__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_13__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_14__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_15__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_16__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_17__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_18__1up";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_19__1up"
+  WeightSufDown: "weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_10__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_11__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_12__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_13__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_14__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_15__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_16__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_17__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_18__1down";"weight_bTagSF_DL1r_Continuous_FT_EFF_Eigen_Light_19__1down"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: FTAG
+
+%%%%%%%%%%% JETS %%%%%%%%%%%%
+
+Systematic: "ATLAS_JES_NP_Det1"
+  Title: "ATLAS_JES_NP_Det1"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES1 
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES1 
+  NtupleNameUp: "JET_EffectiveNP_Detector1__1up"
+  NtupleNameDown: "JET_EffectiveNP_Detector1__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_NP_Det2"
+  Title: "ATLAS_JES_NP_Det2"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES1 
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES1 
+  NtupleNameUp: "JET_EffectiveNP_Detector2__1up"
+  NtupleNameDown: "JET_EffectiveNP_Detector2__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_NP_Mix1"
+  Title: "ATLAS_JES_NP_Mix1"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES1 
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES1 
+  NtupleNameUp: "JET_EffectiveNP_Mixed1__1up"
+  NtupleNameDown: "JET_EffectiveNP_Mixed1__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_NP_Mix2"
+  Title: "ATLAS_JES_NP_Mix2"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES1 
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES1 
+  NtupleNameUp: "JET_EffectiveNP_Mixed2__1up"
+  NtupleNameDown: "JET_EffectiveNP_Mixed2__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_NP_Mix3"
+  Title: "ATLAS_JES_NP_Mix3"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES1 
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES1 
+  NtupleNameUp: "JET_EffectiveNP_Mixed3__1up"
+  NtupleNameDown: "JET_EffectiveNP_Mixed3__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_NP_Mod1"
+  Title: "ATLAS_JES_NP_Mod1"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES1 
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES1 
+  NtupleNameUp: "JET_EffectiveNP_Modelling1__1up"
+  NtupleNameDown: "JET_EffectiveNP_Modelling1__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_NP_Mod2"
+  Title: "ATLAS_JES_NP_Mod2"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES1
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES1
+  NtupleNameUp: "JET_EffectiveNP_Modelling2__1up"
+  NtupleNameDown: "JET_EffectiveNP_Modelling2__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_NP_Mod3"
+  Title: "ATLAS_JES_NP_Mod3"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES1
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES1
+  NtupleNameUp: "JET_EffectiveNP_Modelling3__1up"
+  NtupleNameDown: "JET_EffectiveNP_Modelling3__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_NP_Mod4"
+  Title: "ATLAS_JES_NP_Mod4"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES1
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES1
+  NtupleNameUp: "JET_EffectiveNP_Modelling4__1up"
+  NtupleNameDown: "JET_EffectiveNP_Modelling4__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_NP_Stat1"
+  Title: "ATLAS_JES_NP_Stat1"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES2
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES2
+  NtupleNameUp: "JET_EffectiveNP_Statistical1__1up"
+  NtupleNameDown: "JET_EffectiveNP_Statistical1__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_NP_Stat2"
+  Title: "ATLAS_JES_NP_Stat2"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES2
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES2
+  NtupleNameUp: "JET_EffectiveNP_Statistical2__1up"
+  NtupleNameDown: "JET_EffectiveNP_Statistical2__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_NP_Stat3"
+  Title: "ATLAS_JES_NP_Stat3"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES2
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES2
+  NtupleNameUp: "JET_EffectiveNP_Statistical3__1up"
+  NtupleNameDown: "JET_EffectiveNP_Statistical3__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_NP_Stat4"
+  Title: "ATLAS_JES_NP_Stat4"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES2
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES2
+  NtupleNameUp: "JET_EffectiveNP_Statistical4__1up"
+  NtupleNameDown: "JET_EffectiveNP_Statistical4__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_NP_Stat5"
+  Title: "ATLAS_JES_NP_Stat5"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES2
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES2
+  NtupleNameUp: "JET_EffectiveNP_Statistical5__1up"
+  NtupleNameDown: "JET_EffectiveNP_Statistical5__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_NP_Stat6"
+  Title: "ATLAS_JES_NP_Stat6"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES2
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES2
+  NtupleNameUp: "JET_EffectiveNP_Statistical6__1up"
+  NtupleNameDown: "JET_EffectiveNP_Statistical6__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_BJES"
+  Title: "ATLAS_JES_BJES"
+  Type: HISTO 
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES1
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES1
+  NtupleNameUp: "JET_BJES_Response__1up"
+  NtupleNameDown: "JET_BJES_Response__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_EtaInter_Model"
+  Title: "ATLAS_JES_EtaInter_Model"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES2
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES2
+  NtupleNameUp: "JET_EtaIntercalibration_Modelling__1up"
+  NtupleNameDown: "JET_EtaIntercalibration_Modelling__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_EtaInter_NonClosure_2018data"
+  Title: "ATLAS_JES_EtaInter_NonClosure_2018data"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES2
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES2
+  NtupleNameUp: "JET_EtaIntercalibration_NonClosure_2018data__1up"
+  NtupleNameDown: "JET_EtaIntercalibration_NonClosure_2018data__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_EtaInter_NonClosureHighE"
+  Title: "ATLAS_JES_EtaInter_NonClosure"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES2
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES2
+  NtupleNameUp: "JET_EtaIntercalibration_NonClosure_highE__1up"
+  NtupleNameDown: "JET_EtaIntercalibration_NonClosure_highE__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_EtaInter_NonClosureNegEta"
+  Title: "ATLAS_JES_EtaInter_NonClosureNegEta"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES3
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES3
+  NtupleNameUp: "JET_EtaIntercalibration_NonClosure_negEta__1up"
+  NtupleNameDown: "JET_EtaIntercalibration_NonClosure_negEta__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_EtaInter_NonClosurePosEta"
+  Title: "ATLAS_JES_EtaInter_NonClosurePosEta"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES3
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES3
+  NtupleNameUp: "JET_EtaIntercalibration_NonClosure_posEta__1up"
+  NtupleNameDown: "JET_EtaIntercalibration_NonClosure_posEta__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_EtaInter_Stat"
+  Title: "ATLAS_JES_EtaInter_Stat"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES3
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES3
+  NtupleNameUp: "JET_EtaIntercalibration_TotalStat__1up"
+  NtupleNameDown: "JET_EtaIntercalibration_TotalStat__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_Flavor_Comp"
+  Title: "ATLAS_JES_Flavor_Comp"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES3
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES3
+  NtupleNameUp: "JET_Flavor_Composition__1up"
+  NtupleNameDown: "JET_Flavor_Composition__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_Flavor_Resp"
+  Title: "ATLAS_JES_Flavor_Resp"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES3
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES3
+  NtupleNameUp: "JET_Flavor_Response__1up"
+  NtupleNameDown: "JET_Flavor_Response__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_PU_OffsetMu"
+  Title: "ATLAS_JES_PU_OffsetMu"
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES6
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES6
+  NtupleNameUp: "JET_Pileup_OffsetMu__1up"
+  NtupleNameDown: "JET_Pileup_OffsetMu__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_PU_OffsetNPV"
+  Title: "ATLAS_JES_PU_OffsetNPV"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES6
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES6
+  NtupleNameUp: "JET_Pileup_OffsetNPV__1up"
+  NtupleNameDown: "JET_Pileup_OffsetNPV__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_PU_PtTerm"
+  Title: "ATLAS_JES_PU_PtTerm"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_EGMETMU
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_EGMETMU
+  NtupleNameUp: "JET_Pileup_PtTerm__1up"
+  NtupleNameDown: "JET_Pileup_PtTerm__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_PU_Rho"
+  Title: "ATLAS_JES_PU_Rho"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_EGMETMU
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_EGMETMU
+  NtupleNameUp: "JET_Pileup_RhoTopology__1up"
+  NtupleNameDown: "JET_Pileup_RhoTopology__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_PunchThrough"
+  Title: "ATLAS_JES_PunchThrough"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES3
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES3
+  NtupleNameUp: "JET_PunchThrough_AFII__1up"
+  NtupleNameDown: "JET_PunchThrough_AFII__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+Systematic: "ATLAS_JES_SinglePart"
+  Title: "ATLAS_JES_SinglePart"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES3
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES3
+  NtupleNameUp: "JET_SingleParticle_HighPt__1up"
+  NtupleNameDown: "JET_SingleParticle_HighPt__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JES
+
+%%%%% JER %%%%%%
+
+Systematic: "ATLAS_JER_Eff1"
+  Title: "ATLAS_JER_Eff1"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES4
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES4
+  NtupleNameUp: "JET_JER_EffectiveNP_1__1up"
+  NtupleNameDown: "JET_JER_EffectiveNP_1__1down"
+  NtuplePathsUpSubtractSample: XXX_SYS_NtuplePaths/XXX_JES4
+  NtuplePathsDownSubtractSample: XXX_SYS_NtuplePaths/XXX_JES4
+  NtupleNameUpSubtractSample: "JET_JER_EffectiveNP_1__1up_PseudoData"
+  NtupleNameDownSubtractSample: "JET_JER_EffectiveNP_1__1down_PseudoData"
+  Symmetrisation: TWOSIDED
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JER
+
+Systematic: "ATLAS_JER_Eff2"
+  Title: "ATLAS_JER_Eff2"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES4
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES4
+  NtupleNameUp: "JET_JER_EffectiveNP_2__1up"
+  NtupleNameDown: "JET_JER_EffectiveNP_2__1down"
+  NtuplePathsUpSubtractSample: XXX_SYS_NtuplePaths/XXX_JES4	
+  NtuplePathsDownSubtractSample: XXX_SYS_NtuplePaths/XXX_JES4
+  NtupleNameUpSubtractSample: "JET_JER_EffectiveNP_2__1up_PseudoData"
+  NtupleNameDownSubtractSample: "JET_JER_EffectiveNP_2__1down_PseudoData"
+  Symmetrisation: TWOSIDED
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JER
+
+Systematic: "ATLAS_JER_Eff3"
+  Title: "ATLAS_JER_Eff3"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES4
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES4
+  NtupleNameUp: "JET_JER_EffectiveNP_3__1up"
+  NtupleNameDown: "JET_JER_EffectiveNP_3__1down"
+  NtuplePathsUpSubtractSample: XXX_SYS_NtuplePaths/XXX_JES4
+  NtuplePathsDownSubtractSample: XXX_SYS_NtuplePaths/XXX_JES4
+  NtupleNameUpSubtractSample: "JET_JER_EffectiveNP_3__1up_PseudoData"
+  NtupleNameDownSubtractSample: "JET_JER_EffectiveNP_3__1down_PseudoData"
+  Symmetrisation: TWOSIDED
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JER
+
+Systematic: "ATLAS_JER_Eff4"
+  Title: "ATLAS_JER_Eff4"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES4
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES4
+  NtupleNameUp: "JET_JER_EffectiveNP_4__1up"
+  NtupleNameDown: "JET_JER_EffectiveNP_4__1down"
+  NtuplePathsUpSubtractSample: XXX_SYS_NtuplePaths/XXX_JES4
+  NtuplePathsDownSubtractSample: XXX_SYS_NtuplePaths/XXX_JES4
+  NtupleNameUpSubtractSample: "JET_JER_EffectiveNP_4__1up_PseudoData"
+  NtupleNameDownSubtractSample: "JET_JER_EffectiveNP_4__1down_PseudoData"
+  Symmetrisation: TWOSIDED
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JER
+
+Systematic: "ATLAS_JER_Eff5"
+  Title: "ATLAS_JER_Eff5"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES5
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES5
+  NtupleNameUp: "JET_JER_EffectiveNP_5__1up"
+  NtupleNameDown: "JET_JER_EffectiveNP_5__1down"
+  NtuplePathsUpSubtractSample: XXX_SYS_NtuplePaths/XXX_JES5
+  NtuplePathsDownSubtractSample: XXX_SYS_NtuplePaths/XXX_JES5
+  NtupleNameUpSubtractSample: "JET_JER_EffectiveNP_5__1up_PseudoData"
+  NtupleNameDownSubtractSample: "JET_JER_EffectiveNP_5__1down_PseudoData"
+  Symmetrisation: TWOSIDED
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JER
+ 
+Systematic: "ATLAS_JER_Eff6"
+  Title: "ATLAS_JER_Eff6"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES5
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES5
+  NtupleNameUp: "JET_JER_EffectiveNP_6__1up"
+  NtupleNameDown: "JET_JER_EffectiveNP_6__1down"
+  NtuplePathsUpSubtractSample: XXX_SYS_NtuplePaths/XXX_JES5
+  NtuplePathsDownSubtractSample: XXX_SYS_NtuplePaths/XXX_JES5
+  NtupleNameUpSubtractSample: "JET_JER_EffectiveNP_6__1up_PseudoData"
+  NtupleNameDownSubtractSample: "JET_JER_EffectiveNP_6__1down_PseudoData"
+  Symmetrisation: TWOSIDED
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JER
+ 
+Systematic: "ATLAS_JER_Eff7"
+  Title: "ATLAS_JER_Eff7"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES5
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES5
+  NtupleNameUp: "JET_JER_EffectiveNP_7__1up"
+  NtupleNameDown: "JET_JER_EffectiveNP_7__1down"
+  NtuplePathsUpSubtractSample: XXX_SYS_NtuplePaths/XXX_JES5
+  NtuplePathsDownSubtractSample: XXX_SYS_NtuplePaths/XXX_JES5
+  NtupleNameUpSubtractSample: "JET_JER_EffectiveNP_7__1up_PseudoData"
+  NtupleNameDownSubtractSample: "JET_JER_EffectiveNP_7__1down_PseudoData"
+  Symmetrisation: TWOSIDED
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JER
+ 
+Systematic: "ATLAS_JER_Eff8"
+  Title: "ATLAS_JER_Eff8"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES5
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES5
+  NtupleNameUp: "JET_JER_EffectiveNP_8__1up"
+  NtupleNameDown: "JET_JER_EffectiveNP_8__1down"
+  NtuplePathsUpSubtractSample: XXX_SYS_NtuplePaths/XXX_JES5
+  NtuplePathsDownSubtractSample: XXX_SYS_NtuplePaths/XXX_JES5
+  NtupleNameUpSubtractSample: "JET_JER_EffectiveNP_8__1up_PseudoData"
+  NtupleNameDownSubtractSample: "JET_JER_EffectiveNP_8__1down_PseudoData"
+  Symmetrisation: TWOSIDED
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JER
+ 
+Systematic: "ATLAS_JER_Eff9"
+  Title: "ATLAS_JER_Eff9"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES6
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES6
+  NtupleNameUp: "JET_JER_EffectiveNP_9__1up"
+  NtupleNameDown: "JET_JER_EffectiveNP_9__1down"
+  NtuplePathsUpSubtractSample: XXX_SYS_NtuplePaths/XXX_JES6
+  NtuplePathsDownSubtractSample: XXX_SYS_NtuplePaths/XXX_JES6
+  NtupleNameUpSubtractSample: "JET_JER_EffectiveNP_9__1up_PseudoData"
+  NtupleNameDownSubtractSample: "JET_JER_EffectiveNP_9__1down_PseudoData"
+  Symmetrisation: TWOSIDED
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JER
+ 
+Systematic: "ATLAS_JER_Eff10"
+  Title: "ATLAS_JER_Eff10"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES6
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES6
+  NtupleNameUp: "JET_JER_EffectiveNP_10__1up"
+  NtupleNameDown: "JET_JER_EffectiveNP_10__1down"
+  NtuplePathsUpSubtractSample: XXX_SYS_NtuplePaths/XXX_JES6
+  NtuplePathsDownSubtractSample: XXX_SYS_NtuplePaths/XXX_JES6
+  NtupleNameUpSubtractSample: "JET_JER_EffectiveNP_10__1up_PseudoData"
+  NtupleNameDownSubtractSample: "JET_JER_EffectiveNP_10__1down_PseudoData"
+  Symmetrisation: TWOSIDED
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JER
+ 
+Systematic: "ATLAS_JER_Eff11"
+  Title: "ATLAS_JER_Eff11"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES6
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES6
+  NtupleNameUp: "JET_JER_EffectiveNP_11__1up"
+  NtupleNameDown: "JET_JER_EffectiveNP_11__1down"
+  NtuplePathsUpSubtractSample: XXX_SYS_NtuplePaths/XXX_JES6
+  NtuplePathsDownSubtractSample: XXX_SYS_NtuplePaths/XXX_JES6
+  NtupleNameUpSubtractSample: "JET_JER_EffectiveNP_11__1up_PseudoData"
+  NtupleNameDownSubtractSample: "JET_JER_EffectiveNP_11__1down_PseudoData"
+  Symmetrisation: TWOSIDED
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JER
+ 
+Systematic: "ATLAS_JER_Eff12"
+  Title: "ATLAS_JER_Eff12"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_JES6
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_JES6
+  NtupleNameUp: "JET_JER_EffectiveNP_12restTerm__1up"
+  NtupleNameDown: "JET_JER_EffectiveNP_12restTerm__1down"
+  NtuplePathsUpSubtractSample: XXX_SYS_NtuplePaths/XXX_JES6
+  NtuplePathsDownSubtractSample: XXX_SYS_NtuplePaths/XXX_JES6
+  NtupleNameUpSubtractSample: "JET_JER_EffectiveNP_12restTerm__1up_PseudoData"
+  NtupleNameDownSubtractSample: "JET_JER_EffectiveNP_12restTerm__1down_PseudoData"
+  Symmetrisation: TWOSIDED
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: JER
+
+#%%%%%%%%%%% MUONS %%%%%%%%%%%
+
+Systematic: "ATLAS_MU_MS"
+  Title: "ATLAS_MU_MS"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_EGMETMU 
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_EGMETMU
+  NtupleNameUp: "MUON_MS__1up"
+  NtupleNameDown: "MUON_MS__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: Muon
+
+Systematic: "ATLAS_MU_ID"
+  Title: "ATLAS_MU_ID"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_EGMETMU 
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_EGMETMU
+  NtupleNameUp: "MUON_ID__1up"
+  NtupleNameDown: "MUON_ID__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: Muon
+ 
+Systematic: "ATLAS_MU_SCALE"
+  Title: "ATLAS_MU_SCALE"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_EGMETMU
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_EGMETMU
+  NtupleNameUp: "MUON_SCALE__1up"
+  NtupleNameDown: "MUON_SCALE__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: Muon
+ 
+Systematic: "ATLAS_MU_RESBIAS"
+  Title: "ATLAS_MU_RESBIAS"
+  Type: HISTO  
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_EGMETMU 
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_EGMETMU
+  NtupleNameUp: "MUON_SAGITTA_RESBIAS__1up"
+  NtupleNameDown: "MUON_SAGITTA_RESBIAS__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: Muon
+ 
+#Systematic: "ATLAS_MU_RHO"
+#  Title: "ATLAS_MU_RHO"
+#  Type: HISTO
+#  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_EGMETMU
+#  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_EGMETMU
+#  NtupleNameUp: "MUON_SAGITTA_RHO__1up"
+#  NtupleNameDown: "MUON_SAGITTA_RHO__1down"
+#  Smoothing: 40
+#  Symmetrisation: TWOSIDED
+#  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+#  Category: Instrumental
+#  SubCategory: Muon
+ 
+%%%% ELECTRONS AND EGAMMA %%%%
+
+Systematic: "ATLAS_EG_RES"
+  Title: "ATLAS_EG_RES"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_EGMETMU 
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_EGMETMU
+  NtupleNameUp: "EG_RESOLUTION_ALL__1up"
+  NtupleNameDown: "EG_RESOLUTION_ALL__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: EGamma
+ 
+Systematic: "ATLAS_EG_SCALE"
+  Title: "ATLAS_EG_SCALE"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_EGMETMU 
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_EGMETMU
+  NtupleNameUp: "EG_SCALE_ALL__1up"
+  NtupleNameDown: "EG_SCALE_ALL__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: EGamma
+
+#%%%% MET %%%%%
+
+Systematic: "ATLAS_MET_Perp"
+  Title: "ATLAS_MET_Perp"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_MUTAU
+  NtupleNameUp: "MET_SoftTrk_ResoPerp"
+  Smoothing: 40
+  Symmetrisation: ONESIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: MET
+
+Systematic: "ATLAS_MET_Para"
+  Title: "ATLAS_MET_Para"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_MUTAU
+  NtupleNameUp: "MET_SoftTrk_ResoPara"
+  Smoothing: 40
+  Symmetrisation: ONESIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: MET
+
+Systematic: "ATLAS_MET_Scale"
+  Title: "ATLAS_MET_Scale"
+  Type: HISTO
+  NtuplePathsUp: XXX_SYS_NtuplePaths/XXX_MUTAU
+  NtuplePathsDown: XXX_SYS_NtuplePaths/XXX_MUTAU
+  NtupleNameUp: "MET_SoftTrk_Scale__1up"
+  NtupleNameDown: "MET_SoftTrk_Scale__1down"
+  Smoothing: 40
+  Symmetrisation: TWOSIDED
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Instrumental
+  SubCategory: MET
+
+%%%%% recently added trigger, e and mu uncertainties %%%%%
+
+Systematic: "ATLAS_TRIG_EL"
+  Title: "ATLAS_TRIG_EL"  
+  Type: HISTO
+  WeightSufUp: "weight_globalLeptonTriggerSF_EL_EFF_Trigger_TOTAL_1NPCOR_PLUS_UNCOR__1up"
+  WeightSufDown: "weight_globalLeptonTriggerSF_EL_EFF_Trigger_TOTAL_1NPCOR_PLUS_UNCOR__1down"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Symmetrisation: TWOSIDED
+  Category: Instrumental
+  SubCategory: Trigger
+
+Systematic: "ATLAS_TRIG_MU_STAT"
+  Title: "ATLAS_TRIG_MU_STAT"  
+  Type: HISTO
+  WeightSufUp: "weight_globalLeptonTriggerSF_MUON_EFF_TrigStatUncertainty__1up"
+  WeightSufDown: "weight_globalLeptonTriggerSF_MUON_EFF_TrigStatUncertainty__1down"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Symmetrisation: TWOSIDED
+  Category: Instrumental
+  SubCategory: Trigger
+
+Systematic: "ATLAS_TRIG_MU_SYST"
+  Title: "ATLAS_TRIG_MU_SYST"  
+  Type: HISTO
+  WeightSufUp: "weight_globalLeptonTriggerSF_MUON_EFF_TrigSystUncertainty__1up"
+  WeightSufDown: "weight_globalLeptonTriggerSF_MUON_EFF_TrigSystUncertainty__1down"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Symmetrisation: TWOSIDED
+  Category: Instrumental
+  SubCategory: Trigger
+
+Systematic: "ATLAS_EL_ID"
+  Title: "ATLAS_EL_ID"  
+  Type: HISTO
+  WeightSufUp: "(abs(lep_ID_0)==11 || abs(lep_ID_1)==11 || abs(lep_ID_2)==11 || abs(lep_ID_3)==11) ? weight_leptonSF_El_ID_TightLH_UP_AT : 1"
+  WeightSufDown: "(abs(lep_ID_0)==11 || abs(lep_ID_1)==11 || abs(lep_ID_2)==11 || abs(lep_ID_3)==11) ? weight_leptonSF_El_ID_TightLH_DOWN_AT : 1"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Symmetrisation: TWOSIDED
+  Category: Instrumental
+  SubCategory: EGamma
+
+Systematic: "ATLAS_EL_Isol"
+  Title: "ATLAS_EL_Isol"  
+  Type: HISTO
+  WeightSufUp: "weight_leptonSF_El_Iso_FCLoose_UP_AT"
+  WeightSufDown: "weight_leptonSF_El_Iso_FCLoose_DOWN_AT"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Symmetrisation: TWOSIDED
+  Category: Instrumental
+  SubCategory: EGamma
+
+Systematic: "ATLAS_EL_Reco"
+  Title: "ATLAS_EL_Reco"  
+  Type: HISTO
+  WeightSufUp: "weight_leptonSF_El_Reco_UP_AT"
+  WeightSufDown: "weight_leptonSF_El_Reco_DOWN_AT"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Symmetrisation: TWOSIDED
+  Category: Instrumental
+  SubCategory: EGamma
+
+Systematic: "ATLAS_MU_ID_STAT"
+  Title: "ATLAS_MU_ID_STAT"  
+  Type: HISTO
+  WeightSufUp: "(abs(lep_ID_0)==13 || abs(lep_ID_1)==13 || abs(lep_ID_2)==13 || abs(lep_ID_3)==13) ? weight_leptonSF_Mu_ID_Medium_STAT_UP_AT : 1"
+  WeightSufDown: "(abs(lep_ID_0)==13 || abs(lep_ID_1)==13 || abs(lep_ID_2)==13 || abs(lep_ID_3)==13) ? weight_leptonSF_Mu_ID_Medium_STAT_DOWN_AT : 1"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Symmetrisation: TWOSIDED
+  Category: Instrumental
+  SubCategory: Muon
+
+Systematic: "ATLAS_MU_ID_SYST"
+  Title: "ATLAS_MU_ID_SYST"  
+  Type: HISTO
+  WeightSufUp: "(abs(lep_ID_0)==13 || abs(lep_ID_1)==13 || abs(lep_ID_2)==13 || abs(lep_ID_3)==13) ? weight_leptonSF_Mu_ID_Medium_SYST_UP_AT : 1"
+  WeightSufDown: "(abs(lep_ID_0)==13 || abs(lep_ID_1)==13 || abs(lep_ID_2)==13 || abs(lep_ID_3)==13) ? weight_leptonSF_Mu_ID_Medium_SYST_DOWN_AT : 1"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Symmetrisation: TWOSIDED
+  Category: Instrumental
+  SubCategory: Muon
+
+Systematic: "ATLAS_MU_ID_STAT_LOWPT"
+  Title: "ATLAS_MU_ID_STAT_LOWPT"  
+  Type: HISTO
+  WeightSufUp: "(abs(lep_ID_0)==13 || abs(lep_ID_1)==13 || abs(lep_ID_2)==13 || abs(lep_ID_3)==13) ? weight_leptonSF_Mu_ID_Medium_STAT_LOWPT_UP_AT : 1"
+  WeightSufDown: "(abs(lep_ID_0)==13 || abs(lep_ID_1)==13 || abs(lep_ID_2)==13 || abs(lep_ID_3)==13) ? weight_leptonSF_Mu_ID_Medium_STAT_LOWPT_DOWN_AT : 1"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Symmetrisation: TWOSIDED
+  Category: Instrumental
+  SubCategory: Muon
+
+Systematic: "ATLAS_MU_ID_SYST_LOWPT"
+  Title: "ATLAS_MU_ID_SYST_LOWPT"  
+  Type: HISTO
+  WeightSufUp: "(abs(lep_ID_0)==13 || abs(lep_ID_1)==13 || abs(lep_ID_2)==13 || abs(lep_ID_3)==13) ? weight_leptonSF_Mu_ID_Medium_SYST_LOWPT_UP_AT : 1"
+  WeightSufDown: "(abs(lep_ID_0)==13 || abs(lep_ID_1)==13 || abs(lep_ID_2)==13 || abs(lep_ID_3)==13) ? weight_leptonSF_Mu_ID_Medium_SYST_LOWPT_DOWN_AT : 1"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Symmetrisation: TWOSIDED
+  Category: Instrumental
+  SubCategory: Muon
+
+Systematic: "ATLAS_MU_Isol_STAT"
+  Title: "ATLAS_MU_Isol_STAT"  
+  Type: HISTO
+  WeightSufUp: "weight_leptonSF_Mu_Iso_FCLoose_STAT_UP_AT"
+  WeightSufDown: "weight_leptonSF_Mu_Iso_FCLoose_STAT_DOWN_AT"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Symmetrisation: TWOSIDED
+  Category: Instrumental
+  SubCategory: Muon
+
+Systematic: "ATLAS_MU_Isol_SYST"
+  Title: "ATLAS_MU_Isol_SYST"  
+  Type: HISTO
+  WeightSufUp: "weight_leptonSF_Mu_Iso_FCLoose_SYST_UP_AT"
+  WeightSufDown: "weight_leptonSF_Mu_Iso_FCLoose_SYST_DOWN_AT"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Symmetrisation: TWOSIDED
+  Category: Instrumental
+  SubCategory: Muon
+
+Systematic: "ATLAS_MU_TTVA_STAT"
+  Title: "ATLAS_MU_TTVA_STAT"  
+  Type: HISTO
+  WeightSufUp: "weight_leptonSF_Mu_TTVA_STAT_UP_AT"
+  WeightSufDown: "weight_leptonSF_Mu_TTVA_STAT_DOWN_AT"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Symmetrisation: TWOSIDED
+  Category: Instrumental
+  SubCategory: Muon
+
+Systematic: "ATLAS_MU_TTVA_SYST"
+  Title: "ATLAS_MU_TTVA_SYST"  
+  Type: HISTO
+  WeightSufUp: "weight_leptonSF_Mu_TTVA_SYST_UP_AT"
+  WeightSufDown: "weight_leptonSF_Mu_TTVA_SYST_DOWN_AT"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Symmetrisation: TWOSIDED
+  Category: Instrumental
+  SubCategory: Muon
+
+#Systematic: "ATLAS_MU_ID_STAT_HIGHPT"
+#  Title: "ATLAS_MU_ID_STAT_HIGHPT"  
+#  Type: HISTO
+#  WeightSufUp: "weight_leptonSF_Mu_ID_HighPt_STAT_UP_AT"
+#  WeightSufDown: "weight_leptonSF_Mu_ID_HighPt_STAT_DOWN_AT"
+#  Smoothing: 40
+#  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+#  Symmetrisation: TWOSIDED
+#  Category: Instrumental
+#  SubCategory: Muon
+#
+#Systematic: "ATLAS_MU_ID_SYST_HIGHPT"
+#  Title: "ATLAS_MU_ID_SYST_HIGHPT"  
+#  Type: HISTO
+#  WeightSufUp: "weight_leptonSF_Mu_ID_HighPt_SYST_UP_AT"
+#  WeightSufDown: "weight_leptonSF_Mu_ID_HighPt_SYST_DOWN_AT"
+#  Smoothing: 40
+#  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+#  Symmetrisation: TWOSIDED
+#  Category: Instrumental
+#  SubCategory: Muon
+
+#%%%%% Muon PLIV systematics %%%%%
+
+Systematic: "PLIV_Mu_MllWindow_VeryTight"
+  Title: "PLIV Muon M_{ll} Window [T]" 
+  Type: HISTO
+  Symmetrisation: TWOSIDED
+  WeightSufUp: "XXX_PLIV_SYS_Mu_VeryTight_MllWindow_1UP"
+  WeightSufDown: "XXX_PLIV_SYS_Mu_VeryTight_MllWindow_1DN"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Muon
+  SubCategory: PLIV
+
+Systematic: "PLIV_Mu_ProbeQuality_VeryTight"
+  Title: "PLIV Muon Probe Quality [T]"
+  Type: HISTO
+  Symmetrisation: ONESIDED
+  WeightSufUp: "XXX_PLIV_SYS_Mu_VeryTight_ProbeQuality"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Muon
+  SubCategory: PLIV
+
+Systematic: "PLIV_Mu_DRMuJet_VeryTight"
+  Title: "PLIV Muon #Delta R #mu/jet [T]"
+  Type: HISTO
+  Symmetrisation: ONESIDED
+  WeightSufUp: "XXX_PLIV_SYS_Mu_VeryTight_DRMuJet"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Muon
+  SubCategory: PLIV
+
+Systematic: "PLIV_Mu_QCDTemplate_VeryTight"
+  Title: "PLIV Muon QCD Template [T]"
+  Type: HISTO
+  Symmetrisation: TWOSIDED
+  WeightSufUp: "XXX_PLIV_SYS_Mu_VeryTight_QCDTemplate_1UP"
+  WeightSufDown: "XXX_PLIV_SYS_Mu_VeryTight_QCDTemplate_1DN"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Muon
+  SubCategory: PLIV
+
+Systematic: "PLIV_Mu_BkgFraction_VeryTight"
+  Title: "PLIV Muon Bkg Fraction [T]"
+  Type: HISTO
+  Symmetrisation: TWOSIDED
+  WeightSufUp: "XXX_PLIV_SYS_Mu_VeryTight_BkgFraction_1UP"
+  WeightSufDown: "XXX_PLIV_SYS_Mu_VeryTight_BkgFraction_1DN"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Muon
+  SubCategory: PLIV
+
+Systematic: "PLIV_Mu_SuppressionScale_VeryTight"
+  Title: "PLIV Muon Suppression Scale [T]"
+  Type: HISTO
+  Symmetrisation: TWOSIDED
+  WeightSufUp: "XXX_PLIV_SYS_Mu_VeryTight_SupressionScale_1UP"
+  WeightSufDown: "XXX_PLIV_SYS_Mu_VeryTight_SupressionScale_1DN"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Muon
+  SubCategory: PLIV
+
+Systematic: "PLIV_Mu_MCxSec_VeryTight"
+  Title: "PLIV Muon MC Cross Section [T]"
+  Type: HISTO
+  Symmetrisation: TWOSIDED
+  WeightSufUp: "XXX_PLIV_SYS_Mu_VeryTight_MCxSec_1UP"
+  WeightSufDown: "XXX_PLIV_SYS_Mu_VeryTight_MCxSec_1DN"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Muon
+  SubCategory: PLIV
+
+Systematic: "PLIV_Mu_JetModeling_VeryTight"
+  Title: "PLIV Muon Sherpa vs. Powheg [T]"
+  Type: HISTO
+  Symmetrisation: ONESIDED
+  WeightSufUp: "XXX_PLIV_SYS_Mu_VeryTight_JetModeling"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Muon
+  SubCategory: PLIV
+
+Systematic: "PLIV_Mu_Luminosity_VeryTight"
+  Title: "PLIV Muon Luminosity [T]"
+  Type: HISTO
+  Symmetrisation: TWOSIDED
+  WeightSufUp: "XXX_PLIV_SYS_Mu_VeryTight_Luminosity_1UP"
+  WeightSufDown: "XXX_PLIV_SYS_Mu_VeryTight_Luminosity_1DN"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Muon
+  SubCategory: PLIV
+
+Systematic: "PLIV_Mu_Stat_VeryTight"
+  Title: "PLIV Muon Statistical [T]"
+  Type: HISTO
+  Symmetrisation: TWOSIDED
+  WeightSufUp: "XXX_PLIV_SYS_Mu_VeryTight_Stat_1UP"
+  WeightSufDown: "XXX_PLIV_SYS_Mu_VeryTight_Stat_1DN"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Muon
+  SubCategory: PLIV
+
+Systematic: "PLIV_Mu_MllWindow_Tight"
+  Title: "PLIV Muon M_{ll} Window [M]" 
+  Type: HISTO
+  Symmetrisation: TWOSIDED
+  WeightSufUp: "XXX_PLIV_SYS_Mu_TightNotVeryTight_MllWindow_1UP"
+  WeightSufDown: "XXX_PLIV_SYS_Mu_TightNotVeryTight_MllWindow_1DN"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Muon
+  SubCategory: PLIV
+
+Systematic: "PLIV_Mu_ProbeQuality_Tight"
+  Title: "PLIV Muon Probe Quality [M]"
+  Type: HISTO
+  Symmetrisation: ONESIDED
+  WeightSufUp: "XXX_PLIV_SYS_Mu_TightNotVeryTight_ProbeQuality"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Muon
+  SubCategory: PLIV
+
+Systematic: "PLIV_Mu_DRMuJet_Tight"
+  Title: "PLIV Muon #Delta R #mu/jet [M]"
+  Type: HISTO
+  Symmetrisation: ONESIDED
+  WeightSufUp: "XXX_PLIV_SYS_Mu_TightNotVeryTight_DRMuJet"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Muon
+  SubCategory: PLIV
+
+Systematic: "PLIV_Mu_QCDTemplate_Tight"
+  Title: "PLIV Muon QCD Template [M]"
+  Type: HISTO
+  Symmetrisation: TWOSIDED
+  WeightSufUp: "XXX_PLIV_SYS_Mu_TightNotVeryTight_QCDTemplate_1UP"
+  WeightSufDown: "XXX_PLIV_SYS_Mu_TightNotVeryTight_QCDTemplate_1DN"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Muon
+  SubCategory: PLIV
+
+Systematic: "PLIV_Mu_BkgFraction_Tight"
+  Title: "PLIV Muon Bkg Fraction [M]"
+  Type: HISTO
+  Symmetrisation: TWOSIDED
+  WeightSufUp: "XXX_PLIV_SYS_Mu_TightNotVeryTight_BkgFraction_1UP"
+  WeightSufDown: "XXX_PLIV_SYS_Mu_TightNotVeryTight_BkgFraction_1DN"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Muon
+  SubCategory: PLIV
+
+Systematic: "PLIV_Mu_SuppressionScale_Tight"
+  Title: "PLIV Muon Suppression Scale [M]"
+  Type: HISTO
+  Symmetrisation: TWOSIDED
+  WeightSufUp: "XXX_PLIV_SYS_Mu_TightNotVeryTight_SupressionScale_1UP"
+  WeightSufDown: "XXX_PLIV_SYS_Mu_TightNotVeryTight_SupressionScale_1DN"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Muon
+  SubCategory: PLIV
+
+Systematic: "PLIV_Mu_MCxSec_Tight"
+  Title: "PLIV Muon MC Cross Section [M]"
+  Type: HISTO
+  Symmetrisation: TWOSIDED
+  WeightSufUp: "XXX_PLIV_SYS_Mu_TightNotVeryTight_MCxSec_1UP"
+  WeightSufDown: "XXX_PLIV_SYS_Mu_TightNotVeryTight_MCxSec_1DN"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Muon
+  SubCategory: PLIV
+
+Systematic: "PLIV_Mu_JetModeling_Tight"
+  Title: "PLIV Muon Sherpa vs. Powheg [M]"
+  Type: HISTO
+  Symmetrisation: ONESIDED
+  WeightSufUp: "XXX_PLIV_SYS_Mu_TightNotVeryTight_JetModeling"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Muon
+  SubCategory: PLIV
+
+Systematic: "PLIV_Mu_Luminosity_Tight"
+  Title: "PLIV Muon Luminosity [M]"
+  Type: HISTO
+  Symmetrisation: TWOSIDED
+  WeightSufUp: "XXX_PLIV_SYS_Mu_TightNotVeryTight_Luminosity_1UP"
+  WeightSufDown: "XXX_PLIV_SYS_Mu_TightNotVeryTight_Luminosity_1DN"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Muon
+  SubCategory: PLIV
+
+Systematic: "PLIV_Mu_Stat_Tight"
+  Title: "PLIV Muon Statistical [M]"
+  Type: HISTO
+  Symmetrisation: TWOSIDED
+  WeightSufUp: "XXX_PLIV_SYS_Mu_TightNotVeryTight_Stat_1UP"
+  WeightSufDown: "XXX_PLIV_SYS_Mu_TightNotVeryTight_Stat_1DN"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Muon
+  SubCategory: PLIV
+
+######## Electron PLIV systematics ###########
+
+Systematic: "PLIV_El_Stat_VeryTight"
+  Title: "PLIV Electron Statistical [T]"
+  Type: HISTO
+  Symmetrisation: ONESIDED
+  WeightSufUp: "XXX_PLIV_SYS_El_VeryTight_Stat"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Electron
+  SubCategory: PLIV
+
+Systematic: "PLIV_El_JetModeling_VeryTight"
+  Title: "PLIV Electron Jet Modeling [T]"
+  Type: HISTO
+  Symmetrisation: ONESIDED
+  WeightSufUp: "XXX_PLIV_SYS_El_VeryTight_JetModeling"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Electron
+  SubCategory: PLIV
+
+Systematic: "PLIV_El_TemplateCut_VeryTight"
+  Title: "PLIV Electron Template Cut [T]"
+  Type: HISTO
+  Symmetrisation: ONESIDED
+  WeightSufUp: "XXX_PLIV_SYS_El_VeryTight_TemplateCut"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Electron
+  SubCategory: PLIV
+
+Systematic: "PLIV_El_MllWindow_VeryTight"
+  Title: "PLIV Electron M_{ll} Window [T]"
+  Type: HISTO
+  Symmetrisation: ONESIDED
+  WeightSufUp: "XXX_PLIV_SYS_El_VeryTight_MllWindow"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Electron
+  SubCategory: PLIV
+
+Systematic: "PLIV_El_ID_VeryTight"
+  Title: "PLIV Electron ID [T]"
+  Type: HISTO
+  Symmetrisation: ONESIDED
+  WeightSufUp: "XXX_PLIV_SYS_El_VeryTight_ID"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Electron
+  SubCategory: PLIV
+
+Systematic: "PLIV_El_Iso_VeryTight"
+  Title: "PLIV Electron Isolation [T]"
+  Type: HISTO
+  Symmetrisation: ONESIDED
+  WeightSufUp: "XXX_PLIV_SYS_El_VeryTight_Iso"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Electron
+  SubCategory: PLIV
+
+Systematic: "PLIV_El_Pileup_VeryTight"
+  Title: "PLIV Electron Pileup [T]"
+  Type: HISTO
+  Symmetrisation: ONESIDED
+  WeightSufUp: "XXX_PLIV_SYS_El_VeryTight_Pileup"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Electron
+  SubCategory: PLIV
+
+Systematic: "PLIV_El_Stat_Tight"
+  Title: "PLIV Electron Statistical [M]"
+  Type: HISTO
+  Symmetrisation: ONESIDED
+  WeightSufUp: "XXX_PLIV_SYS_El_TightNotVeryTight_Stat"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Electron
+  SubCategory: PLIV
+
+Systematic: "PLIV_El_JetModeling_Tight"
+  Title: "PLIV Electron Jet Modeling [M]"
+  Type: HISTO
+  Symmetrisation: ONESIDED
+  WeightSufUp: "XXX_PLIV_SYS_El_TightNotVeryTight_JetModeling"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Electron
+  SubCategory: PLIV
+
+Systematic: "PLIV_El_TemplateCut_Tight"
+  Title: "PLIV Electron Template Cut [M]"
+  Type: HISTO
+  Symmetrisation: ONESIDED
+  WeightSufUp: "XXX_PLIV_SYS_El_TightNotVeryTight_TemplateCut"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Electron
+  SubCategory: PLIV
+
+Systematic: "PLIV_El_MllWindow_Tight"
+  Title: "PLIV Electron M_{ll} Window [M]"
+  Type: HISTO
+  Symmetrisation: ONESIDED
+  WeightSufUp: "XXX_PLIV_SYS_El_TightNotVeryTight_MllWindow"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Electron
+  SubCategory: PLIV
+
+Systematic: "PLIV_El_ID_Tight"
+  Title: "PLIV Electron ID [M]"
+  Type: HISTO
+  Symmetrisation: ONESIDED
+  WeightSufUp: "XXX_PLIV_SYS_El_TightNotVeryTight_ID"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Electron
+  SubCategory: PLIV
+
+Systematic: "PLIV_El_Iso_Tight"
+  Title: "PLIV Electron Isolation [M]"
+  Type: HISTO
+  Symmetrisation: ONESIDED
+  WeightSufUp: "XXX_PLIV_SYS_El_TightNotVeryTight_Iso"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Electron
+  SubCategory: PLIV
+
+Systematic: "PLIV_El_Pileup_Tight"
+  Title: "PLIV Electron Pileup [M]"
+  Type: HISTO
+  Symmetrisation: ONESIDED
+  WeightSufUp: "XXX_PLIV_SYS_El_TightNotVeryTight_Pileup"
+  Smoothing: 40
+  Exclude: XXX_EXCLUDE_DATA_DRIVEN
+  Category: Electron
+  SubCategory: PLIV
