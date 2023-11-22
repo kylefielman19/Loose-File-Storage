@@ -37,7 +37,7 @@ Job: "Opt_tltl_highPtMuWP_sys"
   RatioType: "DATAOVERBKG"
   RatioYmin: 0.5
   RatioYmax: 1.5
-  ReplacementFile: config/replacement_tltl_new.txt
+  ReplacementFile: /afs/cern.ch/user/k/kfielman/TRExFitter/replacement_tltl_new.txt
   RankingMaxNP: 15
   DebugLevel: 2
   RemoveSystOnEmptySample: TRUE
@@ -75,165 +75,165 @@ Limit: "limit"
 
 %%% ----- 3L channel ----- %%%
 
-Region: "SR_3l_Meff_lowMinMll200"
-  Type: VALIDATION
-  Variable: "(HT+met_met)*1e-3",5,0,4000
-  VariableTitle: "m_{eff} [GeV]"
-  Binning: 0,500,1000,1500,2500,4000
-  Label: 3\ell \ low\ (e/\mu)
-  TexLabel: "3$\ell$ \ low (e/$\mu$)"
-  Selection: "trilep_type && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR>=2 && nJets_OR_DL1r_85>=1 && XXX_ELE_DEFINI && XXX_3L_VETOS && lep_isolationFCLoose_0 && lep_isolationFCLoose_1 && lep_isolationFCLoose_2 && ((abs(lep_ID_1)==11 && abs(lep_EtaBE2_1)<=1.37 && lep_isTightLH_1 && lep_ambiguityType_1==0 && passPLIVTight_1) || (abs(lep_ID_1)==11 && abs(lep_EtaBE2_1)>=1.52 && lep_isTightLH_1 && lep_ambiguityType_1==0 && passPLIVTight_1) || (abs(lep_ID_1)==13 && lep_isMedium_1 && passPLIVTight_1)) && ((abs(lep_ID_2)==11 && abs(lep_EtaBE2_2)<=1.37 && lep_isTightLH_2 && lep_ambiguityType_2==0 && passPLIVTight_2) || (abs(lep_ID_2)==11 && abs(lep_EtaBE2_2)>=1.52 && lep_isTightLH_2 && lep_ambiguityType_2==0 && passPLIVTight_2) || (abs(lep_ID_2)==13 && lep_isMedium_2 && passPLIVTight_2)) && min(min(Mll01,Mll02),Mll12)*1e-3<=200"
-  LogScale: TRUE	   
-  Ymin: 1e-1  
-  Ymax: 1e7   
-  DataType: DATA
+#Region: "SR_3l_Meff_lowMinMll200"
+#  Type: VALIDATION
+#  Variable: "(HT+met_met)*1e-3",5,0,4000
+#  VariableTitle: "m_{eff} [GeV]"
+#  Binning: 0,500,1000,1500,2500,4000
+#  Label: 3\ell \ low\ (e/\mu)
+#  TexLabel: "3$\ell$ \ low (e/$\mu$)"
+#  Selection: "trilep_type && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR>=2 && nJets_OR_DL1r_85>=1 && XXX_ELE_DEFINI && XXX_3L_VETOS && lep_isolationFCLoose_0 && lep_isolationFCLoose_1 && lep_isolationFCLoose_2 && ((abs(lep_ID_1)==11 && abs(lep_EtaBE2_1)<=1.37 && lep_isTightLH_1 && lep_ambiguityType_1==0 && passPLIVTight_1) || (abs(lep_ID_1)==11 && abs(lep_EtaBE2_1)>=1.52 && lep_isTightLH_1 && lep_ambiguityType_1==0 && passPLIVTight_1) || (abs(lep_ID_1)==13 && lep_isMedium_1 && passPLIVTight_1)) && ((abs(lep_ID_2)==11 && abs(lep_EtaBE2_2)#<=1.37 && lep_isTightLH_2 && lep_ambiguityType_2==0 && passPLIVTight_2) || (abs(lep_ID_2)==11 && abs(lep_EtaBE2_2)>=1.52 && lep_isTightLH_2 && lep_ambiguityType_2==0 && passPLIVTight_2) || (abs(lep_ID_2)==13 && lep_isMedium_2 && passPLIVTight_2)) && min(min(Mll01,Mll02),Mll12)*1e-3<=200"
+#  LogScale: TRUE	   
+#  Ymin: 1e-1  
+#  Ymax: 1e7   
+#  DataType: DATA
 
-Region: "SR_3l_ele_Meff_highMinMll200"
-  Type: SIGNAL
-  Variable: "(HT+met_met)*1e-3",4,500,4000
-  VariableTitle: "m_{eff} [GeV]"
-  Binning: 500,1000,1500,2500,4000
-  Label: 3\ell \ high\ (e)
-  TexLabel: "3$\ell$ \ high\ (e)"	
-  Selection: "(trilep_type==3 || trilep_type==4) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR>=2 && nJets_OR_DL1r_85>=1 && XXX_ELE_DEFINI && XXX_3L_VETOS && lep_isolationFCLoose_0 && lep_isolationFCLoose_1 && lep_isolationFCLoose_2 && ((abs(lep_ID_1)==11 && abs(lep_EtaBE2_1)<=1.37 && lep_isTightLH_1 && lep_ambiguityType_1==0 && passPLIVTight_1) || (abs(lep_ID_1)==11 && abs(lep_EtaBE2_1)>=1.52 && lep_isTightLH_1 && lep_ambiguityType_1==0 && passPLIVTight_1) || (abs(lep_ID_1)==13 && lep_isMedium_1 && passPLIVTight_1)) && ((abs(lep_ID_2)==11 && abs(lep_EtaBE2_2)<=1.37 && lep_isTightLH_2 && lep_ambiguityType_2==0 && passPLIVTight_2) || (abs(lep_ID_2)==11 && abs(lep_EtaBE2_2)>=1.52 && lep_isTightLH_2 && lep_ambiguityType_2==0 && passPLIVTight_2) || (abs(lep_ID_2)==13 && lep_isMedium_2 && passPLIVTight_2)) && min(min(Mll01,Mll02),Mll12)*1e-3>200 && (HT+met_met) > 5e5"
-  LogScale: TRUE	   
-  Ymin: 1e-2  
-  Ymax: 1e7   
-  DataType: DATA
+#Region: "SR_3l_ele_Meff_highMinMll200"
+#  Type: SIGNAL
+#  Variable: "(HT+met_met)*1e-3",4,500,4000
+#  VariableTitle: "m_{eff} [GeV]"
+#  Binning: 500,1000,1500,2500,4000
+#  Label: 3\ell \ high\ (e)
+#  TexLabel: "3$\ell$ \ high\ (e)"	
+#  Selection: "(trilep_type==3 || trilep_type==4) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR>=2 && nJets_OR_DL1r_85>=1 && XXX_ELE_DEFINI && XXX_3L_VETOS && lep_isolationFCLoose_0 && lep_isolationFCLoose_1 && lep_isolationFCLoose_2 && ((abs(lep_ID_1)==11 && abs(lep_EtaBE2_1)<=1.37 && lep_isTightLH_1 && lep_ambiguityType_1==0 && passPLIVTight_1) || (abs(lep_ID_1)==11 && abs(lep_EtaBE2_1)>=1.52 && lep_isTightLH_1 && lep_ambiguityType_1==0 && passPLIVTight_1) || (abs(lep_ID_1)==13 && lep_isMedium_1 && passPLIVTight_1)) && ((abs(lep_ID_2)==11 && abs(lep_EtaBE2_2)<=1.37 && lep_isTightLH_2 && lep_ambiguityType_2==0 && passPLIVTight_2) || (abs(lep_ID_2)==11 && abs(lep_EtaBE2_2)>=1.52 && lep_isTightLH_2 && lep_ambiguityType_2==0 && passPLIVTight_2) || (abs(lep_ID_2)==13 && lep_isMedium_2 && passPLIVTight_2)) && min(min(Mll01,Mll02),Mll12)*1e-3>200 && (HT+met_met) > 5e5"
+#  LogScale: TRUE	   
+#  Ymin: 1e-2  
+#  Ymax: 1e7   
+#  DataType: DATA
 
-Region: "SR_3l_mu_Meff_highMinMll200"
-  Type: SIGNAL
-  Variable: "(HT+met_met)*1e-3",4,500,4000
-  Binning: 500,1000,1500,2500,4000
-  VariableTitle: "m_{eff} [GeV]"
-  Label: 3\ell \ high\ (\mu)
-  TexLabel: "3$\ell$ \ high\ (\mu)"
-  Selection: "(trilep_type==1 || trilep_type==2) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR>=2 && nJets_OR_DL1r_85>=1 && XXX_ELE_DEFINI && XXX_3L_VETOS && lep_isolationFCLoose_0 && lep_isolationFCLoose_1 && lep_isolationFCLoose_2 && ((abs(lep_ID_1)==11 && abs(lep_EtaBE2_1)<=1.37 && lep_isTightLH_1 && lep_ambiguityType_1==0 && passPLIVTight_1) || (abs(lep_ID_1)==11 && abs(lep_EtaBE2_1)>=1.52 && lep_isTightLH_1 && lep_ambiguityType_1==0 && passPLIVTight_1) || (abs(lep_ID_1)==13 && lep_isMedium_1 && passPLIVTight_1)) && ((abs(lep_ID_2)==11 && abs(lep_EtaBE2_2)<=1.37 && lep_isTightLH_2 && lep_ambiguityType_2==0 && passPLIVTight_2) || (abs(lep_ID_2)==11 && abs(lep_EtaBE2_2)>=1.52 && lep_isTightLH_2 && lep_ambiguityType_2==0 && passPLIVTight_2) || (abs(lep_ID_2)==13 && lep_isMedium_2 && passPLIVTight_2)) && min(min(Mll01,Mll02),Mll12)*1e-3>200 && (HT+met_met) > 5e5"
-  LogScale: TRUE	   
-  Ymin: 1e-2  
-  Ymax: 1e7   
-  DataType: DATA
+#Region: "SR_3l_mu_Meff_highMinMll200"
+#  Type: SIGNAL
+#  Variable: "(HT+met_met)*1e-3",4,500,4000
+#  Binning: 500,1000,1500,2500,4000
+#  VariableTitle: "m_{eff} [GeV]"
+#  Label: 3\ell \ high\ (\mu)
+#  TexLabel: "3$\ell$ \ high\ (\mu)"
+#  Selection: "(trilep_type==1 || trilep_type==2) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR>=2 && nJets_OR_DL1r_85>=1 && XXX_ELE_DEFINI && XXX_3L_VETOS && lep_isolationFCLoose_0 && lep_isolationFCLoose_1 && lep_isolationFCLoose_2 && ((abs(lep_ID_1)==11 && abs(lep_EtaBE2_1)<=1.37 && lep_isTightLH_1 && lep_ambiguityType_1==0 && passPLIVTight_1) || (abs(lep_ID_1)==11 && abs(lep_EtaBE2_1)>=1.52 && lep_isTightLH_1 && lep_ambiguityType_1==0 && passPLIVTight_1) || (abs(lep_ID_1)==13 && lep_isMedium_1 && passPLIVTight_1)) && ((abs(lep_ID_2)==11 && abs(lep_EtaBE2_2)<=1.37 && lep_isTightLH_2 && lep_ambiguityType_2==0 && passPLIVTight_2) || (abs(lep_ID_2)==11 && abs(lep_EtaBE2_2)>=1.52 && lep_isTightLH_2 && lep_ambiguityType_2==0 && passPLIVTight_2) || (abs(lep_ID_2)==13 && lep_isMedium_2 && passPLIVTight_2)) && min(min(Mll01,Mll02),Mll12)*1e-3>200 && (HT+met_met) > 5e5"
+#  LogScale: TRUE	   
+#  Ymin: 1e-2  
+#  Ymax: 1e7   
+#  DataType: DATA
 
 %%% ----- 4L channel ----- %%%
 
-Region: "SR_4l_Meff_lowMinMll"
-  Type: VALIDATION
-  Variable: "(HT+met_met)*1e-3",5,0,4000
-  VariableTitle: "m_{eff} [GeV]"
-  Binning: 0,500,1000,1500,2000,4000
-  Label: 4\ell \ low\ (e/\mu)
-  TexLabel: "4$\ell$ \ low (e/$\mu$)"
-  Selection: "quadlep_type && custTrigMatch_LooseID_FCLooseIso_SLTorDLT && nJets_OR>=2 && nJets_OR_DL1r_85>=1 && lep_Pt_0*1e-3>10 && lep_Pt_1*1e-3>10 && lep_Pt_2*1e-3>10 && lep_Pt_3*1e-3>10 && min(min(min(min(Mll01,Mll02),Mll12),Mll13),Mll03)*1e-3<=100" # && XXX_4L_VETOS"
-  LogScale: TRUE	   
-  Ymin: 1e-1  
-  Ymax: 1e5
-  DataType: DATA
+#Region: "SR_4l_Meff_lowMinMll"
+#  Type: VALIDATION
+#  Variable: "(HT+met_met)*1e-3",5,0,4000
+#  VariableTitle: "m_{eff} [GeV]"
+#  Binning: 0,500,1000,1500,2000,4000
+#  Label: 4\ell \ low\ (e/\mu)
+#  TexLabel: "4$\ell$ \ low (e/$\mu$)"
+#  Selection: "quadlep_type && custTrigMatch_LooseID_FCLooseIso_SLTorDLT && nJets_OR>=2 && nJets_OR_DL1r_85>=1 && lep_Pt_0*1e-3>10 && lep_Pt_1*1e-3>10 && lep_Pt_2*1e-3>10 && lep_Pt_3*1e-3>10 && min(min(min(min(Mll01,Mll02),Mll12),Mll13),Mll03)*1e-3<=100" # && XXX_4L_VETOS"
+#  LogScale: TRUE	   
+#  Ymin: 1e-1  
+#  Ymax: 1e5
+#  DataType: DATA
 
-Region: "SR_4l_ele_Meff_highMinMll"
-  Type: SIGNAL
-  Variable: "(HT+met_met)*1e-3",4,500,4000
-  VariableTitle: "m_{eff} [GeV]"
-  Binning: 500,1000,1500,2000,4000
-  Label: 4\ell \ high\ (e)
-  TexLabel: "4$\ell$ \ high\ (e)"
-  Selection: "((quadlep_type==3 && abs(lep_ID_0)==11) || quadlep_type==4 || quadlep_type==5) && custTrigMatch_LooseID_FCLooseIso_SLTorDLT && nJets_OR>=2 && nJets_OR_DL1r_85>=1 && lep_Pt_0*1e-3>10 && lep_Pt_1*1e-3>10 && lep_Pt_2*1e-3>10 && lep_Pt_3*1e-3>10 && min(min(min(min(Mll01,Mll02),Mll12),Mll13),Mll03)*1e-3>100 && (HT+met_met) > 5e5" # && XXX_4L_VETOS"
-  LogScale: TRUE	   
-  Ymin: 1e-2
-  Ymax: 1e5
-  DataType: DATA
+#Region: "SR_4l_ele_Meff_highMinMll"
+#  Type: SIGNAL
+#  Variable: "(HT+met_met)*1e-3",4,500,4000
+#  VariableTitle: "m_{eff} [GeV]"
+#  Binning: 500,1000,1500,2000,4000
+#  Label: 4\ell \ high\ (e)
+#  TexLabel: "4$\ell$ \ high\ (e)"
+#  Selection: "((quadlep_type==3 && abs(lep_ID_0)==11) || quadlep_type==4 || quadlep_type==5) && custTrigMatch_LooseID_FCLooseIso_SLTorDLT && nJets_OR>=2 && nJets_OR_DL1r_85>=1 && lep_Pt_0*1e-3>10 && lep_Pt_1*1e-3>10 && lep_Pt_2*1e-3>10 && lep_Pt_3*1e-3>10 && min(min(min(min(Mll01,Mll02),Mll12),Mll13),Mll03)*1e-3>100 && (HT+met_met) > 5e5" # && XXX_4L_VETOS"
+#  LogScale: TRUE	   
+#  Ymin: 1e-2
+#  Ymax: 1e5
+#  DataType: DATA
 
-Region: "SR_4l_mu_Meff_highMinMll"
-  Type: SIGNAL
-  Variable: "(HT+met_met)*1e-3",4,500,4000
-  VariableTitle: "m_{eff} [GeV]"
-  Binning: 500,1000,1500,2000,4000
-  Label: 4\ell \ high\ (\mu)
-  TexLabel: "4$\ell$ \ high\ ($\mu$)"
-  Selection: "(quadlep_type==1 || quadlep_type==2 || (quadlep_type==3 && abs(lep_ID_0)==13)) && custTrigMatch_LooseID_FCLooseIso_SLTorDLT && nJets_OR>=2 && nJets_OR_DL1r_85>=1 && lep_Pt_0*1e-3>10 && lep_Pt_1*1e-3>10 && lep_Pt_2*1e-3>10 && lep_Pt_3*1e-3>10 && min(min(min(min(Mll01,Mll02),Mll12),Mll13),Mll03)*1e-3>100 && (HT+met_met) > 5e5" # && XXX_4L_VETOS"
-  LogScale: TRUE	   
-  Ymin: 1e-2
-  Ymax: 1e5
-  DataType: DATA	
+#Region: "SR_4l_mu_Meff_highMinMll"
+#  Type: SIGNAL
+#  Variable: "(HT+met_met)*1e-3",4,500,4000
+#  VariableTitle: "m_{eff} [GeV]"
+#  Binning: 500,1000,1500,2000,4000
+#  Label: 4\ell \ high\ (\mu)
+#  TexLabel: "4$\ell$ \ high\ ($\mu$)"
+#  Selection: "(quadlep_type==1 || quadlep_type==2 || (quadlep_type==3 && abs(lep_ID_0)==13)) && custTrigMatch_LooseID_FCLooseIso_SLTorDLT && nJets_OR>=2 && nJets_OR_DL1r_85>=1 && lep_Pt_0*1e-3>10 && lep_Pt_1*1e-3>10 && lep_Pt_2*1e-3>10 && lep_Pt_3*1e-3>10 && min(min(min(min(Mll01,Mll02),Mll12),Mll13),Mll03)*1e-3>100 && (HT+met_met) > 5e5" # && XXX_4L_VETOS"
+#  LogScale: TRUE	   
+#  Ymin: 1e-2
+#  Ymax: 1e5
+#  DataType: DATA	
 
 %%%%%%% Control regions %%%%%%%%
 
-Region: "CR_ttW_2lSS"
-  Type: CONTROL
-  Variable: "(HT+met_met)*1e-3",4,0,4000
-  VariableTitle: "m_{eff} [GeV]"
-  Binning: 0,500,1000,1500,4000
-  Label: 2\ell ttW #CR\!\!\!\ 2\ell ttW
-  TexLabel: "2$\ell$ttW"
-  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && dilep_type && (XXX_MUON_LEAD_TIGHT_PLV || XXX_ELEC_LEAD_TIGHT_PLV) && (XXX_MUON_SUBLEAD_TIGHT_PLV || XXX_ELEC_SUBLEAD_TIGHT_PLV) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && nJets_OR>=2 && nJets_OR_DL1r_85>=2 && lep_ID_0*lep_ID_1>0 && XXX_ELE_DEFINI"
-  LogScale: TRUE
-  Ymin: 5
-  Ymax: 2e4	
-  DataType: DATA
+#Region: "CR_ttW_2lSS"
+#  Type: CONTROL
+#  Variable: "(HT+met_met)*1e-3",4,0,4000
+#  VariableTitle: "m_{eff} [GeV]"
+#  Binning: 0,500,1000,1500,4000
+#  Label: 2\ell ttW #CR\!\!\!\ 2\ell ttW
+#  TexLabel: "2$\ell$ttW"
+#  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && dilep_type && (XXX_MUON_LEAD_TIGHT_PLV || XXX_ELEC_LEAD_TIGHT_PLV) && (XXX_MUON_SUBLEAD_TIGHT_PLV || XXX_ELEC_SUBLEAD_TIGHT_PLV) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && nJets_OR>=2 && nJets_OR_DL1r_85>=2 && lep_ID_0*lep_ID_1>0 && XXX_ELE_DEFINI"
+#  LogScale: TRUE
+#  Ymin: 5
+#  Ymax: 2e4	
+#  DataType: DATA
 
-Region: "CR_HFel_2lSS"
-  Type: CONTROL
-  Variable: 1,1,0,1
-  VariableTitle: "Nevt"
-  Label: 2\ell tt(e) #CR\!\!\!\ 2\ell tt(e)+
-  TexLabel: "2$\ell$tt(e)"
-  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && dilep_type && (passPLIVTight_0 && passPLIVTight_1) && !(passPLIVVeryTight_0 && passPLIVVeryTight_1) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && nJets_OR>=2 && nJets_OR_DL1r_85==1 && lep_ID_0*lep_ID_1>0 && ((abs(lep_ID_0) == 13 && lep_isMedium_0 && lep_isolationFCLoose_0 && abs(lep_ID_1) == 11 && lep_isolationFCLoose_1 && lep_isTightLH_1 && lep_chargeIDBDTResult_recalc_rel207_tight_1>0.7 && lep_ambiguityType_1 == 0)||(abs(lep_ID_0) == 11 && lep_isolationFCLoose_0 && lep_isTightLH_0 && lep_chargeIDBDTResult_recalc_rel207_tight_0>0.7 && lep_ambiguityType_0 == 0 && abs(lep_ID_1) == 11 && lep_isolationFCLoose_1 && lep_isTightLH_1 && lep_chargeIDBDTResult_recalc_rel207_tight_1>0.7 && lep_ambiguityType_1 == 0)) && XXX_ELE_DEFINI && MtLepMet*1e-3<250"
-  LogScale: TRUE
-  Ymax: 1e9
-  DataType: DATA
+#Region: "CR_HFel_2lSS"
+#  Type: CONTROL
+#  Variable: 1,1,0,1
+#  VariableTitle: "Nevt"
+#  Label: 2\ell tt(e) #CR\!\!\!\ 2\ell tt(e)+
+#  TexLabel: "2$\ell$tt(e)"
+#  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && dilep_type && (passPLIVTight_0 && passPLIVTight_1) && !(passPLIVVeryTight_0 && passPLIVVeryTight_1) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && nJets_OR>=2 && nJets_OR_DL1r_85==1 && lep_ID_0*lep_ID_1>0 && ((abs(lep_ID_0) == 13 && lep_isMedium_0 && lep_isolationFCLoose_0 && abs(lep_ID_1) == 11 && lep_isolationFCLoose_1 && lep_isTightLH_1 && lep_chargeIDBDTResult_recalc_rel207_tight_1>0.7 && lep_ambiguityType_1 == 0)||(abs(lep_ID_0) == 11 && lep_isolationFCLoose_0 && lep_isTightLH_0 && lep_chargeIDBDTResult_recalc_rel207_tight_0>0.7 && lep_ambiguityType_0 == 0 && abs(lep_ID_1) == 11 && lep_isolationFCLoose_1 && lep_isTightLH_1 && lep_chargeIDBDTResult_recalc_rel207_tight_1>0.7 && lep_ambiguityType_1 == 0)) && XXX_ELE_DEFINI && MtLepMet*1e-3<250"
+#  LogScale: TRUE
+#  Ymax: 1e9
+#  DataType: DATA
 
-Region: "CR_HFmu_2lSS"
-  Type: CONTROL
-  Variable: 1,1,0,1
-  VariableTitle: "Nevt"
-  Label: 2\ell tt(\mu) #CR\!\!\!\ 2\ell tt(\mu)+
-  TexLabel: "2$\ell$tt($\mu$)"
-  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && dilep_type && (passPLIVTight_0 && passPLIVTight_1) && !(passPLIVVeryTight_0 && passPLIVVeryTight_1) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && nJets_OR>=2 && nJets_OR_DL1r_85==1 && lep_ID_0*lep_ID_1>0 && ((abs(lep_ID_0) == 11 && lep_isolationFCLoose_0 && lep_isTightLH_0 && lep_chargeIDBDTResult_recalc_rel207_tight_0>0.7 && lep_ambiguityType_0 == 0 && abs(lep_ID_1) == 13 && lep_isMedium_1 && lep_isolationFCLoose_1)||(abs(lep_ID_0) == 13 && lep_isMedium_0 && lep_isolationFCLoose_0 && abs(lep_ID_1) == 13 && lep_isMedium_1 && lep_isolationFCLoose_1)) && XXX_ELE_DEFINI && MtLepMet*1e-3<250"
-  LogScale: TRUE
-  Ymax: 1e9
-  DataType: DATA
+#Region: "CR_HFmu_2lSS"
+#  Type: CONTROL
+#  Variable: 1,1,0,1
+#  VariableTitle: "Nevt"
+#  Label: 2\ell tt(\mu) #CR\!\!\!\ 2\ell tt(\mu)+
+#  TexLabel: "2$\ell$tt($\mu$)"
+#  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && dilep_type && (passPLIVTight_0 && passPLIVTight_1) && !(passPLIVVeryTight_0 && passPLIVVeryTight_1) && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && nJets_OR>=2 && nJets_OR_DL1r_85==1 && lep_ID_0*lep_ID_1>0 && ((abs(lep_ID_0) == 11 && lep_isolationFCLoose_0 && lep_isTightLH_0 && lep_chargeIDBDTResult_recalc_rel207_tight_0>0.7 && lep_ambiguityType_0 == 0 && abs(lep_ID_1) == 13 && lep_isMedium_1 && lep_isolationFCLoose_1)||(abs(lep_ID_0) == 13 && lep_isMedium_0 && lep_isolationFCLoose_0 && abs(lep_ID_1) == 13 && lep_isMedium_1 && lep_isolationFCLoose_1)) && XXX_ELE_DEFINI && MtLepMet*1e-3<250"
+#  LogScale: TRUE
+#  Ymax: 1e9
+#  DataType: DATA
 
-Region: "Zgamma_Int_3l"
-  Type: CONTROL
-  Variable: 1,1,0,1	
-  VariableTitle: "Nevt"
-  Label: 3\ell IntC
-  TexLabel: "3$\ell$IntC"
-  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && trilep_type==2 && lep_Pt_0*1e-3>10 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR_DL1r_85==0 && lep_isolationFCLoose_0 && lep_isolationFCLoose_1 && lep_isolationFCLoose_2 && passPLIVTight_0 && passPLIVTight_1 && passPLIVTight_2 && (abs(lep_ID_0)==13 && lep_isMedium_0) && ((abs(lep_ID_1)==13 && lep_isMedium_1) || (abs(lep_ID_1)==11 && lep_isTightLH_1 && lep_ambiguityType_1 == 0 && lep_chargeIDBDTResult_recalc_rel207_tight_1>0.7 && (abs(lep_EtaBE2_1)<=1.37 || abs(lep_EtaBE2_1)>=1.52))) && ((abs(lep_ID_2)==13 && lep_isMedium_2) || (abs(lep_ID_2)==11 && lep_isTightLH_2 && lep_ambiguityType_2 == 0 && lep_chargeIDBDTResult_recalc_rel207_tight_2>0.7 && (abs(lep_EtaBE2_2)<=1.37 || abs(lep_EtaBE2_2)>=1.52))) && met_met<50e3 && ((lep_ID_0*lep_ID_1==-169 && XXX_LEPTHRMET && Mll01>20e3 && abs(Mll01-91.2e3)>10e3) || (lep_ID_0*lep_ID_2==-169 && XXX_LEPTWOMET && Mll02>20e3 && abs(Mll02-91.2e3)>10e3)) && Mlll012>81e3 && Mlll012<101e3 &&!((abs(lep_ID_1)==11&&lep_Mtrktrk_atConvV_CO_1<0.1&&lep_Mtrktrk_atConvV_CO_1>=0&&lep_RadiusCO_1>20)||(abs(lep_ID_2)==11&&lep_Mtrktrk_atConvV_CO_2<0.1&&lep_Mtrktrk_atConvV_CO_2>=0&&lep_RadiusCO_2>20))&&((abs(lep_ID_1)==11&&lep_Mtrktrk_atPV_CO_1<0.1&&lep_Mtrktrk_atPV_CO_1>=0)||(abs(lep_ID_2)==11&&lep_Mtrktrk_atPV_CO_2<0.1&&lep_Mtrktrk_atPV_CO_2>=0)) && (lep_ID_0!=-lep_ID_1||abs(Mll01-91.2e3)>10e3)&&(lep_ID_0!=-lep_ID_2||abs(Mll02-91.2e3)>10e3)"
+#Region: "Zgamma_Int_3l"
+#  Type: CONTROL
+#  Variable: 1,1,0,1	
+#  VariableTitle: "Nevt"
+#  Label: 3\ell IntC
+#  TexLabel: "3$\ell$IntC"
+#  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && trilep_type==2 && lep_Pt_0*1e-3>10 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR_DL1r_85==0 && lep_isolationFCLoose_0 && lep_isolationFCLoose_1 && lep_isolationFCLoose_2 && passPLIVTight_0 && passPLIVTight_1 && passPLIVTight_2 && (abs(lep_ID_0)==13 && lep_isMedium_0) && ((abs(lep_ID_1)==13 && lep_isMedium_1) || (abs(lep_ID_1)==11 && lep_isTightLH_1 && lep_ambiguityType_1 == 0 && lep_chargeIDBDTResult_recalc_rel207_tight_1>0.7 && (abs(lep_EtaBE2_1)<=1.37 || abs(lep_EtaBE2_1)>=1.52))) && ((abs(lep_ID_2)==13 && lep_isMedium_2) || (abs(lep_ID_2)==11 && lep_isTightLH_2 && lep_ambiguityType_2 == 0 && lep_chargeIDBDTResult_recalc_rel207_tight_2>0.7 && (abs(lep_EtaBE2_2)<=1.37 || abs(lep_EtaBE2_2)>=1.52))) && met_met<50e3 && ((lep_ID_0*lep_ID_1==-169 && XXX_LEPTHRMET && Mll01>20e3 && abs(Mll01-91.2e3)>10e3) || (lep_ID_0*lep_ID_2==-169 && XXX_LEPTWOMET && Mll02>20e3 && abs(Mll02-91.2e3)>10e3)) && Mlll012>81e3 && Mlll012<101e3 &&!((abs(lep_ID_1)==11&&lep_Mtrktrk_atConvV_CO_1<0.1&&lep_Mtrktrk_atConvV_CO_1>=0&&lep_RadiusCO_1>20)||(abs(lep_ID_2)==11&&lep_Mtrktrk_atConvV_CO_2<0.1&&lep_Mtrktrk_atConvV_CO_2>=0&&lep_RadiusCO_2>20))&&((abs(lep_ID_1)==11&&lep_Mtrktrk_atPV_CO_1<0.1&&lep_Mtrktrk_atPV_CO_1>=0)||(abs(lep_ID_2)==11&&lep_Mtrktrk_atPV_CO_2<0.1&&lep_Mtrktrk_atPV_CO_2>=0)) && (lep_ID_0!=-lep_ID_1||abs(Mll01-91.2e3)>10e3)&&(lep_ID_0!=-lep_ID_2||abs(Mll02-91.2e3)>10e3)"
 	     
-Region: "Zgamma_Ext_3l"
-  Type: CONTROL	
-  Variable: 1,1,0,1	
-  VariableTitle: "Nevt"
-  Label: 3\ell MatC
-  TexLabel: "3$\ell$MatC"
-  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && trilep_type==2 && lep_Pt_0*1e-3>10 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR_DL1r_85==0 && lep_isolationFCLoose_0 && lep_isolationFCLoose_1 && lep_isolationFCLoose_2 && passPLIVTight_0 && passPLIVTight_1 && passPLIVTight_2 && (abs(lep_ID_0)==13 && lep_isMedium_0) && ((abs(lep_ID_1)==13 && lep_isMedium_1) || (abs(lep_ID_1)==11 && lep_isTightLH_1 && lep_ambiguityType_1 == 0 && lep_chargeIDBDTResult_recalc_rel207_tight_1>0.7 && (abs(lep_EtaBE2_1)<=1.37 || abs(lep_EtaBE2_1)>=1.52))) && ((abs(lep_ID_2)==13 && lep_isMedium_2) || (abs(lep_ID_2)==11 && lep_isTightLH_2 && lep_ambiguityType_2 == 0 && lep_chargeIDBDTResult_recalc_rel207_tight_2>0.7 && (abs(lep_EtaBE2_2)<=1.37 || abs(lep_EtaBE2_2)>=1.52))) && met_met<50e3 && ((lep_ID_0*lep_ID_1==-169 && XXX_LEPTHRMET && Mll01>20e3 && abs(Mll01-91.2e3)>10e3) || (lep_ID_0*lep_ID_2==-169 && XXX_LEPTWOMET && Mll02>20e3 && abs(Mll02-91.2e3)>10e3)) && Mlll012>81e3 && Mlll012<101e3 && ((abs(lep_ID_1)==11&&lep_Mtrktrk_atConvV_CO_1<0.1&&lep_Mtrktrk_atConvV_CO_1>=0&&lep_RadiusCO_1>20)||(abs(lep_ID_2)==11&&lep_Mtrktrk_atConvV_CO_2<0.1&&lep_Mtrktrk_atConvV_CO_2>=0&&lep_RadiusCO_2>20)) &&(lep_ID_0!=-lep_ID_1||abs(Mll01-91.2e3)>10e3)&&(lep_ID_0!=-lep_ID_2||abs(Mll02-91.2e3)>10e3)"
+#Region: "Zgamma_Ext_3l"
+#  Type: CONTROL	
+3  Variable: 1,1,0,1	
+#  VariableTitle: "Nevt"
+#  Label: 3\ell MatC
+#  TexLabel: "3$\ell$MatC"
+#  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && trilep_type==2 && lep_Pt_0*1e-3>10 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR_DL1r_85==0 && lep_isolationFCLoose_0 && lep_isolationFCLoose_1 && lep_isolationFCLoose_2 && passPLIVTight_0 && passPLIVTight_1 && passPLIVTight_2 && (abs(lep_ID_0)==13 && lep_isMedium_0) && ((abs(lep_ID_1)==13 && lep_isMedium_1) || (abs(lep_ID_1)==11 && lep_isTightLH_1 && lep_ambiguityType_1 == 0 && lep_chargeIDBDTResult_recalc_rel207_tight_1>0.7 && (abs(lep_EtaBE2_1)<=1.37 || abs(lep_EtaBE2_1)>=1.52))) && ((abs(lep_ID_2)==13 && lep_isMedium_2) || (abs(lep_ID_2)==11 && lep_isTightLH_2 && lep_ambiguityType_2 == 0 && lep_chargeIDBDTResult_recalc_rel207_tight_2>0.7 && (abs(lep_EtaBE2_2)<=1.37 || abs(lep_EtaBE2_2)>=1.52))) && met_met<50e3 && ((lep_ID_0*lep_ID_1==-169 && XXX_LEPTHRMET && Mll01>20e3 && abs(Mll01-91.2e3)>10e3) || (lep_ID_0*lep_ID_2==-169 && XXX_LEPTWOMET && Mll02>20e3 && abs(Mll02-91.2e3)>10e3)) && Mlll012>81e3 && Mlll012<101e3 && ((abs(lep_ID_1)==11&&lep_Mtrktrk_atConvV_CO_1<0.1&&lep_Mtrktrk_atConvV_CO_1>=0&&lep_RadiusCO_1>20)||(abs(lep_ID_2)==11&&lep_Mtrktrk_atConvV_CO_2<0.1&&lep_Mtrktrk_atConvV_CO_2>=0&&lep_RadiusCO_2>20)) &&(lep_ID_0!=-lep_ID_1||abs(Mll01-91.2e3)>10e3)&&(lep_ID_0!=-lep_ID_2||abs(Mll02-91.2e3)>10e3)"
 
-Region: "CR_ttZ_3l_njets4_Meff"
-  Type: CONTROL
-  Variable: "(HT+met_met)*1e-3",4,0,4000
-  VariableTitle: "#it{m}_{eff} [GeV]"
-  Binning: 0,500,1000,1500,4000  
-  Label: 3\ell ttZ #CR\!\!\!\ 3\ell ttZ
-  TexLabel: "3$\ell$ttZ"
-  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && trilep_type && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR_DL1r_85>=2 && abs(total_charge)==1 && nJets_OR>=2 && (abs(Mlll012-91.2e3)>10e3 && ((lep_ID_0==-lep_ID_1 && (Mll01>81.2e3 && Mll01<101.2e3))||(lep_ID_0==-lep_ID_2 && (Mll02>81.2e3 && Mll02<101.2e3)))) && (passPLIVTight_1 && passPLIVTight_2) && ((abs(lep_ID_1) == 11 && lep_isolationFCLoose_1 && lep_isTightLH_1 && lep_chargeIDBDTResult_recalc_rel207_tight_1>0.7 && lep_ambiguityType_1 == 0) || (abs(lep_ID_1) == 13 && lep_isolationFCLoose_1 && lep_isMedium_1)) && ((abs(lep_ID_2) == 11 && lep_isolationFCLoose_2 && lep_isTightLH_2 && lep_chargeIDBDTResult_recalc_rel207_tight_2>0.7 && lep_ambiguityType_2 == 0) || (abs(lep_ID_2) == 13 && lep_isolationFCLoose_2 && lep_isMedium_2)) && XXX_ELE_DEFINI"
-  LogScale: TRUE
-  Ymin: 3
-  Ymax: 1e4
-  DataType: DATA
+#Region: "CR_ttZ_3l_njets4_Meff"
+#  Type: CONTROL
+#  Variable: "(HT+met_met)*1e-3",4,0,4000
+#  VariableTitle: "#it{m}_{eff} [GeV]"
+#  Binning: 0,500,1000,1500,4000  
+#  Label: 3\ell ttZ #CR\!\!\!\ 3\ell ttZ
+#  TexLabel: "3$\ell$ttZ"
+#  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && trilep_type && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR_DL1r_85>=2 && abs(total_charge)==1 && nJets_OR>=2 && (abs(Mlll012-91.2e3)>10e3 && ((lep_ID_0==-lep_ID_1 && (Mll01>81.2e3 && Mll01<101.2e3))||(lep_ID_0==-lep_ID_2 && (Mll02>81.2e3 && Mll02<101.2e3)))) && (passPLIVTight_1 && passPLIVTight_2) && ((abs(lep_ID_1) == 11 && lep_isolationFCLoose_1 && lep_isTightLH_1 && lep_chargeIDBDTResult_recalc_rel207_tight_1>0.7 && lep_ambiguityType_1 == 0) || (abs(lep_ID_1) == 13 && lep_isolationFCLoose_1 && lep_isMedium_1)) && ((abs(lep_ID_2) == 11 && lep_isolationFCLoose_2 && lep_isTightLH_2 && lep_chargeIDBDTResult_recalc_rel207_tight_2>0.7 && lep_ambiguityType_2 == 0) || (abs(lep_ID_2) == 13 && lep_isolationFCLoose_2 && lep_isMedium_2)) && XXX_ELE_DEFINI"
+#  LogScale: TRUE
+#  Ymin: 3
+#  Ymax: 1e4
+#  DataType: DATA
 
-Region: "CR_VV_3l_2or3j_Meff_1b" # current VV CR in the INT note
-  Type: CONTROL
-  Variable: "(HT+met_met)*1e-3",4,0,4000
-  VariableTitle: "#it{m}_{eff} [GeV]"
-  Binning: 0,500,1000,1500,4000
+#Region: "CR_VV_3l_2or3j_Meff_1b" # current VV CR in the INT note
+#  Type: CONTROL
+#  Variable: "(HT+met_met)*1e-3",4,0,4000
+#  VariableTitle: "#it{m}_{eff} [GeV]"
+#  Binning: 0,500,1000,1500,4000
   #BinWidth: 500
-  Label: 3\ell VV #CR\!\!\!\ 3\ell VV
-  TexLabel: "3$\ell$VV"
-  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && trilep_type && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR_DL1r_85==1 && abs(total_charge)==1 && nJets_OR>=2 && (abs(Mlll012-91.2e3)>10e3 && ((lep_ID_0==-lep_ID_1 && (Mll01>81.2e3 && Mll01<101.2e3))||(lep_ID_0==-lep_ID_2 && (Mll02>81.2e3 && Mll02<101.2e3)))) && (passPLIVTight_1 && passPLIVTight_2) && ((abs(lep_ID_1) == 11 && lep_isolationFCLoose_1 && lep_isTightLH_1 && lep_chargeIDBDTResult_recalc_rel207_tight_1>0.7 && lep_ambiguityType_1 == 0) || (abs(lep_ID_1) == 13 && lep_isolationFCLoose_1 && lep_isMedium_1)) && ((abs(lep_ID_2) == 11 && lep_isolationFCLoose_2 && lep_isTightLH_2 && lep_chargeIDBDTResult_recalc_rel207_tight_2>0.7 && lep_ambiguityType_2 == 0) || (abs(lep_ID_2) == 13 && lep_isolationFCLoose_2 && lep_isMedium_2)) && XXX_ELE_DEFINI"
-  LogScale: TRUE
-  Ymin: 1
-  Ymax:	1e5
-  DataType: DATA
+#  Label: 3\ell VV #CR\!\!\!\ 3\ell VV
+#  TexLabel: "3$\ell$VV"
+#  Selection: "custTrigMatch_LooseID_FCLooseIso_SLTorDLT && trilep_type && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20 && nJets_OR_DL1r_85==1 && abs(total_charge)==1 && nJets_OR>=2 && (abs(Mlll012-91.2e3)>10e3 && ((lep_ID_0==-lep_ID_1 && (Mll01>81.2e3 && Mll01<101.2e3))||(lep_ID_0==-lep_ID_2 && (Mll02>81.2e3 && Mll02<101.2e3)))) && (passPLIVTight_1 && passPLIVTight_2) && ((abs(lep_ID_1) == 11 && lep_isolationFCLoose_1 && lep_isTightLH_1 && lep_chargeIDBDTResult_recalc_rel207_tight_1>0.7 && lep_ambiguityType_1 == 0) || (abs(lep_ID_1) == 13 && lep_isolationFCLoose_1 && lep_isMedium_1)) && ((abs(lep_ID_2) == 11 && lep_isolationFCLoose_2 && lep_isTightLH_2 && lep_chargeIDBDTResult_recalc_rel207_tight_2>0.7 && lep_ambiguityType_2 == 0) || (abs(lep_ID_2) == 13 && lep_isolationFCLoose_2 && lep_isMedium_2)) && XXX_ELE_DEFINI"
+#  LogScale: TRUE
+#  Ymin: 1
+#  Ymax:	1e5
+#  DataType: DATA
 
 % --------------- %
 % --- SAMPLES --- %
