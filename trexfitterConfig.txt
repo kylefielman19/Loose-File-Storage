@@ -260,7 +260,7 @@ Sample: "Data"
   Title: "Data"
   TexTitle: Data
   NtuplePaths: XXX_NtuplePaths
-  NtupleFiles: data/data15, data/data16, data/data17, data/data18
+  NtupleFiles: user.kfielman.35347835._000001.output.root #data/data15, data/data16, data/data17, data/data18
   Regions: "SR*","CR*","Zgamma*"
 
 Sample: "Signal1000_tete"
