@@ -73,14 +73,14 @@ Limit: "limit"
 
 %%% SIGNAL REGIONS %%%
 
-Region: "Primary"
+Region: "Testing"
   Type: SIGNAL
   Variable: "(HT+met_met)*1e-3",5,0,4000
   VariableTitle: "m_{eff} [GeV]"
   Binning: 0,500,1000,1500,2500,4000
-  Label: 3\ell
-  TexLabel: "3$\ell$"
-  Selection: "trilep_type && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20 && lep_Pt_2*1e-3>20"
+  Label: 1\ell
+  TexLabel: "1$\ell$"
+  Selection: "onelep_type && lep_Pt_0*1e-3>20 && lep_Pt_1*1e-3>20"
   LogScale: TRUE	   
   Ymin: 1e-1  
   Ymax: 1e7   
