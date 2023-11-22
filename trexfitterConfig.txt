@@ -1115,35 +1115,35 @@ Sample: "ttW_EW"
   NtupleFiles: XXX_ttW2210_EW_samples
   Exclude: "Zgamma*"
 
-Sample: "VV_light"
+Sample: "VV"
   Type: BACKGROUND
-  Title: "VV+light"
-  TexTitle: $VV$+light
+  Title: "VV"
+  TexTitle: $VV$
   FillColor: 419
   LineColor: 1
   Group: "Diboson"
   NtupleFiles: XXX_VV_samples
-  MCweight: (flag_VV_HF==3 || flag_VV_HF==0)
+#  MCweight: (flag_VV_HF==3 || flag_VV_HF==0)
 
-Sample: "VV_c"
-  Type: BACKGROUND
-  Title: "VV+c"
-  TexTitle: $VV$+c
-  FillColor: 419
-  LineColor: 1
-  Group: "Diboson"
-  NtupleFiles: XXX_VV_samples
-  MCweight: (flag_VV_HF==2)
+#Sample: "VV_c"
+#  Type: BACKGROUND
+#  Title: "VV+c"
+#  TexTitle: $VV$+c
+#  FillColor: 419
+#  LineColor: 1
+#  Group: "Diboson"
+#  NtupleFiles: XXX_VV_samples
+#  MCweight: (flag_VV_HF==2)
 
-Sample: "VV_b"
-  Type: BACKGROUND
-  Title: "VV+b"
-  TexTitle: $VV$+b
-  FillColor: 419
-  LineColor: 1
-  Group: "Diboson"
-  NtupleFiles: XXX_VV_samples
-  MCweight: (flag_VV_HF==1)
+#Sample: "VV_b"
+#  Type: BACKGROUND
+#  Title: "VV+b"
+#  TexTitle: $VV$+b
+#  FillColor: 419
+#  LineColor: 1
+#  Group: "Diboson"
+#  NtupleFiles: XXX_VV_samples
+#  MCweight: (flag_VV_HF==1)
 
 Sample: "ggZZ"
   Type: BACKGROUND
@@ -1155,38 +1155,38 @@ Sample: "ggZZ"
   NtupleFiles: XXX_ggVV_samples
   MCweight: 1.2
 
-Sample: "ttZ_light"
-  Type: BACKGROUND
-  Title: "t#bar{t}(Z/#gamma*)+light"
-  TexTitle: $t\bar{t}Z/\gamma+light$
-  Group: "t#bar{t}(Z/#gamma*)"
-  FillColor: 417
-  LineColor: 1
-  NtupleFiles: XXX_ttZ_samples
-  MCweight: (m_HF_Classification==0)*1.31/1.67
-  Exclude: "Zgamma*"
+#Sample: "ttZ_light"
+#  Type: BACKGROUND
+#  Title: "t#bar{t}(Z/#gamma*)+light"
+#  TexTitle: $t\bar{t}Z/\gamma+light$
+#  Group: "t#bar{t}(Z/#gamma*)"
+#  FillColor: 417
+#  LineColor: 1
+#  NtupleFiles: XXX_ttZ_samples
+#  MCweight: (m_HF_Classification==0)*1.31/1.67
+#  Exclude: "Zgamma*"
 
-Sample: "ttZ_c"
+Sample: "ttZ"
   Type: BACKGROUND
-  Title: "t#bar{t}(Z/#gamma*)+c"
-  TexTitle: $t\bar{t}Z/\gamma+c$
+  Title: "t#bar{t}(Z/#gamma*)"
+  TexTitle: $t\bar{t}Z/\gamma$
   Group: "t#bar{t}(Z/#gamma*)"
   FillColor: 417
   LineColor: 1
   NtupleFiles: XXX_ttZ_samples
-  MCweight: (abs(m_HF_Classification)<100&&abs(m_HF_Classification)>0)*1.31/1.67
+ # MCweight: (abs(m_HF_Classification)<100&&abs(m_HF_Classification)>0)*1.31/1.67
   Exclude: "Zgamma*"	
 
-Sample: "ttZ_b"
-  Type: BACKGROUND
-  Title: "t#bar{t}(Z/#gamma*)+b"
-  TexTitle: $t\bar{t}Z/\gamma+b$
-  Group: "t#bar{t}(Z/#gamma*)"
-  FillColor: 417
-  LineColor: 1
-  NtupleFiles: XXX_ttZ_samples
-  MCweight: (abs(m_HF_Classification)>=100)*1.31/1.67
-  Exclude: "Zgamma*"	
+#Sample: "ttZ_b"
+#  Type: BACKGROUND
+#  Title: "t#bar{t}(Z/#gamma*)+b"
+#  TexTitle: $t\bar{t}Z/\gamma+b$
+#  Group: "t#bar{t}(Z/#gamma*)"
+#  FillColor: 417
+#  LineColor: 1
+#  NtupleFiles: XXX_ttZ_samples
+#  MCweight: (abs(m_HF_Classification)>=100)*1.31/1.67
+#  Exclude: "Zgamma*"	
 
 Sample: "rareTop"
   Type: BACKGROUND
@@ -1348,16 +1348,16 @@ Sample: "Zjets_Ext"
   NtupleFiles: XXX_ZExt_samples
   Regions: "Zgamma*"
 
-Sample: "QMisID"
-  Type: BACKGROUND
-  Title: "QMisID" 
-  TexTitle: QMisID
-  FillColor: 423
-  LineColor: 1
-  NtupleFiles: XXX_Fake_samples
-  Selection: !XXX_NONQMISID
-  MCweight: XXX_TTHFJETS
-  Exclude: "SR*4l*","Zgamma*"#,"CR_ttW_2lSS*","CR_HFmu_2lSS_2bin","CR_HFel_2lSS_2bin"
+#Sample: "QMisID"
+#  Type: BACKGROUND
+#  Title: "QMisID" 
+#  TexTitle: QMisID
+#  FillColor: 423
+#  LineColor: 1
+#  NtupleFiles: XXX_Fake_samples
+#  Selection: !XXX_NONQMISID
+#  MCweight: XXX_TTHFJETS
+#  Exclude: "SR*4l*","Zgamma*"#,"CR_ttW_2lSS*","CR_HFmu_2lSS_2bin","CR_HFel_2lSS_2bin"
 
 ##### QMisID DD #####
 
@@ -1577,13 +1577,13 @@ NormFactor: "Norm_ttW"
   Samples: "ttW*"
   Constant: FALSE
 
-NormFactor: "Norm_fake_IntConv"
-  Title: "Norm_IntConv"
-  Nominal: 1.
-  Min: 0. 
-  Max: 2. 
-  Samples: "ttbar_QED","Zjets_Int"
-  Constant: FALSE
+#NormFactor: "Norm_fake_IntConv"
+#  Title: "Norm_IntConv"
+#  Nominal: 1.
+#  Min: 0. 
+#  Max: 2. 
+#  Samples: "ttbar_QED","Zjets_Int"
+#  Constant: FALSE
 
 #NormFactor: "Norm_fake_ExtConv"
 #  Title: "Norm_ExtConv"
