@@ -4,21 +4,29 @@
 ##==============
 ## Ntuple Path
 ##==============
-XXX_NtuplePaths: /eos/atlas/atlascerngroupdisk/phys-exotics/lpx/LQPP2018/tltl/v01/systematics-full/nominal
-#/eos/atlas/atlascerngroupdisk/phys-higgs/HSG8/multilepton_ttWttH/v07/v0701/systematics-full/nominal
-XXX_SYS_NtuplePaths: /eos/atlas/atlascerngroupdisk/phys-exotics/lpx/LQPP2018/tltl/v01/systematics-full
-#/eos/atlas/atlascerngroupdisk/phys-higgs/HSG8/multilepton_ttWttH/v07/v0701/systematics-full
-XXX_CENTRAL_NtuplePaths: /eos/atlas/atlascerngroupdisk/phys-exotics/lpx/LQPP2018/tltl/v01
-#/eos/atlas/atlascerngroupdisk/phys-higgs/HSG8/multilepton_ttWttH/v07/v0701
-XXX_JES1: Sys1
-XXX_JES2: Sys2
-XXX_JES3: Sys3
-XXX_JES4: Sys4
-XXX_JES5: Sys5
-XXX_JES6: Sys6
-XXX_EGMETMU: Sys7
-XXX_MUTAU: Sys8
-XXX_EXCLUDE_DATA_DRIVEN: QMisID,tHjb,tWH
+XXX_NtuplePaths: /eos/atlas/atlascerngroupdisk/phys-exotics/lpx/ANA-EXOT-2022-34_TauPlusX/TauX_v0/nominal
+XXX_SYS_NtuplePaths: 
+#/eos/atlas/atlascerngroupdisk/phys-exotics/lpx/LQPP2018/tltl/v01/systematics-full
+XXX_CENTRAL_NtuplePaths: 
+#/eos/atlas/atlascerngroupdisk/phys-exotics/lpx/LQPP2018/tltl/v01
+XXX_JES1: 
+#Sys1
+XXX_JES2: 
+#Sys2
+XXX_JES3: 
+#Sys3
+XXX_JES4: 
+#Sys4
+XXX_JES5: 
+#Sys5
+XXX_JES6: 
+#Sys6
+XXX_EGMETMU: 
+#Sys7
+XXX_MUTAU: 
+#Sys8
+XXX_EXCLUDE_DATA_DRIVEN: 
+#QMisID,tHjb,tWH
 ##==============
 ## Luminosity
 ##==============
@@ -26,115 +34,22 @@ XXX_LUMI: 138965.16
 ##==============
 ## Smoothing
 ##==============
-XXX_SMOOTHING_SHAPES: 40
-XXX_SMOOTHING_SCALES: 40
+XXX_SMOOTHING_SHAPES: 
+#40
+XXX_SMOOTHING_SCALES: 
+#40
 ##==================
 ## Samples
 ##==================
-XXX_Signal_LQ1000_tete_samples: mc16a/p4416/312599_AF, mc16d/p4416/312599_AF, mc16e/p4416/312599_AF
-XXX_Signal_LQ1100_tete_samples: mc16a/p4416/312600_AF, mc16d/p4416/312600_AF, mc16e/p4416/312600_AF
-XXX_Signal_LQ1200_tete_samples: mc16a/p4416/312601_AF, mc16d/p4416/312601_AF, mc16e/p4416/312601_AF
-XXX_Signal_LQ1250_tete_samples: mc16a/p4416/312602_AF, mc16d/p4416/312602_AF, mc16e/p4416/312602_AF
-XXX_Signal_LQ1300_tete_samples: mc16a/p4416/312603_AF, mc16d/p4416/312603_AF, mc16e/p4416/312603_AF
-XXX_Signal_LQ1350_tete_samples: mc16a/p4416/312604_AF, mc16d/p4416/312604_AF, mc16e/p4416/312604_AF
-XXX_Signal_LQ1400_tete_samples: mc16a/p4416/312605_AF, mc16d/p4416/312605_AF, mc16e/p4416/312605_AF
-XXX_Signal_LQ1450_tete_samples: mc16a/p4416/312606_AF, mc16d/p4416/312606_AF, mc16e/p4416/312606_AF
-XXX_Signal_LQ1500_tete_samples: mc16a/p4416/312607_AF, mc16d/p4416/312607_AF, mc16e/p4416/312607_AF
-XXX_Signal_LQ1550_tete_samples: mc16a/p4416/312608_AF, mc16d/p4416/312608_AF, mc16e/p4416/312608_AF
-XXX_Signal_LQ1600_tete_samples: mc16a/p4416/312609_AF, mc16d/p4416/312609_AF, mc16e/p4416/312609_AF
-XXX_Signal_LQ1700_tete_samples: mc16a/p4416/312610_AF, mc16d/p4416/312610_AF, mc16e/p4416/312610_AF
-XXX_Signal_LQ1800_tete_samples: mc16a/p4416/312611_AF, mc16d/p4416/312611_AF, mc16e/p4416/312611_AF
-XXX_Signal_LQ1900_tete_samples: mc16a/p4416/312612_AF, mc16d/p4416/312612_AF, mc16e/p4416/312612_AF
-XXX_Signal_LQ1000_tmtm_samples: mc16a/p4416/312613_AF, mc16d/p4416/312613_AF, mc16e/p4416/312613_AF
-XXX_Signal_LQ1100_tmtm_samples: mc16a/p4416/312614_AF, mc16d/p4416/312614_AF, mc16e/p4416/312614_AF
-XXX_Signal_LQ1200_tmtm_samples: mc16a/p4416/312615_AF, mc16d/p4416/312615_AF, mc16e/p4416/312615_AF
-XXX_Signal_LQ1250_tmtm_samples: mc16a/p4416/312616_AF, mc16d/p4416/312616_AF, mc16e/p4416/312616_AF
-XXX_Signal_LQ1300_tmtm_samples: mc16a/p4416/312617_AF, mc16d/p4416/312617_AF, mc16e/p4416/312617_AF
-XXX_Signal_LQ1350_tmtm_samples: mc16a/p4416/312618_AF, mc16d/p4416/312618_AF, mc16e/p4416/312618_AF
-XXX_Signal_LQ1400_tmtm_samples: mc16a/p4416/312619_AF, mc16d/p4416/312619_AF, mc16e/p4416/312619_AF
-XXX_Signal_LQ1450_tmtm_samples: mc16a/p4416/312620_AF, mc16d/p4416/312620_AF, mc16e/p4416/312620_AF
-XXX_Signal_LQ1500_tmtm_samples: mc16a/p4416/312621_AF, mc16d/p4416/312621_AF, mc16e/p4416/312621_AF
-XXX_Signal_LQ1550_tmtm_samples: mc16a/p4416/312622_AF, mc16d/p4416/312622_AF, mc16e/p4416/312622_AF
-XXX_Signal_LQ1600_tmtm_samples: mc16a/p4416/312623_AF, mc16d/p4416/312623_AF, mc16e/p4416/312623_AF
-XXX_Signal_LQ1700_tmtm_samples: mc16a/p4416/312624_AF, mc16d/p4416/312624_AF, mc16e/p4416/312624_AF
-XXX_Signal_LQ1800_tmtm_samples: mc16a/p4416/312625_AF, mc16d/p4416/312625_AF, mc16e/p4416/312625_AF
-XXX_Signal_LQ1900_tmtm_samples: mc16a/p4416/312626_AF, mc16d/p4416/312626_AF, mc16e/p4416/312626_AF
-XXX_Signal_LQ500_vLQyangMills_tmtm_samples: mc16a/p4416/506861_AF, mc16d/p4416/506861_AF, mc16e/p4416/506861
-XXX_Signal_LQ700_vLQyangMills_tmtm_samples: mc16a/p4416/506862_AF, mc16d/p4416/506862_AF, mc16e/p4416/506862
-XXX_Signal_LQ900_vLQyangMills_tmtm_samples: mc16a/p4416/506863_AF, mc16d/p4416/506863_AF, mc16e/p4416/506863
-XXX_Signal_LQ1000_vLQyangMills_tmtm_samples: mc16a/p4416/506864_AF, mc16d/p4416/506864_AF, mc16e/p4416/506864
-XXX_Signal_LQ1100_vLQyangMills_tmtm_samples: mc16a/p4416/506865_AF, mc16d/p4416/506865_AF, mc16e/p4416/506865
-XXX_Signal_LQ1200_vLQyangMills_tmtm_samples: mc16a/p4416/506866_AF, mc16d/p4416/506866_AF, mc16e/p4416/506866
-XXX_Signal_LQ1300_vLQyangMills_tmtm_samples: mc16a/p4416/506867_AF, mc16d/p4416/506867_AF, mc16e/p4416/506867
-XXX_Signal_LQ1400_vLQyangMills_tmtm_samples: mc16a/p4416/506868_AF, mc16d/p4416/506868_AF, mc16e/p4416/506868
-XXX_Signal_LQ1500_vLQyangMills_tmtm_samples: mc16a/p4416/506869_AF, mc16d/p4416/506869_AF, mc16e/p4416/506869
-XXX_Signal_LQ1600_vLQyangMills_tmtm_samples: mc16a/p4416/506870_AF, mc16d/p4416/506870_AF, mc16e/p4416/506870
-XXX_Signal_LQ1700_vLQyangMills_tmtm_samples: mc16a/p4416/506871_AF, mc16d/p4416/506871_AF, mc16e/p4416/506871
-XXX_Signal_LQ1800_vLQyangMills_tmtm_samples: mc16a/p4416/506872_AF, mc16d/p4416/506872_AF, mc16e/p4416/506872
-XXX_Signal_LQ1900_vLQyangMills_tmtm_samples: mc16a/p4416/506873_AF, mc16d/p4416/506873_AF, mc16e/p4416/506873
-XXX_Signal_LQ2000_vLQyangMills_tmtm_samples: mc16a/p4416/506874_AF, mc16d/p4416/506874_AF, mc16e/p4416/506874
-XXX_Signal_LQ2100_vLQyangMills_tmtm_samples: mc16a/p4416/506875_AF, mc16d/p4416/506875_AF, mc16e/p4416/506875
-XXX_Signal_LQ2200_vLQyangMills_tmtm_samples: mc16a/p4416/506876_AF, mc16d/p4416/506876_AF, mc16e/p4416/506876
-XXX_Signal_LQ2300_vLQyangMills_tmtm_samples: mc16a/p4416/506877_AF, mc16d/p4416/506877_AF, mc16e/p4416/506877
-XXX_Signal_LQ2400_vLQyangMills_tmtm_samples: mc16a/p4416/506878_AF, mc16d/p4416/506878_AF, mc16e/p4416/506878
-XXX_Signal_LQ2500_vLQyangMills_tmtm_samples: mc16a/p4416/506879_AF, mc16d/p4416/506879_AF, mc16e/p4416/506879
-XXX_Signal_LQ500_vLQminCoup_tmtm_samples: mc16a/p4416/506880_AF, mc16d/p4416/506880_AF, mc16e/p4416/506880
-XXX_Signal_LQ700_vLQminCoup_tmtm_samples: mc16a/p4416/506881_AF, mc16d/p4416/506881_AF, mc16e/p4416/506881
-XXX_Signal_LQ900_vLQminCoup_tmtm_samples: mc16a/p4416/506882_AF, mc16d/p4416/506882_AF, mc16e/p4416/506882
-XXX_Signal_LQ1000_vLQminCoup_tmtm_samples: mc16a/p4416/506883_AF, mc16d/p4416/506883_AF, mc16e/p4416/506883
-XXX_Signal_LQ1100_vLQminCoup_tmtm_samples: mc16a/p4416/506884_AF, mc16d/p4416/506884_AF, mc16e/p4416/506884
-XXX_Signal_LQ1200_vLQminCoup_tmtm_samples: mc16a/p4416/506885_AF, mc16d/p4416/506885_AF, mc16e/p4416/506885
-XXX_Signal_LQ1300_vLQminCoup_tmtm_samples: mc16a/p4416/506886_AF, mc16d/p4416/506886_AF, mc16e/p4416/506886
-XXX_Signal_LQ1400_vLQminCoup_tmtm_samples: mc16a/p4416/506887_AF, mc16d/p4416/506887_AF, mc16e/p4416/506887
-XXX_Signal_LQ1500_vLQminCoup_tmtm_samples: mc16a/p4416/506888_AF, mc16d/p4416/506888_AF, mc16e/p4416/506888
-XXX_Signal_LQ1600_vLQminCoup_tmtm_samples: mc16a/p4416/506889_AF, mc16d/p4416/506889_AF, mc16e/p4416/506889
-XXX_Signal_LQ1700_vLQminCoup_tmtm_samples: mc16a/p4416/506890_AF, mc16d/p4416/506890_AF, mc16e/p4416/506890
-XXX_Signal_LQ1800_vLQminCoup_tmtm_samples: mc16a/p4416/506891_AF, mc16d/p4416/506891_AF, mc16e/p4416/506891
-XXX_Signal_LQ1900_vLQminCoup_tmtm_samples: mc16a/p4416/506892_AF, mc16d/p4416/506892_AF, mc16e/p4416/506892
-XXX_Signal_LQ2000_vLQminCoup_tmtm_samples: mc16a/p4416/506893_AF, mc16d/p4416/506893_AF, mc16e/p4416/506893
-XXX_Signal_LQ2100_vLQminCoup_tmtm_samples: mc16a/p4416/506894_AF, mc16d/p4416/506894_AF, mc16e/p4416/506894
-XXX_Signal_LQ2200_vLQminCoup_tmtm_samples: mc16a/p4416/506895_AF, mc16d/p4416/506895_AF, mc16e/p4416/506895
-XXX_Signal_LQ2300_vLQminCoup_tmtm_samples: mc16a/p4416/506896_AF, mc16d/p4416/506896_AF, mc16e/p4416/506896
-XXX_Signal_LQ2400_vLQminCoup_tmtm_samples: mc16a/p4416/506897_AF, mc16d/p4416/506897_AF, mc16e/p4416/506897
-XXX_Signal_LQ2500_vLQminCoup_tmtm_samples: mc16a/p4416/506898_AF, mc16d/p4416/506898_AF, mc16e/p4416/506898
-XXX_Signal_LQ500_vLQyangMills_tete_samples: mc16a/p4416/506899_AF, mc16d/p4416/506899_AF, mc16e/p4416/506899
-XXX_Signal_LQ700_vLQyangMills_tete_samples: mc16a/p4416/506900_AF, mc16d/p4416/506900_AF, mc16e/p4416/506900
-XXX_Signal_LQ900_vLQyangMills_tete_samples: mc16a/p4416/506901_AF, mc16d/p4416/506901_AF, mc16e/p4416/506901
-XXX_Signal_LQ1000_vLQyangMills_tete_samples: mc16a/p4416/506902_AF, mc16d/p4416/506902_AF, mc16e/p4416/506902
-XXX_Signal_LQ1100_vLQyangMills_tete_samples: mc16a/p4416/506903_AF, mc16d/p4416/506903_AF, mc16e/p4416/506903
-XXX_Signal_LQ1200_vLQyangMills_tete_samples: mc16a/p4416/506904_AF, mc16d/p4416/506904_AF, mc16e/p4416/506904
-XXX_Signal_LQ1300_vLQyangMills_tete_samples: mc16a/p4416/506905_AF, mc16d/p4416/506905_AF, mc16e/p4416/506905
-XXX_Signal_LQ1400_vLQyangMills_tete_samples: mc16a/p4416/506906_AF, mc16d/p4416/506906_AF, mc16e/p4416/506906
-XXX_Signal_LQ1500_vLQyangMills_tete_samples: mc16a/p4416/506907_AF, mc16d/p4416/506907_AF, mc16e/p4416/506907
-XXX_Signal_LQ1600_vLQyangMills_tete_samples: mc16a/p4416/506908_AF, mc16d/p4416/506908_AF, mc16e/p4416/506908
-XXX_Signal_LQ1700_vLQyangMills_tete_samples: mc16a/p4416/506909_AF, mc16d/p4416/506909_AF, mc16e/p4416/506909
-XXX_Signal_LQ1800_vLQyangMills_tete_samples: mc16a/p4416/506910_AF, mc16d/p4416/506910_AF, mc16e/p4416/506910
-XXX_Signal_LQ1900_vLQyangMills_tete_samples: mc16a/p4416/506911_AF, mc16d/p4416/506911_AF, mc16e/p4416/506911
-XXX_Signal_LQ2000_vLQyangMills_tete_samples: mc16a/p4416/506912_AF, mc16d/p4416/506912_AF, mc16e/p4416/506912
-XXX_Signal_LQ2100_vLQyangMills_tete_samples: mc16a/p4416/506913_AF, mc16d/p4416/506913_AF, mc16e/p4416/506913
-XXX_Signal_LQ2200_vLQyangMills_tete_samples: mc16a/p4416/506914_AF, mc16d/p4416/506914_AF, mc16e/p4416/506914
-XXX_Signal_LQ2300_vLQyangMills_tete_samples: mc16a/p4416/506915_AF, mc16d/p4416/506915_AF, mc16e/p4416/506915
-XXX_Signal_LQ2400_vLQyangMills_tete_samples: mc16a/p4416/506916_AF, mc16d/p4416/506916_AF, mc16e/p4416/506916
-XXX_Signal_LQ2500_vLQyangMills_tete_samples: mc16a/p4416/506917_AF, mc16d/p4416/506917_AF, mc16e/p4416/506917
-XXX_Signal_LQ500_vLQminCoup_tete_samples: mc16a/p4416/506918_AF, mc16d/p4416/506918_AF, mc16e/p4416/506918
-XXX_Signal_LQ700_vLQminCoup_tete_samples: mc16a/p4416/506919_AF, mc16d/p4416/506919_AF, mc16e/p4416/506919
-XXX_Signal_LQ900_vLQminCoup_tete_samples: mc16a/p4416/506920_AF, mc16d/p4416/506920_AF, mc16e/p4416/506920
-XXX_Signal_LQ1000_vLQminCoup_tete_samples: mc16a/p4416/506921_AF, mc16d/p4416/506921_AF, mc16e/p4416/506921
-XXX_Signal_LQ1100_vLQminCoup_tete_samples: mc16a/p4416/506922_AF, mc16d/p4416/506922_AF, mc16e/p4416/506922
-XXX_Signal_LQ1200_vLQminCoup_tete_samples: mc16a/p4416/506923_AF, mc16d/p4416/506923_AF, mc16e/p4416/506923
-XXX_Signal_LQ1300_vLQminCoup_tete_samples: mc16a/p4416/506924_AF, mc16d/p4416/506924_AF, mc16e/p4416/506924
-XXX_Signal_LQ1400_vLQminCoup_tete_samples: mc16a/p4416/506925_AF, mc16d/p4416/506925_AF, mc16e/p4416/506925
-XXX_Signal_LQ1500_vLQminCoup_tete_samples: mc16a/p4416/506926_AF, mc16d/p4416/506926_AF, mc16e/p4416/506926
-XXX_Signal_LQ1600_vLQminCoup_tete_samples: mc16a/p4416/506927_AF, mc16d/p4416/506927_AF, mc16e/p4416/506927
-XXX_Signal_LQ1700_vLQminCoup_tete_samples: mc16a/p4416/506928_AF, mc16d/p4416/506928_AF, mc16e/p4416/506928
-XXX_Signal_LQ1800_vLQminCoup_tete_samples: mc16a/p4416/506929_AF, mc16d/p4416/506929_AF, mc16e/p4416/506929
-XXX_Signal_LQ1900_vLQminCoup_tete_samples: mc16a/p4416/506930_AF, mc16d/p4416/506930_AF, mc16e/p4416/506930
-XXX_Signal_LQ2000_vLQminCoup_tete_samples: mc16a/p4416/506931_AF, mc16d/p4416/506931_AF, mc16e/p4416/506931
-XXX_Signal_LQ2100_vLQminCoup_tete_samples: mc16a/p4416/506932_AF, mc16d/p4416/506932_AF, mc16e/p4416/506932
-XXX_Signal_LQ2200_vLQminCoup_tete_samples: mc16a/p4416/506933_AF, mc16d/p4416/506933_AF, mc16e/p4416/506933
-XXX_Signal_LQ2300_vLQminCoup_tete_samples: mc16a/p4416/506934_AF, mc16d/p4416/506934_AF, mc16e/p4416/506934
-XXX_Signal_LQ2400_vLQminCoup_tete_samples: mc16a/p4416/506935_AF, mc16d/p4416/506935_AF, mc16e/p4416/506935
-XXX_Signal_LQ2500_vLQminCoup_tete_samples: mc16a/p4416/506936_AF, mc16d/p4416/506936_AF, mc16e/p4416/506936
+XXX_Signal_Zprime_1000_tautau_samples: mc20a/p5855/800025, mc20d/p5855/800025, mc20e/p5855/800025
+XXX_Signal_Zprime_3000_tautau_samples: mc20a/p5855/801976, mc20d/p5855/801976, mc20e/p5855/801976
+XXX_Signal_Zprime_5000_tautau_samples: mc20a/p5855/801975, mc20d/p5855/801975, mc20e/p5855/801975
+XXX_Signal_Wprime_1000_taunu_samples: mc20a/p5855/8001979, mc20d/p5855/801979, mc20e/p5855/801979
+XXX_Signal_Wprime_3000_taunu_samples: mc20a/p5855/801978, mc20d/p5855/801978, mc20e/p5855/801978
+XXX_Signal_Wprime_5000_taunu_samples: mc20a/p5855/801977, mc20d/p5855/801977, mc20e/p5855/801977
+
+
+
 XXX_ttW2210_samples: mc16a/p4416/700168, mc16d/p4416/700168, mc16e/p4416/700168
 XXX_ttW2210_EW_samples: mc16a/p4590/700205, mc16d/p4590/700205, mc16e/p4590/700205
 XXX_ttW228_samples: mc16a/p4416/700000, mc16d/p4416/700000, mc16e/p4416/700000
