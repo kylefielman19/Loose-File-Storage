@@ -41,6 +41,7 @@ XXX_SMOOTHING_SCALES:
 ##==================
 ## Samples
 ##==================
+#Signal
 XXX_Signal_Zprime_1000_tautau_samples: mc20a/p5855/800025, mc20d/p5855/800025, mc20e/p5855/800025
 XXX_Signal_Zprime_3000_tautau_samples: mc20a/p5855/801976, mc20d/p5855/801976, mc20e/p5855/801976
 XXX_Signal_Zprime_5000_tautau_samples: mc20a/p5855/801975, mc20d/p5855/801975, mc20e/p5855/801975
@@ -48,15 +49,26 @@ XXX_Signal_Wprime_1000_taunu_samples: mc20a/p5855/8001979, mc20d/p5855/801979, m
 XXX_Signal_Wprime_3000_taunu_samples: mc20a/p5855/801978, mc20d/p5855/801978, mc20e/p5855/801978
 XXX_Signal_Wprime_5000_taunu_samples: mc20a/p5855/801977, mc20d/p5855/801977, mc20e/p5855/801977
 
-XXX_Vgamma_mumugamma: mc20a/p5631/700398, mc20d/p5855/700398, mc20e/p5855/700398
-XXX_Vgamma_eegamma: mc20a/p5631/700399, mc20d/p5855/700399, mc20e/p5855/700399
-XXX_Vgamma_tautaugamma: mc20a/p5631/700400, mc20d/p5855/700400, mc20e/p5855/700400
-XXX_Vgamma_nunugamma: mc20a/p5631/700401, mc20d/p5855/700401, mc20e/p5855/700401
-XXX_Vgamma_munugamma: mc20a/p5631/700402, mc20d/p5855/700402, mc20e/p5855/700402
-XXX_Vgamma_enugamma: mc20a/p5631/700403, mc20d/p5855/700403, mc20e/p5855/700403
-XXX_Vgamma_taunugamma: mc20a/p5631/700403, mc20d/p5855/700403, mc20e/p5855/700403
+#Vgamma
+XXX_Vgamma_mumugamma: mc20a/p5631/700398, mc20d/p5631/700398, mc20e/p5631/700398
+XXX_Vgamma_eegamma: mc20a/p5631/700399, mc20d/p5631/700399, mc20e/p5631/700399
+XXX_Vgamma_tautaugamma: mc20a/p5631/700400, mc20d/p5631/700400, mc20e/p5631/700400
+XXX_Vgamma_nunugamma: mc20a/p5631/700401, mc20d/p5631/700401, mc20e/p5631/700401
+XXX_Vgamma_munugamma: mc20a/p5631/700402, mc20d/p5631/700402, mc20e/p5631/700402
+XXX_Vgamma_enugamma: mc20a/p5631/700403, mc20d/p5631/700403, mc20e/p5631/700403
+XXX_Vgamma_taunugamma: mc20a/p5631/700403, mc20d/p5631/700403, mc20e/p5631/700403
 
+#VVV
+XXX_VVV_WWW_3l3v_EW6: mc20a/p5631/364242, mc20d/p5631/364242, mc20e/p5631/364242
+XXX_VVV_WWZ_4l2v_EW6: mc20a/p5631/364243, mc20d/p5631/364243, mc20e/p5631/364243
+XXX_VVV_WWZ_2l4v_EW6: mc20a/p5631/364244, mc20d/p5631/364244, mc20e/p5631/364244
+XXX_VVV_WZZ_5l1v_EW6: mc20a/p5631/364245, mc20d/p5631/364245, mc20e/p5631/364245
+XXX_VVV_WZZ_3l3v_EW6: mc20a/p5631/364246, mc20d/p5631/364246, mc20e/p5631/364246
+XXX_VVV_ZZZ_6l0v_EW6: mc20a/p5631/364247, mc20d/p5631/364247, mc20e/p5631/364247
+XXX_VVV_ZZZ_4l2v_EW6: mc20a/p5631/364248, mc20d/p5631/364248, mc20e/p5631/364248
+XXX_VVV_ZZZ_2l4v_EW6: mc20a/p5631/364249, mc20d/p5631/364249, mc20e/p5631/364249
 
+#VV
 
 
 
