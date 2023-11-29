@@ -73,7 +73,7 @@ Limit: "limit"
 
 %%% SIGNAL REGIONS %%%
 
-Region: "Testing"
+Region: "SR_Testing"
   Type: SIGNAL
   Variable: "(HT+met_met)*1e-3",5,0,4000
   VariableTitle: "m_{eff} [GeV]"
